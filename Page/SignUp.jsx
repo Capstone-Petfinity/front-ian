@@ -1,49 +1,166 @@
-import {Text, View, TouchableOpacity} from 'react-native';
+import {useState} from 'react';
+import {Text, View, TouchableOpacity, Alert} from 'react-native';
 import {StyleSheet} from 'react-native';
-function SignUp({navigation}) {
+import OwnerSignUp from './OwnerSignUp';
+
+function OwnerButton({isPetOwnerSelected, onPress}) {
+  const styles = StyleSheet.create({
+    button: {
+      borderStyle: 'solid',
+      borderWidth: 1,
+      borderColor: 'green',
+      width: '50%',
+      height: 60,
+      justifyContent: 'center',
+      display: 'flex',
+      alignItems: 'center',
+    },
+    buttonText: {
+      color: 'green',
+      fontSize: 20,
+    },
+    selected: {
+      backgroundColor: 'green',
+    },
+    selectedText: {
+      color: 'white',
+    },
+  });
+
+  const buttonStyles = [styles.button, isPetOwnerSelected && styles.selected];
+  const textStyles = [
+    styles.buttonText,
+    isPetOwnerSelected && styles.selectedText,
+  ];
+
+  return (
+    <TouchableOpacity style={buttonStyles} onPress={onPress}>
+      <Text style={textStyles}>반려인</Text>
+    </TouchableOpacity>
+  );
+}
+
+function VetButton({isPetOwnerSelected, onPress}) {
+  const styles = StyleSheet.create({
+    button: {
+      borderStyle: 'solid',
+      borderWidth: 1,
+      borderColor: 'green',
+      width: 200,
+      height: 60,
+      justifyContent: 'center',
+      display: 'flex',
+      alignItems: 'center',
+    },
+    buttonText: {
+      color: 'green',
+      fontSize: 20,
+    },
+    selected: {
+      backgroundColor: 'green',
+    },
+    selectedText: {
+      color: 'white',
+    },
+  });
+
+  const buttonStyles = [styles.button, !isPetOwnerSelected && styles.selected];
+  const textStyles = [
+    styles.buttonText,
+    !isPetOwnerSelected && styles.selectedText,
+  ];
+
+  return (
+    <TouchableOpacity style={buttonStyles} onPress={onPress}>
+      <Text style={textStyles}>수의사</Text>
+    </TouchableOpacity>
+  );
+}
+
+function SignUp() {
+  const [isPetOwnerSelected, setIsPetOwnerSelected] = useState(true);
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
+      backgroundColor: 'white',
     },
-    text: {
-      fontSize: 20,
-      fontWeight: 900,
-      color: 'black',
-      marginBottom: 30,
+    topContainer: {
+      flexDirection: 'row',
     },
-    button: {
-      borderStyle: 'solid',
-      borderWidth: 1,
-      width: 200,
-      height: 100,
+    innerContainer: {
+      flex: 1,
       justifyContent: 'center',
-      display: 'flex',
       alignItems: 'center',
-      marginBottom: 10,
-    },
-    buttonText: {
-      color: 'black',
-      fontSize: 20,
+      backgroundColor: 'white',
     },
   });
 
-  function CustomButton({title, onPress}) {
-    return (
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={styles.buttonText}>{title}</Text>
-      </TouchableOpacity>
-    );
+  function petOwnerPress(e) {
+    e.preventDefault();
+    if (!isPetOwnerSelected) {
+      Alert.alert(
+        '주의',
+        '정보가 저장되지 않을 수 있습니다.',
+        [
+          {text: '취소', onPress: () => {}, style: 'cancel'},
+          {
+            text: '이동',
+            onPress: () => {
+              setIsPetOwnerSelected(true);
+            },
+            style: 'destructive',
+          },
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+    }
+
+    return;
   }
+
+  function vetPress(e) {
+    e.preventDefault();
+    if (isPetOwnerSelected) {
+      Alert.alert(
+        '주의',
+        '정보가 저장되지 않을 수 있습니다.',
+        [
+          {text: '취소', onPress: () => {}, style: 'cancel'},
+          {
+            text: '이동',
+            onPress: () => {
+              setIsPetOwnerSelected(false);
+            },
+            style: 'destructive',
+          },
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+    }
+
+    return;
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>SignUp</Text>
-      <CustomButton
-        title="반려인"
-        onPress={() => navigation.navigate('Customer')}
-      />
-      <CustomButton title="의료진" onPress={() => navigation.navigate('Vet')} />
+      <View style={styles.topContainer}>
+        <OwnerButton
+          isPetOwnerSelected={isPetOwnerSelected}
+          onPress={petOwnerPress}
+        />
+        <VetButton isPetOwnerSelected={isPetOwnerSelected} onPress={vetPress} />
+      </View>
+      <View style={styles.innerContainer}>
+        <OwnerSignUp />
+      </View>
     </View>
   );
 }
