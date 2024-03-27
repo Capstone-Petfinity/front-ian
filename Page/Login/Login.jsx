@@ -11,11 +11,12 @@ function Input({text, value, onChange, security}) {
       position: 'relative',
     },
     input: {
-      height: 40,
-      width: 230,
+      height: 50,
+      width: 280,
       maxWidth: 500,
-      borderColor: 'gray',
-      borderWidth: 1,
+      borderColor: 'black',
+      backgroundColor: '#F8F8F8',
+      borderWidth: 0.2,
       paddingHorizontal: 10,
       borderRadius: 5,
       marginBottom: 10,
@@ -27,8 +28,8 @@ function Input({text, value, onChange, security}) {
       transform: [{translateY: -12}],
     },
     placeholder: {
-      color: 'gray',
-      fontSize: 12,
+      color: 'black',
+      fontSize: 13,
     },
     transparent: {
       color: 'transparent',
@@ -63,10 +64,10 @@ function LoginButton({title, onPress}) {
     loginButton: {
       borderStyle: 'solid',
       borderWidth: 1,
-      borderColor: 'green',
-      backgroundColor: 'green',
-      width: 230,
-      height: 40,
+      borderColor: '#00835C',
+      backgroundColor: '#00835C',
+      width: 280,
+      height: 50,
       justifyContent: 'center',
       display: 'flex',
       alignItems: 'center',
@@ -77,7 +78,7 @@ function LoginButton({title, onPress}) {
     loginButtonText: {
       color: 'white',
       fontWeight: '700',
-      fontSize: 20,
+      fontSize: 25,
     },
   });
 
@@ -93,7 +94,7 @@ function SignUpButton({title, onPress}) {
     signupButton: {
       borderStyle: 'solid',
       justifyContent: 'center',
-      fontSize: 12,
+      fontSize: 11,
       borderBottomWidth: 0.5,
     },
   });
@@ -105,7 +106,7 @@ function SignUpButton({title, onPress}) {
   );
 }
 
-function HomeScreen({navigation}) {
+function LoginScreen({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -118,15 +119,15 @@ function HomeScreen({navigation}) {
       backgroundColor: 'white',
     },
     title: {
-      fontSize: 30,
+      fontSize: 33,
       fontWeight: '900',
-      color: 'green',
+      color: '#00835C',
       marginBottom: 5,
     },
     subTitle: {
-      fontSize: 12,
+      fontSize: 13,
       fontWeight: '700',
-      color: 'green',
+      color: '#00835C',
       marginBottom: 70,
     },
   });
@@ -149,7 +150,10 @@ function HomeScreen({navigation}) {
         security={true}
       />
 
-      <LoginButton title="Login" onPress={() => navigation.navigate('Login')} />
+      <LoginButton
+        title="Login"
+        onPress={() => navigation.navigate('OwnerMain')}
+      />
 
       <SignUpButton
         title="회원이 아니신가요?"
@@ -159,4 +163,4 @@ function HomeScreen({navigation}) {
   );
 }
 
-export default HomeScreen;
+export default LoginScreen;

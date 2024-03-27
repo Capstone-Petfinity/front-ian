@@ -10,23 +10,25 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import React from 'react';
 
-import HomeScreen from './Page/Home';
-import VetScreen from './Page/Vet';
-import CustomerScreen from './Page/Customer';
-import Login from './Page/Login';
-import SignUp from './Page/SignUp';
+import LoginScreen from './Page/Login/Login';
+import SignUp from './Page/SignUp/SignUp';
+import OnwerMain from './Page/Main/OwnerMain';
+import VetAIDiagnosis from './Page/AIDiagnosis/VetAIDiagnosis';
+import Account from './Page/Account/Account';
 
 function App(): React.JSX.Element {
   const Stack = createStackNavigator();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Vet" component={VetScreen} />
-        <Stack.Screen name="Customer" component={CustomerScreen} />
-        <Stack.Screen name="Login" component={Login} />
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Account" component={Account} />
+        <Stack.Screen name="OwnerMain" component={OnwerMain} />
+        <Stack.Screen name="VetAIDiagnosis" component={VetAIDiagnosis} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -2,25 +2,27 @@ import {useState} from 'react';
 import {Text, View, TouchableOpacity, Alert} from 'react-native';
 import {StyleSheet} from 'react-native';
 import OwnerSignUp from './OwnerSignUp';
+import VetSignUp from './VetSignUp';
 
 function OwnerButton({isPetOwnerSelected, onPress}) {
   const styles = StyleSheet.create({
     button: {
       borderStyle: 'solid',
       borderWidth: 1,
-      borderColor: 'green',
+      borderColor: 'transparent',
       width: '50%',
       height: 60,
-      justifyContent: 'center',
       display: 'flex',
+      justifyContent: 'center',
       alignItems: 'center',
+      backgroundColor: 'lightgray',
     },
     buttonText: {
-      color: 'green',
+      color: 'black',
       fontSize: 20,
     },
     selected: {
-      backgroundColor: 'green',
+      backgroundColor: '#00835C',
     },
     selectedText: {
       color: 'white',
@@ -35,7 +37,7 @@ function OwnerButton({isPetOwnerSelected, onPress}) {
 
   return (
     <TouchableOpacity style={buttonStyles} onPress={onPress}>
-      <Text style={textStyles}>반려인</Text>
+      <Text style={textStyles}>보호자</Text>
     </TouchableOpacity>
   );
 }
@@ -45,19 +47,20 @@ function VetButton({isPetOwnerSelected, onPress}) {
     button: {
       borderStyle: 'solid',
       borderWidth: 1,
-      borderColor: 'green',
+      borderColor: 'transparent',
       width: 200,
       height: 60,
       justifyContent: 'center',
       display: 'flex',
       alignItems: 'center',
+      backgroundColor: 'lightgray',
     },
     buttonText: {
-      color: 'green',
+      color: 'black',
       fontSize: 20,
     },
     selected: {
-      backgroundColor: 'green',
+      backgroundColor: '#00835C',
     },
     selectedText: {
       color: 'white',
@@ -81,6 +84,9 @@ function SignUp() {
   const [isPetOwnerSelected, setIsPetOwnerSelected] = useState(true);
 
   const styles = StyleSheet.create({
+    topArea: {
+      height: 70,
+    },
     container: {
       flex: 1,
       justifyContent: 'center',
@@ -151,6 +157,7 @@ function SignUp() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.topArea}></View>
       <View style={styles.topContainer}>
         <OwnerButton
           isPetOwnerSelected={isPetOwnerSelected}
@@ -159,7 +166,8 @@ function SignUp() {
         <VetButton isPetOwnerSelected={isPetOwnerSelected} onPress={vetPress} />
       </View>
       <View style={styles.innerContainer}>
-        <OwnerSignUp />
+        {isPetOwnerSelected && <OwnerSignUp />}
+        {!isPetOwnerSelected && <VetSignUp />}
       </View>
     </View>
   );
