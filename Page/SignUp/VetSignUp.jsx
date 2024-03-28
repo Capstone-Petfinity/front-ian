@@ -179,7 +179,7 @@ function VetSignUp() {
           placeholder="아이디를 입력하세요"
           value={userId}
           onChange={setUserId}
-          security="false"
+          security={false}
         />
         <DuplicatedCheckButton />
       </View>
@@ -187,7 +187,7 @@ function VetSignUp() {
         placeholder="비밀번호를 입력하세요"
         value={password}
         onChange={setPassword}
-        security="true"
+        security={true}
       />
 
       <Input1
