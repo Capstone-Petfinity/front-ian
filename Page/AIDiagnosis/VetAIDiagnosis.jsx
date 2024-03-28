@@ -1,31 +1,8 @@
-import {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-
-function ChangePictureButton() {
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#F8F8F8',
-      borderWidth: 0.2,
-      width: 70,
-      height: 40,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    text: {
-      color: 'black',
-    },
-  });
-  return (
-    <TouchableOpacity style={styles.container}>
-      <Text style={styles.text}>사진 변경</Text>
-    </TouchableOpacity>
-  );
-}
-
-function AffectedArea() {
-  const [isOpened, setIsOpened] = useState(false);
-}
+import AffectedList from './AffectedList';
+import Picture from './Picture';
+import Header from '../Component/Header';
 
 function DiagnosisButton({title, onPress}) {
   const styles = StyleSheet.create({
@@ -62,18 +39,31 @@ function VetAIDiagnosis({navigation}) {
     container: {
       backgroundColor: 'white',
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
+    },
+    smallContainer: {
+      marginTop: 30,
+      alignItems: 'center',
+    },
+    picture: {
+      width: 300,
+      height: 300,
+      borderWidth: 1,
+      backgroundColor: 'gray',
+      borderColor: 'gray',
+      marginBottom: 30,
     },
   });
 
   return (
     <View style={styles.container}>
-      <ChangePictureButton />
-      <DiagnosisButton
-        title="AI 진단하기"
-        onPress={() => console.log('click')}
-      />
+      <Header navigation={navigation} />
+      <View style={styles.smallContainer}>
+        <View style={styles.picture}></View>
+        <Picture />
+        <AffectedList />
+        <DiagnosisButton title="AI 진단하기" />
+      </View>
     </View>
   );
 }
