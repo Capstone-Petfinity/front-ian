@@ -15,6 +15,7 @@ import SignUp from './Page/SignUp/SignUp';
 import OnwerMain from './Page/Main/OwnerMain';
 import VetAIDiagnosis from './Page/AIDiagnosis/VetAIDiagnosis';
 import Account from './Page/Account/Account';
+import VetMain from './Page/Main/VetMain';
 
 function App(): React.JSX.Element {
   const Stack = createStackNavigator();
@@ -28,6 +29,7 @@ function App(): React.JSX.Element {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="OwnerMain" component={OnwerMain} />
+        <Stack.Screen name="VetMain" component={VetMain} />
         <Stack.Screen name="VetAIDiagnosis" component={VetAIDiagnosis} />
       </Stack.Navigator>
     </NavigationContainer>

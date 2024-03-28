@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-import {Text, View, TextInput, TouchableOpacity} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity, Button} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 import * as React from 'react';
@@ -159,6 +159,8 @@ function LoginScreen({navigation}) {
         title="회원이 아니신가요?"
         onPress={() => navigation.navigate('SignUp')}
       />
+
+      <Button title="hey" onPress={() => navigation.navigate('VetMain')} />
     </View>
   );
 }

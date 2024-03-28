@@ -6,14 +6,14 @@ function Picture() {
       container: {
         backgroundColor: 'white',
         borderWidth: 0.2,
-        width: 90,
+        width: 100,
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
       },
       text: {
         color: 'black',
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: '600',
       },
     });
