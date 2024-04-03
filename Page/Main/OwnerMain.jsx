@@ -21,7 +21,7 @@ function OwnerMain({navigation}) {
       <View style={styles.subContainer}>
         <Button
           text="AI 진단"
-          onPress={() => navigation.navigate('VetAIDiagnosis')}
+          onPress={() => navigation.navigate('OwnerAIDiagnosis')}
         />
         <Button text="병원 예약" />
       </View>

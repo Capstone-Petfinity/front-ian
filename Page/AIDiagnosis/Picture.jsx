@@ -10,6 +10,7 @@ function Picture() {
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 30,
       },
       text: {
         color: 'black',

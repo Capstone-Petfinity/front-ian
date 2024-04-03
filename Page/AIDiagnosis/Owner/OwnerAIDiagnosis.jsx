@@ -1,8 +1,9 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AffectedList from './AffectedList';
-import Picture from './Picture';
-import Header from '../Component/Header';
+import Picture from '../Picture';
+import Header from '../../Component/Header';
+import {useEffect, useState} from 'react';
 
 function DiagnosisButton({title, onPress}) {
   const styles = StyleSheet.create({
@@ -34,7 +35,9 @@ function DiagnosisButton({title, onPress}) {
   );
 }
 
-function VetAIDiagnosis({navigation}) {
+function OwnerAIDiagnosis({navigation}) {
+  const [area, setArea] = useState('');
+
   const styles = StyleSheet.create({
     container: {
       backgroundColor: 'white',
@@ -55,17 +58,21 @@ function VetAIDiagnosis({navigation}) {
     },
   });
 
+  useEffect(() => {
+    console.log(area);
+  }, [area]);
+
   return (
     <View style={styles.container}>
       <Header navigation={navigation} />
       <View style={styles.smallContainer}>
         <View style={styles.picture}></View>
         <Picture />
-        <AffectedList />
+        <AffectedList area={area} setArea={setArea} />
         <DiagnosisButton title="AI 진단하기" />
       </View>
     </View>
   );
 }
 
-export default VetAIDiagnosis;
+export default OwnerAIDiagnosis;

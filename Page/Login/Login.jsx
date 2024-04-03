@@ -115,7 +115,7 @@ function LoginScreen({navigation}) {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: -60,
+      // marginTop: -60,
       backgroundColor: 'white',
     },
     title: {

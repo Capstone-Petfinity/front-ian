@@ -19,7 +19,10 @@ function VetMain({navigation}) {
     <View style={styles.container}>
       <Header navigation={navigation} />
       <View style={styles.subContainer}>
-        <Button text="AI 진단" />
+        <Button
+          text="AI 진단"
+          onPress={() => navigation.navigate('VetAIDiagnosis')}
+        />
       </View>
     </View>
   );
