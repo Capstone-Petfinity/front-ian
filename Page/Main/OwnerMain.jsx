@@ -1,5 +1,5 @@
 import {StyleSheet, View} from 'react-native';
-import Header from '../Component/Header';
+import OwnerHeader from '../Component/OwnerHeader';
 import Button from './Button';
 
 function OwnerMain({navigation}) {
@@ -17,7 +17,7 @@ function OwnerMain({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Header navigation={navigation} />
+      <OwnerHeader navigation={navigation} />
       <View style={styles.subContainer}>
         <Button
           text="AI 진단"

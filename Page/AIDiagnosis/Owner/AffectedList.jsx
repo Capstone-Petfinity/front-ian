@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
     width: 280,
-    // marginTop: 30,
     marginBottom: 70,
   },
   icon: {
@@ -76,6 +75,7 @@ const styles = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 16,
+    marginLeft: 10,
   },
   selectedTextStyle: {
     fontSize: 16,
@@ -96,6 +96,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   textItem: {
-    marginLeft: 10,
+    marginLeft: 15,
   },
 });

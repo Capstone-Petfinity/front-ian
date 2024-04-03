@@ -1,7 +1,7 @@
 import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import accountIcon from '../../asset/account.png';
 
-function Header({navigation}) {
+function OwnerHeader({navigation}) {
   const styles = StyleSheet.create({
     topArea: {
       height: 70,
@@ -39,7 +39,7 @@ function Header({navigation}) {
         <Text style={styles.title}>Petfinity</Text>
         <TouchableOpacity
           style={styles.iconDiv}
-          onPress={() => navigation.navigate('Account')}>
+          onPress={() => navigation.navigate('OwnerAccount')}>
           <Image style={styles.icon} source={accountIcon} />
         </TouchableOpacity>
       </View>
@@ -47,4 +47,4 @@ function Header({navigation}) {
   );
 }
 
-export default Header;
+export default OwnerHeader;

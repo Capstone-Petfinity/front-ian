@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useEffect, useState} from 'react';
 import AffectedList from './AffectedList';
 import Picture from '../Picture';
-import Header from '../../Component/Header';
-import {useEffect, useState} from 'react';
+import OwnerHeader from '../../Component/OwnerHeader';
 
 function DiagnosisButton({title, onPress}) {
   const styles = StyleSheet.create({
@@ -64,7 +64,7 @@ function OwnerAIDiagnosis({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Header navigation={navigation} />
+      <OwnerHeader navigation={navigation} />
       <View style={styles.smallContainer}>
         <View style={styles.picture}></View>
         <Picture />

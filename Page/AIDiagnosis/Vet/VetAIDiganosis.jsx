@@ -1,11 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useState} from 'react';
 
-import Header from '../../Component/Header';
+import VetHeader from '../../Component/VetHeader';
 import Picture from '../Picture';
 import AffectedList from './AffectedList';
 import FormatList from './FormatList';
-import {useState} from 'react';
 
 function DiagnosisButton({title, onPress}) {
   const styles = StyleSheet.create({
@@ -63,7 +63,7 @@ function VetAIDiagnosis({navigation}) {
 
   return (
     <View style={sytles.container}>
-      <Header navigation={navigation} />
+      <VetHeader navigation={navigation} />
       <View style={sytles.smallContainer}>
         <View style={sytles.picture}></View>
         <Picture />

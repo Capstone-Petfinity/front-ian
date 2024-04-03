@@ -1,5 +1,5 @@
 import {StyleSheet, View} from 'react-native';
-import Header from '../Component/Header';
+import VetHeader from '../Component/VetHeader';
 import Button from './Button';
 
 function VetMain({navigation}) {
@@ -17,7 +17,7 @@ function VetMain({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Header navigation={navigation} />
+      <VetHeader navigation={navigation} />
       <View style={styles.subContainer}>
         <Button
           text="AI 진단"
