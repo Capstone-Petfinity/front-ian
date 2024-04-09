@@ -1,13 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useState} from 'react';
 
-import VetHeader from '../../Component/VetHeader';
-import Picture from '../Picture';
-import AffectedList from './AffectedList';
-import FormatList from './FormatList';
+import OwnerHeader from '../../Component/OwnerHeader';
 
-function DiagnosisButton({title, onPress}) {
+function ReservationButton({title, onPress}) {
   const styles = StyleSheet.create({
     loginButton: {
       borderStyle: 'solid',
@@ -37,11 +33,8 @@ function DiagnosisButton({title, onPress}) {
   );
 }
 
-function VetAIDiagnosis({navigation}) {
-  const [format, setFormat] = useState(null);
-  const [area, setArea] = useState(null);
-
-  const sytles = StyleSheet.create({
+function VetResult({navigation}) {
+  const styles = StyleSheet.create({
     container: {
       backgroundColor: 'white',
       flex: 1,
@@ -57,30 +50,39 @@ function VetAIDiagnosis({navigation}) {
       borderWidth: 1,
       backgroundColor: 'gray',
       borderColor: 'gray',
-      marginBottom: 30,
+      marginBottom: 35,
+    },
+    resultText: {
+      fontSize: 20,
+      fontWeight: '500',
+      marginBottom: 50,
+    },
+    additionalTextView: {
+      marginBottom: 45,
+    },
+    additionalText: {
+      fontSize: 17,
     },
   });
 
   return (
-    <View style={sytles.container}>
-      <VetHeader navigation={navigation} />
-      <View style={sytles.smallContainer}>
-        <View style={sytles.picture}></View>
-        <Picture />
-
-        <FormatList format={format} setFormat={setFormat} />
-        <AffectedList format={format} area={area} setArea={setArea} />
-
-        <DiagnosisButton
-          title="AI 진단하기"
-          // onPress={() => {
-          //   console.log(format, area);
-          // }}
-          onPress={() => navigation.navigate('VetResult')}
+    <View style={styles.container}>
+      <OwnerHeader navigation={navigation} />
+      <View style={styles.smallContainer}>
+        <View style={styles.picture}></View>
+        <Text style={styles.resultText}>ooo이 97% 의심됩니다.</Text>
+        <View style={styles.additionalTextView}>
+          <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
+          <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
+          <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
+        </View>
+        <ReservationButton
+          title="홈으로"
+          onPress={() => navigation.navigate('VetMain')}
         />
       </View>
     </View>
   );
 }
 
-export default VetAIDiagnosis;
+export default VetResult;

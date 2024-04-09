@@ -21,7 +21,8 @@ import VetAIDiagnosis from './Page/AIDiagnosis/Vet/VetAIDiganosis';
 
 import OwnerAccount from './Page/Account/Owner/OwnerAccount';
 import VetAccount from './Page/Account/Vet/VetAccount';
-import Result from './Page/AIDiagnosis/Result';
+import OwnerResult from './Page/AIDiagnosis/Owner/OwnerResult';
+import VetResult from './Page/AIDiagnosis/Vet/VetResult';
 
 function App(): React.JSX.Element {
   const Stack = createStackNavigator();
@@ -39,7 +40,8 @@ function App(): React.JSX.Element {
         <Stack.Screen name="VetMain" component={VetMain} />
         <Stack.Screen name="OwnerAIDiagnosis" component={OnwerAIDiagnosis} />
         <Stack.Screen name="VetAIDiagnosis" component={VetAIDiagnosis} />
-        <Stack.Screen name="Result" component={Result} />
+        <Stack.Screen name="OwnerResult" component={OwnerResult} />
+        <Stack.Screen name="VetResult" component={VetResult} />
       </Stack.Navigator>
     </NavigationContainer>
   );
