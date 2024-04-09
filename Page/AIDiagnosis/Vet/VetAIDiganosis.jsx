@@ -73,9 +73,10 @@ function VetAIDiagnosis({navigation}) {
 
         <DiagnosisButton
           title="AI 진단하기"
-          onPress={() => {
-            console.log(format, area);
-          }}
+          // onPress={() => {
+          //   console.log(format, area);
+          // }}
+          onPress={() => navigation.navigate('Result')}
         />
       </View>
     </View>

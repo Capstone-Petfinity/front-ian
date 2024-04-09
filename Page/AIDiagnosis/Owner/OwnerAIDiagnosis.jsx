@@ -69,7 +69,10 @@ function OwnerAIDiagnosis({navigation}) {
         <View style={styles.picture}></View>
         <Picture />
         <AffectedList area={area} setArea={setArea} />
-        <DiagnosisButton title="AI 진단하기" />
+        <DiagnosisButton
+          title="AI 진단하기"
+          onPress={() => navigation.navigate('Result')}
+        />
       </View>
     </View>
   );
