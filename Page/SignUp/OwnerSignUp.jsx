@@ -170,7 +170,7 @@ function SignUpButton({onPress}) {
       alignItems: 'center',
       marginBottom: 20,
       marginTop: 30,
-      borderRadius: 5,
+      borderRadius: 8,
     },
     text: {
       color: 'white',

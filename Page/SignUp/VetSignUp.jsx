@@ -164,7 +164,7 @@ function SignUpButton() {
       alignItems: 'center',
       marginBottom: 20,
       marginTop: 160,
-      borderRadius: 5,
+      borderRadius: 8,
     },
     text: {
       color: 'white',
