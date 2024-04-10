@@ -168,7 +168,7 @@ function OwnerSignUp() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
 
   const styles = StyleSheet.create({
     loginView: {
@@ -182,17 +182,17 @@ function OwnerSignUp() {
   }
 
   async function onPressSignUpButton() {
-    const id = 'minijae0110dd30';
-    const pw = 'aldaldfjal';
-    const name = '강민재';
-    const phone_number = '01012312222';
-    const city = '송파구';
+    // const id = 'minijae0130';
+    // const pw = 'aldaldfjal';
+    // const name = '강민재';
+    // const phone_number = '01012312223';
+    // const city = '송파구';
 
     const result = await ownerSignUpFunction({
-      id,
-      pw,
+      userId,
+      password,
       name,
-      phone_number,
+      phone,
       city,
     });
   }
@@ -233,8 +233,8 @@ function OwnerSignUp() {
       />
       <Input1
         placeholder="주소를 입력하세요"
-        value={address}
-        onChange={setAddress}
+        value={city}
+        onChange={setCity}
         security={false}
       />
       <SignUpButton onPress={onPressSignUpButton} />

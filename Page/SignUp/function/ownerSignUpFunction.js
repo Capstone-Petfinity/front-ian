@@ -1,8 +1,8 @@
 export default async function ownerSignUpFunction({
-  id,
-  pw,
+  userId,
+  password,
   name,
-  phone_number,
+  phone,
   city,
 }) {
   const result = await fetch(
@@ -11,16 +11,17 @@ export default async function ownerSignUpFunction({
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        id: id,
-        pw: pw,
+        auth: 'bVAtkPtiVGpWuO3dWEnvr51cEb6r7oF8',
+        id: userId,
+        pw: password,
         name: name,
-        phone_number: phone_number,
+        phone_number: phone,
         city: city,
       }),
     },
   );
   //   console.log(result);
-  const res = await result.text();
+  const res = await result.json();
   console.log(res);
 
   return res;
