@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import addressFunction from './function/addressFunction';
+import ownerSignUpFunction from './function/ownerSignUpFunction';
 
 function Input1({placeholder, value, onChange, security}) {
   const styles = StyleSheet.create({
@@ -132,7 +133,7 @@ function DuplicatedCheckButton() {
   );
 }
 
-function SignUpButton() {
+function SignUpButton({onPress}) {
   const styles = StyleSheet.create({
     button: {
       borderStyle: 'solid',
@@ -156,7 +157,7 @@ function SignUpButton() {
   });
 
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.text}>Sign Up</Text>
     </TouchableOpacity>
   );
@@ -176,7 +177,24 @@ function OwnerSignUp() {
   });
 
   async function addresss() {
+    console.log('sign up');
     const result = await addressFunction();
+  }
+
+  async function onPressSignUpButton() {
+    const id = 'minijae0110dd30';
+    const pw = 'aldaldfjal';
+    const name = '강민재';
+    const phone_number = '01012312222';
+    const city = '송파구';
+
+    const result = await ownerSignUpFunction({
+      id,
+      pw,
+      name,
+      phone_number,
+      city,
+    });
   }
 
   useEffect(() => {
@@ -219,7 +237,7 @@ function OwnerSignUp() {
         onChange={setAddress}
         security={false}
       />
-      <SignUpButton />
+      <SignUpButton onPress={onPressSignUpButton} />
     </View>
   );
 }
