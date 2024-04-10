@@ -1,6 +1,7 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+import addressFunction from './function/addressFunction';
 
 function Input1({placeholder, value, onChange, security}) {
   const styles = StyleSheet.create({
@@ -173,6 +174,14 @@ function OwnerSignUp() {
       flexDirection: 'row',
     },
   });
+
+  async function addresss() {
+    const result = await addressFunction();
+  }
+
+  useEffect(() => {
+    addresss();
+  }, []);
 
   return (
     <View>
