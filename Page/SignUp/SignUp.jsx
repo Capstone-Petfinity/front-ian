@@ -20,6 +20,7 @@ function OwnerButton({isPetOwnerSelected, onPress}) {
     buttonText: {
       color: 'black',
       fontSize: 20,
+      fontWeight: '700',
     },
     selected: {
       backgroundColor: '#00835C',
@@ -58,6 +59,7 @@ function VetButton({isPetOwnerSelected, onPress}) {
     buttonText: {
       color: 'black',
       fontSize: 20,
+      fontWeight: '700',
     },
     selected: {
       backgroundColor: '#00835C',
