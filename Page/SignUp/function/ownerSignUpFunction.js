@@ -9,9 +9,11 @@ export default async function ownerSignUpFunction({
     'https://capstone-petfinity.com/user/signup/parent',
     {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
+      headers: {
+        'Content-Type': 'application/json',
         auth: 'bVAtkPtiVGpWuO3dWEnvr51cEb6r7oF8',
+      },
+      body: JSON.stringify({
         id: userId,
         pw: password,
         name: name,
@@ -20,9 +22,9 @@ export default async function ownerSignUpFunction({
       }),
     },
   );
-  //   console.log(result);
-  const res = await result.json();
-  console.log(res);
 
-  return res;
+  const res = await result.json();
+  console.log(res.statusCode);
+
+  return res.statusCode;
 }

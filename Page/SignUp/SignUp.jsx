@@ -80,7 +80,7 @@ function VetButton({isPetOwnerSelected, onPress}) {
   );
 }
 
-function SignUp() {
+function SignUp({navigation}) {
   const [isPetOwnerSelected, setIsPetOwnerSelected] = useState(true);
 
   const styles = StyleSheet.create({
@@ -166,8 +166,8 @@ function SignUp() {
         <VetButton isPetOwnerSelected={isPetOwnerSelected} onPress={vetPress} />
       </View>
       <View style={styles.innerContainer}>
-        {isPetOwnerSelected && <OwnerSignUp />}
-        {!isPetOwnerSelected && <VetSignUp />}
+        {isPetOwnerSelected && <OwnerSignUp navigation={navigation} />}
+        {!isPetOwnerSelected && <VetSignUp navigation={navigation} />}
       </View>
     </View>
   );

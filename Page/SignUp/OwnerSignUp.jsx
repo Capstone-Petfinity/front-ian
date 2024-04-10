@@ -3,6 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import addressFunction from './function/addressFunction';
 import ownerSignUpFunction from './function/ownerSignUpFunction';
+import CityList from './CityList';
 
 function Input1({placeholder, value, onChange, security}) {
   const styles = StyleSheet.create({
@@ -163,12 +164,14 @@ function SignUpButton({onPress}) {
   );
 }
 
-function OwnerSignUp() {
+function OwnerSignUp({navigation}) {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('');
+
+  const [cityList, setCityList] = useState(null);
 
   const styles = StyleSheet.create({
     loginView: {
@@ -177,17 +180,14 @@ function OwnerSignUp() {
   });
 
   async function addresss() {
-    console.log('sign up');
     const result = await addressFunction();
+
+    if (result != null) setCityList(result);
+
+    return;
   }
 
   async function onPressSignUpButton() {
-    // const id = 'minijae0130';
-    // const pw = 'aldaldfjal';
-    // const name = '강민재';
-    // const phone_number = '01012312223';
-    // const city = '송파구';
-
     const result = await ownerSignUpFunction({
       userId,
       password,
@@ -195,51 +195,52 @@ function OwnerSignUp() {
       phone,
       city,
     });
+
+    if (result === '200') {
+      navigation.navigate('Login');
+    }
   }
 
   useEffect(() => {
     addresss();
   }, []);
 
-  return (
-    <View>
-      <View style={styles.loginView}>
-        <Input2
-          placeholder="아이디를 입력하세요"
-          value={userId}
-          onChange={setUserId}
+  if (cityList) {
+    return (
+      <View>
+        <View style={styles.loginView}>
+          <Input2
+            placeholder="아이디를 입력하세요"
+            value={userId}
+            onChange={setUserId}
+            security={false}
+          />
+          <DuplicatedCheckButton />
+        </View>
+        <Input1
+          placeholder="비밀번호를 입력하세요"
+          value={password}
+          onChange={setPassword}
+          security={true}
+        />
+
+        <Input1
+          placeholder="이름을 입력하세요"
+          value={name}
+          onChange={setName}
           security={false}
         />
-        <DuplicatedCheckButton />
+        <Input1
+          placeholder="휴대폰 번호를 입력하세요"
+          value={phone}
+          onChange={setPhone}
+          security={false}
+        />
+        <CityList cityList={cityList} />
+        <SignUpButton onPress={onPressSignUpButton} />
       </View>
-      <Input1
-        placeholder="비밀번호를 입력하세요"
-        value={password}
-        onChange={setPassword}
-        security={true}
-      />
-
-      <Input1
-        placeholder="이름을 입력하세요"
-        value={name}
-        onChange={setName}
-        security={false}
-      />
-      <Input1
-        placeholder="휴대폰 번호를 입력하세요"
-        value={phone}
-        onChange={setPhone}
-        security={false}
-      />
-      <Input1
-        placeholder="주소를 입력하세요"
-        value={city}
-        onChange={setCity}
-        security={false}
-      />
-      <SignUpButton onPress={onPressSignUpButton} />
-    </View>
-  );
+    );
+  }
 }
 
 export default OwnerSignUp;
