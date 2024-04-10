@@ -5,7 +5,7 @@ import addressFunction from './function/addressFunction';
 import ownerSignUpFunction from './function/ownerSignUpFunction';
 import CityList from './CityList';
 
-function Input1({placeholder, value, onChange, security}) {
+function Input1({placeholder, value, onChange, security, message}) {
   const styles = StyleSheet.create({
     continer: {
       flexDirection: 'row',
@@ -17,21 +17,30 @@ function Input1({placeholder, value, onChange, security}) {
       height: 50,
       width: 300,
       borderColor: 'black',
-      backgroundColor: '#F8F8F8',
+      backgroundColor: 'white',
       borderWidth: 0.2,
+      borderRadius: 8,
       paddingHorizontal: 10,
       marginBottom: 15,
+      paddingLeft: 15,
     },
     placeholderContainer: {
       position: 'absolute',
-      left: 10,
+      left: 16,
       top: 15,
     },
     placeholder: {
       color: 'black',
+      fontSize: 16,
     },
     transparent: {
       color: 'transparent',
+    },
+    message: {
+      marginTop: -10,
+      marginBottom: 10,
+      marginLeft: 10,
+      fontSize: 12,
     },
   });
 
@@ -52,12 +61,13 @@ function Input1({placeholder, value, onChange, security}) {
             {placeholder}
           </Text>
         </View>
+        <Text style={styles.message}>{message}</Text>
       </View>
     </View>
   );
 }
 
-function Input2({placeholder, value, onChange, security}) {
+function Input2({placeholder, value, onChange, security, message}) {
   const styles = StyleSheet.create({
     continer: {
       flexDirection: 'row',
@@ -69,22 +79,31 @@ function Input2({placeholder, value, onChange, security}) {
       height: 50,
       width: 210,
       borderColor: 'black',
-      backgroundColor: '#F8F8F8',
+      backgroundColor: 'white',
       borderWidth: 0.2,
+      borderRadius: 8,
       paddingHorizontal: 10,
       marginBottom: 15,
       marginRight: 10,
+      paddingLeft: 15,
     },
     placeholderContainer: {
       position: 'absolute',
-      left: 10,
+      left: 16,
       top: 15,
     },
     placeholder: {
       color: 'black',
+      fontSize: 15,
     },
     transparent: {
       color: 'transparent',
+    },
+    message: {
+      marginTop: -10,
+      marginBottom: 10,
+      marginLeft: 10,
+      fontSize: 12,
     },
   });
 
@@ -105,6 +124,7 @@ function Input2({placeholder, value, onChange, security}) {
             {placeholder}
           </Text>
         </View>
+        <Text style={styles.message}>{message}</Text>
       </View>
     </View>
   );
@@ -121,10 +141,12 @@ function DuplicatedCheckButton() {
       justifyContent: 'center',
       display: 'flex',
       alignItems: 'center',
+      borderRadius: 8,
     },
     text: {
       color: 'white',
       fontWeight: '600',
+      fontSize: 15,
     },
   });
   return (
@@ -167,9 +189,11 @@ function SignUpButton({onPress}) {
 function OwnerSignUp({navigation}) {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+  const [checkPassword, setCheckPassword] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('');
+  const [passwordMessage, setPasswordMessage] = useState('');
 
   const [cityList, setCityList] = useState(null);
 
@@ -188,6 +212,7 @@ function OwnerSignUp({navigation}) {
   }
 
   async function onPressSignUpButton() {
+    console.log(userId, password, name, phone, city);
     const result = await ownerSignUpFunction({
       userId,
       password,
@@ -205,6 +230,13 @@ function OwnerSignUp({navigation}) {
     addresss();
   }, []);
 
+  useEffect(() => {
+    if (checkPassword === '') setPasswordMessage('');
+    if (password !== checkPassword)
+      setPasswordMessage('* 비밀번호가 일치하지 않습니다.');
+    if (password === checkPassword) setPasswordMessage('');
+  }, [password, checkPassword]);
+
   if (cityList) {
     return (
       <View>
@@ -214,6 +246,7 @@ function OwnerSignUp({navigation}) {
             value={userId}
             onChange={setUserId}
             security={false}
+            message="* 중복된 아이디입니다."
           />
           <DuplicatedCheckButton />
         </View>
@@ -222,8 +255,15 @@ function OwnerSignUp({navigation}) {
           value={password}
           onChange={setPassword}
           security={true}
+          message="* 영문, 숫자 조합 9자 이상 작성해 주세요."
         />
-
+        <Input1
+          placeholder="비밀번호를 다시 입력하세요"
+          value={checkPassword}
+          onChange={setCheckPassword}
+          security={true}
+          message={passwordMessage}
+        />
         <Input1
           placeholder="이름을 입력하세요"
           value={name}
@@ -235,8 +275,9 @@ function OwnerSignUp({navigation}) {
           value={phone}
           onChange={setPhone}
           security={false}
+          message="* 숫자만 입력해주세요."
         />
-        <CityList cityList={cityList} />
+        <CityList city={city} setCity={setCity} cityList={cityList} />
         <SignUpButton onPress={onPressSignUpButton} />
       </View>
     );

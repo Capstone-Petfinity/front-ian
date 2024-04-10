@@ -24,7 +24,7 @@ export default async function ownerSignUpFunction({
   );
 
   const res = await result.json();
-  console.log(res.statusCode);
+  console.log(res);
 
   return res.statusCode;
 }
