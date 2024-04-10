@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 
-function Input1({placeholder, value, onChange, security}) {
+function Input1({placeholder, value, onChange, security, message}) {
   const styles = StyleSheet.create({
     continer: {
       flexDirection: 'row',
@@ -14,8 +14,9 @@ function Input1({placeholder, value, onChange, security}) {
       height: 50,
       width: 300,
       borderColor: 'black',
-      backgroundColor: '#F8F8F8',
+      backgroundColor: 'white',
       borderWidth: 0.2,
+      borderRadius: 8,
       paddingHorizontal: 10,
       marginBottom: 15,
     },
@@ -26,9 +27,16 @@ function Input1({placeholder, value, onChange, security}) {
     },
     placeholder: {
       color: 'black',
+      fontSize: 16,
     },
     transparent: {
       color: 'transparent',
+    },
+    message: {
+      marginTop: -10,
+      marginBottom: 10,
+      marginLeft: 10,
+      fontSize: 12,
     },
   });
 
@@ -49,12 +57,13 @@ function Input1({placeholder, value, onChange, security}) {
             {placeholder}
           </Text>
         </View>
+        <Text style={styles.message}>{message}</Text>
       </View>
     </View>
   );
 }
 
-function Input2({placeholder, value, onChange, security}) {
+function Input2({placeholder, value, onChange, security, message}) {
   const styles = StyleSheet.create({
     continer: {
       flexDirection: 'row',
@@ -66,8 +75,9 @@ function Input2({placeholder, value, onChange, security}) {
       height: 50,
       width: 210,
       borderColor: 'black',
-      backgroundColor: '#F8F8F8',
+      backgroundColor: 'white',
       borderWidth: 0.2,
+      borderRadius: 8,
       paddingHorizontal: 10,
       marginBottom: 15,
       marginRight: 10,
@@ -79,9 +89,16 @@ function Input2({placeholder, value, onChange, security}) {
     },
     placeholder: {
       color: 'black',
+      fontSize: 16,
     },
     transparent: {
       color: 'transparent',
+    },
+    message: {
+      marginTop: -10,
+      marginBottom: 10,
+      marginLeft: 10,
+      fontSize: 12,
     },
   });
 
@@ -102,6 +119,7 @@ function Input2({placeholder, value, onChange, security}) {
             {placeholder}
           </Text>
         </View>
+        <Text style={styles.message}>{message}</Text>
       </View>
     </View>
   );
@@ -112,6 +130,7 @@ function DuplicatedCheckButton() {
     container: {
       borderColor: '#00835C',
       borderWidth: 1,
+      borderRadius: 8,
       backgroundColor: '#00835C',
       width: 80,
       height: 50,
@@ -164,7 +183,9 @@ function SignUpButton() {
 function VetSignUp() {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+  const [checkPassword, setCheckPassword] = useState('');
   const [name, setName] = useState('');
+  const [passwordMessage, setPasswordMessage] = useState('');
 
   const styles = StyleSheet.create({
     loginView: {
@@ -176,10 +197,11 @@ function VetSignUp() {
     <View>
       <View style={styles.loginView}>
         <Input2
-          placeholder="아이디를 입력하세요"
+          placeholder="면허번호를 입력하세요"
           value={userId}
           onChange={setUserId}
           security={false}
+          message="* 중복된 면허번호입니다."
         />
         <DuplicatedCheckButton />
       </View>
@@ -188,8 +210,15 @@ function VetSignUp() {
         value={password}
         onChange={setPassword}
         security={true}
+        message="* 영문, 숫자 조합 9자 이상 작성해 주세요."
       />
-
+      <Input1
+        placeholder="비밀번호를 다시 입력하세요"
+        value={checkPassword}
+        onChange={setCheckPassword}
+        security={true}
+        message={passwordMessage}
+      />
       <Input1
         placeholder="이름을 입력하세요"
         value={name}
