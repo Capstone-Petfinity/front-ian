@@ -95,7 +95,7 @@ function Input2({placeholder, value, onChange, security, message}) {
     },
     placeholder: {
       color: 'black',
-      fontSize: 15,
+      fontSize: 16,
     },
     transparent: {
       color: 'transparent',

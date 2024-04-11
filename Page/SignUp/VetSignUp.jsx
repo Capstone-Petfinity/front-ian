@@ -1,6 +1,12 @@
 import {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  TextInput,
+} from 'react-native';
+
 import vetSignUpFunctoin from './function/vetSignupFunction';
 
 function Input1({placeholder, value, onChange, security, message}) {
@@ -20,10 +26,11 @@ function Input1({placeholder, value, onChange, security, message}) {
       borderRadius: 8,
       paddingHorizontal: 10,
       marginBottom: 15,
+      paddingLeft: 15,
     },
     placeholderContainer: {
       position: 'absolute',
-      left: 10,
+      left: 16,
       top: 15,
     },
     placeholder: {
@@ -52,6 +59,7 @@ function Input1({placeholder, value, onChange, security, message}) {
           onChangeText={onChange}
           secureTextEntry={security}
           autoCapitalize="none"
+          keyboardType="numeric"
         />
         <View pointerEvents="none" style={styles.placeholderContainer}>
           <Text style={value == '' ? styles.placeholder : styles.transparent}>
@@ -82,10 +90,11 @@ function Input2({placeholder, value, onChange, security, message}) {
       paddingHorizontal: 10,
       marginBottom: 15,
       marginRight: 10,
+      paddingLeft: 15,
     },
     placeholderContainer: {
       position: 'absolute',
-      left: 10,
+      left: 16,
       top: 15,
     },
     placeholder: {
