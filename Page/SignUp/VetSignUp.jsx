@@ -1,6 +1,7 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
+import vetSignUpFunctoin from './function/vetSignupFunction';
 
 function Input1({placeholder, value, onChange, security, message}) {
   const styles = StyleSheet.create({
@@ -150,7 +151,7 @@ function DuplicatedCheckButton() {
   );
 }
 
-function SignUpButton() {
+function SignUpButton({onPress}) {
   const styles = StyleSheet.create({
     button: {
       borderStyle: 'solid',
@@ -174,7 +175,7 @@ function SignUpButton() {
   });
 
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.text}>Sign Up</Text>
     </TouchableOpacity>
   );
@@ -185,6 +186,7 @@ function VetSignUp() {
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const [name, setName] = useState('');
+  const [userIdMessage, setUserIdMessage] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
 
   const styles = StyleSheet.create({
@@ -193,15 +195,26 @@ function VetSignUp() {
     },
   });
 
+  async function onPressSignUpButton() {
+    const result = await vetSignUpFunctoin({userId, password, name});
+  }
+
+  useEffect(() => {
+    if (checkPassword === '') setPasswordMessage('');
+    if (password !== checkPassword)
+      setPasswordMessage('* 비밀번호가 일치하지 않습니다.');
+    if (password === checkPassword) setPasswordMessage('');
+  }, [password, checkPassword]);
+
   return (
     <View>
       <View style={styles.loginView}>
         <Input2
-          placeholder="면허번호를 입력하세요"
+          placeholder="면허번호 5자리를 입력하세요"
           value={userId}
           onChange={setUserId}
           security={false}
-          message="* 중복된 면허번호입니다."
+          message={userIdMessage}
         />
         <DuplicatedCheckButton />
       </View>
@@ -225,7 +238,7 @@ function VetSignUp() {
         onChange={setName}
         security={false}
       />
-      <SignUpButton />
+      <SignUpButton onPress={onPressSignUpButton} />
     </View>
   );
 }

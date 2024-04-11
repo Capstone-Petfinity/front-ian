@@ -4,6 +4,7 @@ import {TextInput} from 'react-native-gesture-handler';
 import addressFunction from './function/addressFunction';
 import ownerSignUpFunction from './function/ownerSignUpFunction';
 import CityList from './CityList';
+import DuplicateCheckFunction from './function/DuplicateCheckFunction';
 
 function Input1({placeholder, value, onChange, security, message}) {
   const styles = StyleSheet.create({
@@ -130,7 +131,7 @@ function Input2({placeholder, value, onChange, security, message}) {
   );
 }
 
-function DuplicatedCheckButton() {
+function DuplicatedCheckButton({userId, setUserIdMessage}) {
   const styles = StyleSheet.create({
     container: {
       borderColor: '#00835C',
@@ -149,14 +150,29 @@ function DuplicatedCheckButton() {
       fontSize: 15,
     },
   });
+
+  async function onPressCheckButton() {
+    const result = await DuplicateCheckFunction({userId});
+
+    if (result === '200') {
+      setUserIdMessage('* 사용 가능한 아이디입니다.');
+
+      return;
+    }
+
+    if (result === '403') {
+      setUserIdMessage('* 중복된 아이디입니다.');
+    }
+  }
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPressCheckButton}>
       <Text style={styles.text}>중복확인</Text>
     </TouchableOpacity>
   );
 }
 
-function SignUpButton({onPress}) {
+function SignUpButton() {
   const styles = StyleSheet.create({
     button: {
       borderStyle: 'solid',
@@ -179,8 +195,23 @@ function SignUpButton({onPress}) {
     },
   });
 
+  async function onPressSignUpButton() {
+    console.log(userId, password, name, phone, city);
+    const result = await ownerSignUpFunction({
+      userId,
+      password,
+      name,
+      phone,
+      city,
+    });
+
+    if (result === '200') {
+      navigation.navigate('Login');
+    }
+  }
+
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity style={styles.button} onPress={onPressSignUpButton}>
       <Text style={styles.text}>Sign Up</Text>
     </TouchableOpacity>
   );
@@ -193,6 +224,7 @@ function OwnerSignUp({navigation}) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('');
+  const [userIdMessage, setUserIdMessage] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
 
   const [cityList, setCityList] = useState(null);
@@ -209,21 +241,6 @@ function OwnerSignUp({navigation}) {
     if (result != null) setCityList(result);
 
     return;
-  }
-
-  async function onPressSignUpButton() {
-    console.log(userId, password, name, phone, city);
-    const result = await ownerSignUpFunction({
-      userId,
-      password,
-      name,
-      phone,
-      city,
-    });
-
-    if (result === '200') {
-      navigation.navigate('Login');
-    }
   }
 
   useEffect(() => {
@@ -246,9 +263,12 @@ function OwnerSignUp({navigation}) {
             value={userId}
             onChange={setUserId}
             security={false}
-            message="* 중복된 아이디입니다."
+            message={userIdMessage}
           />
-          <DuplicatedCheckButton />
+          <DuplicatedCheckButton
+            userId={userId}
+            setUserIdMessage={setUserIdMessage}
+          />
         </View>
         <Input1
           placeholder="비밀번호를 입력하세요"
@@ -278,7 +298,7 @@ function OwnerSignUp({navigation}) {
           message="* 숫자만 입력해주세요."
         />
         <CityList city={city} setCity={setCity} cityList={cityList} />
-        <SignUpButton onPress={onPressSignUpButton} />
+        <SignUpButton />
       </View>
     );
   }

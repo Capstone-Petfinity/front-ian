@@ -26,7 +26,7 @@ function CityList({city, setCity, cityList}) {
       iconStyle={styles.iconStyle}
       placeholder="주소를 선택해주세요."
       data={cityList}
-      maxHeight={300}
+      maxHeight={130}
       labelField="name"
       valueField="id"
       value={value}
