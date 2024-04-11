@@ -146,7 +146,7 @@ function DuplicatedCheckButton({userId, setUserIdMessage}) {
     },
     text: {
       color: 'white',
-      fontWeight: '600',
+      fontWeight: '800',
       fontSize: 15,
     },
   });

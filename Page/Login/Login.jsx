@@ -15,21 +15,20 @@ function Input({text, value, onChange, security}) {
       width: 280,
       maxWidth: 500,
       borderColor: 'black',
-      backgroundColor: '#F8F8F8',
+      backgroundColor: 'white',
       borderWidth: 0.2,
       paddingHorizontal: 10,
-      borderRadius: 5,
+      borderRadius: 8,
       marginBottom: 10,
     },
     placeholderContainer: {
       position: 'absolute',
-      left: 10,
-      top: '50%',
-      transform: [{translateY: -12}],
+      left: 16,
+      top: 15,
     },
     placeholder: {
       color: 'black',
-      fontSize: 13,
+      fontSize: 15,
     },
     transparent: {
       color: 'transparent',
@@ -73,7 +72,7 @@ function LoginButton({title, onPress}) {
       alignItems: 'center',
       marginBottom: 20,
       marginTop: 30,
-      borderRadius: 5,
+      borderRadius: 8,
     },
     loginButtonText: {
       color: 'white',
@@ -115,17 +114,16 @@ function LoginScreen({navigation}) {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      // marginTop: -60,
       backgroundColor: 'white',
     },
     title: {
-      fontSize: 33,
+      fontSize: 40,
       fontWeight: '900',
       color: '#00835C',
       marginBottom: 5,
     },
     subTitle: {
-      fontSize: 13,
+      fontSize: 18,
       fontWeight: '700',
       color: '#00835C',
       marginBottom: 70,
@@ -138,7 +136,7 @@ function LoginScreen({navigation}) {
       <Text style={styles.subTitle}>반려동물을 위한 끝없는 연결</Text>
 
       <Input
-        text="이메일을 입력하세요"
+        text="아이디를 입력하세요"
         value={email}
         onChange={setEmail}
         security={false}
@@ -160,7 +158,7 @@ function LoginScreen({navigation}) {
         onPress={() => navigation.navigate('SignUp')}
       />
 
-      <Button title="hey" onPress={() => navigation.navigate('VetMain')} />
+      {/* <Button title="hey" onPress={() => navigation.navigate('VetMain')} /> */}
     </View>
   );
 }

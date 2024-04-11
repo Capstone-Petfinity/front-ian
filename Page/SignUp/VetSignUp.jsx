@@ -141,7 +141,8 @@ function DuplicatedCheckButton() {
     },
     text: {
       color: 'white',
-      fontWeight: '600',
+      fontWeight: '800',
+      fontSize: 15,
     },
   });
   return (
@@ -186,7 +187,9 @@ function VetSignUp() {
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const [name, setName] = useState('');
-  const [userIdMessage, setUserIdMessage] = useState('');
+  const [userIdMessage, setUserIdMessage] = useState(
+    '* 면허번호 5자리를 입력해주세요.',
+  );
   const [passwordMessage, setPasswordMessage] = useState('');
 
   const styles = StyleSheet.create({
@@ -210,7 +213,7 @@ function VetSignUp() {
     <View>
       <View style={styles.loginView}>
         <Input2
-          placeholder="면허번호 5자리를 입력하세요"
+          placeholder="아이디를 입력하세요"
           value={userId}
           onChange={setUserId}
           security={false}
