@@ -136,6 +136,69 @@ function Input2({placeholder, value, onChange, security, message}) {
   );
 }
 
+function Input3({placeholder, value, onChange, security, message}) {
+  const styles = StyleSheet.create({
+    continer: {
+      flexDirection: 'row',
+    },
+    inputContainer: {
+      position: 'relative',
+    },
+    input: {
+      height: 50,
+      width: 300,
+      borderColor: 'black',
+      backgroundColor: 'white',
+      borderWidth: 0.2,
+      borderRadius: 8,
+      paddingHorizontal: 10,
+      marginBottom: 15,
+      paddingLeft: 15,
+    },
+    placeholderContainer: {
+      position: 'absolute',
+      left: 16,
+      top: 15,
+    },
+    placeholder: {
+      color: 'black',
+      fontSize: 16,
+    },
+    transparent: {
+      color: 'transparent',
+    },
+    message: {
+      marginTop: -10,
+      marginBottom: 10,
+      marginLeft: 10,
+      fontSize: 12,
+    },
+  });
+
+  return (
+    <View style={styles.continer}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder=" "
+          placeholderTextColor="transparent"
+          style={styles.input}
+          value={value}
+          onChangeText={onChange}
+          secureTextEntry={security}
+          autoCapitalize="none"
+          keyboardType="numeric"
+        />
+        <View pointerEvents="none" style={styles.placeholderContainer}>
+          <Text style={value == '' ? styles.placeholder : styles.transparent}>
+            {placeholder}
+          </Text>
+        </View>
+        <Text style={styles.message}>{message}</Text>
+      </View>
+    </View>
+  );
+}
+
 function DuplicatedCheckButton({userId, setUserIdMessage}) {
   const styles = StyleSheet.create({
     container: {
@@ -294,7 +357,7 @@ function OwnerSignUp({navigation}) {
           onChange={setName}
           security={false}
         />
-        <Input1
+        <Input3
           placeholder="휴대폰 번호를 입력하세요"
           value={phone}
           onChange={setPhone}

@@ -59,7 +59,6 @@ function Input1({placeholder, value, onChange, security, message}) {
           onChangeText={onChange}
           secureTextEntry={security}
           autoCapitalize="none"
-          keyboardType="numeric"
         />
         <View pointerEvents="none" style={styles.placeholderContainer}>
           <Text style={value == '' ? styles.placeholder : styles.transparent}>
@@ -123,6 +122,7 @@ function Input2({placeholder, value, onChange, security, message}) {
           onChangeText={onChange}
           secureTextEntry={security}
           autoCapitalize="none"
+          keyboardType="numeric"
         />
         <View pointerEvents="none" style={styles.placeholderContainer}>
           <Text style={value == '' ? styles.placeholder : styles.transparent}>
