@@ -15,5 +15,5 @@ export default async function vetSignUpFunctoin({userId, password, name}) {
   const res = await result.json();
   console.log(res);
 
-  return res.statusCode;
+  return res;
 }

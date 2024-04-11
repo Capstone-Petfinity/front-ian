@@ -284,7 +284,7 @@ function SignUpButton({navigation, userId, password, name, phone, city}) {
             onPress: () => {
               navigation.navigate('Login');
             },
-            style: 'destructive',
+            style: 'cancel',
           },
         ],
         {

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   TextInput,
+  Alert,
 } from 'react-native';
 
 import vetSignUpFunctoin from './function/vetSignupFunction';
@@ -162,7 +163,7 @@ function DuplicatedCheckButton() {
   );
 }
 
-function SignUpButton({onPress}) {
+function SignUpButton({navigation, userId, password, name}) {
   const styles = StyleSheet.create({
     button: {
       borderStyle: 'solid',
@@ -185,14 +186,54 @@ function SignUpButton({onPress}) {
     },
   });
 
+  async function onPressSignUpButton({}) {
+    const result = await vetSignUpFunctoin({userId, password, name});
+
+    if (result.statusCode === '200') {
+      Alert.alert(
+        result.statusCode,
+        result.message,
+        [
+          {
+            text: '확인',
+            onPress: () => {
+              navigation.navigate('Login');
+            },
+            style: 'cancel',
+          },
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+    } else {
+      Alert.alert(
+        result.statusCode,
+        result.message,
+        [
+          {
+            text: '확인',
+            onPress: () => {},
+            style: 'destructive',
+          },
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+    }
+  }
+
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity style={styles.button} onPress={onPressSignUpButton}>
       <Text style={styles.text}>Sign Up</Text>
     </TouchableOpacity>
   );
 }
 
-function VetSignUp() {
+function VetSignUp({navigation}) {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
@@ -207,10 +248,6 @@ function VetSignUp() {
       flexDirection: 'row',
     },
   });
-
-  async function onPressSignUpButton() {
-    const result = await vetSignUpFunctoin({userId, password, name});
-  }
 
   useEffect(() => {
     if (checkPassword === '') setPasswordMessage('');
@@ -251,7 +288,12 @@ function VetSignUp() {
         onChange={setName}
         security={false}
       />
-      <SignUpButton onPress={onPressSignUpButton} />
+      <SignUpButton
+        navigation={navigation}
+        name={name}
+        password={password}
+        userId={userId}
+      />
     </View>
   );
 }
