@@ -1,6 +1,11 @@
 import {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  TextInput,
+} from 'react-native';
 import addressFunction from './function/addressFunction';
 import ownerSignUpFunction from './function/ownerSignUpFunction';
 import CityList from './CityList';
@@ -172,7 +177,7 @@ function DuplicatedCheckButton({userId, setUserIdMessage}) {
   );
 }
 
-function SignUpButton() {
+function SignUpButton({userId, password, name, phone, city}) {
   const styles = StyleSheet.create({
     button: {
       borderStyle: 'solid',
@@ -196,7 +201,6 @@ function SignUpButton() {
   });
 
   async function onPressSignUpButton() {
-    console.log(userId, password, name, phone, city);
     const result = await ownerSignUpFunction({
       userId,
       password,
@@ -298,7 +302,12 @@ function OwnerSignUp({navigation}) {
           message="* 숫자만 입력해주세요."
         />
         <CityList city={city} setCity={setCity} cityList={cityList} />
-        <SignUpButton />
+        <SignUpButton
+          userId={userId}
+          password={password}
+          name={name}
+          phone={phone}
+        />
       </View>
     );
   }
