@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   TextInput,
+  Alert,
 } from 'react-native';
 import addressFunction from './function/addressFunction';
 import ownerSignUpFunction from './function/ownerSignUpFunction';
@@ -187,6 +188,7 @@ function Input3({placeholder, value, onChange, security, message}) {
           secureTextEntry={security}
           autoCapitalize="none"
           keyboardType="numeric"
+          returnKeyType="done"
         />
         <View pointerEvents="none" style={styles.placeholderContainer}>
           <Text style={value == '' ? styles.placeholder : styles.transparent}>
@@ -240,7 +242,7 @@ function DuplicatedCheckButton({userId, setUserIdMessage}) {
   );
 }
 
-function SignUpButton({userId, password, name, phone, city}) {
+function SignUpButton({navigation, userId, password, name, phone, city}) {
   const styles = StyleSheet.create({
     button: {
       borderStyle: 'solid',
@@ -272,8 +274,40 @@ function SignUpButton({userId, password, name, phone, city}) {
       city,
     });
 
-    if (result === '200') {
-      navigation.navigate('Login');
+    if (result.statusCode === '200') {
+      Alert.alert(
+        result.statusCode,
+        result.message,
+        [
+          {
+            text: '확인',
+            onPress: () => {
+              navigation.navigate('Login');
+            },
+            style: 'destructive',
+          },
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+    } else {
+      Alert.alert(
+        result.statusCode,
+        result.message,
+        [
+          {
+            text: '확인',
+            onPress: () => {},
+            style: 'destructive',
+          },
+        ],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
     }
   }
 
@@ -366,10 +400,12 @@ function OwnerSignUp({navigation}) {
         />
         <CityList city={city} setCity={setCity} cityList={cityList} />
         <SignUpButton
+          navigation={navigation}
           userId={userId}
           password={password}
           name={name}
           phone={phone}
+          city={city}
         />
       </View>
     );

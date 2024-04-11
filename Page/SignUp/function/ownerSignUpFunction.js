@@ -5,6 +5,8 @@ export default async function ownerSignUpFunction({
   phone,
   city,
 }) {
+  console.log(userId, password, name, phone, city);
+
   const result = await fetch(
     'https://capstone-petfinity.com/user/signup/parent',
     {
@@ -26,5 +28,5 @@ export default async function ownerSignUpFunction({
   const res = await result.json();
   console.log(res);
 
-  return res.statusCode;
+  return res;
 }
