@@ -8,6 +8,7 @@ export default async function addressFuction() {
   });
 
   const res = await result.json();
+
   if (res.statusCode === '200') {
     return res.cityList;
   }

@@ -4,6 +4,7 @@ import {Text, View, TextInput, TouchableOpacity, Button} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 import * as React from 'react';
+import LoginFunction from './function/LoginFunction';
 
 function Input({text, value, onChange, security}) {
   const inputStyles = StyleSheet.create({
@@ -58,7 +59,7 @@ function Input({text, value, onChange, security}) {
   );
 }
 
-function LoginButton({title, onPress}) {
+function LoginButton({title, userId, password}) {
   const styles = StyleSheet.create({
     loginButton: {
       borderStyle: 'solid',
@@ -81,8 +82,12 @@ function LoginButton({title, onPress}) {
     },
   });
 
+  async function onPressLoginButton() {
+    const result = await LoginFunction({userId, password});
+  }
+
   return (
-    <TouchableOpacity style={styles.loginButton} onPress={onPress}>
+    <TouchableOpacity style={styles.loginButton} onPress={onPressLoginButton}>
       <Text style={styles.loginButtonText}>{title}</Text>
     </TouchableOpacity>
   );
@@ -106,7 +111,7 @@ function SignUpButton({title, onPress}) {
 }
 
 function LoginScreen({navigation}) {
-  const [email, setEmail] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
 
   const styles = StyleSheet.create({
@@ -137,8 +142,8 @@ function LoginScreen({navigation}) {
 
       <Input
         text="아이디를 입력하세요"
-        value={email}
-        onChange={setEmail}
+        value={userId}
+        onChange={setUserId}
         security={false}
       />
       <Input
@@ -148,10 +153,7 @@ function LoginScreen({navigation}) {
         security={true}
       />
 
-      <LoginButton
-        title="Login"
-        onPress={() => navigation.navigate('OwnerMain')}
-      />
+      <LoginButton title="Login" userId={userId} password={password} />
 
       <SignUpButton
         title="회원이 아니신가요?"
