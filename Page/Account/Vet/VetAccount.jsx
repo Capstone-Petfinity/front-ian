@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-function BackButton() {
+function BackButton({navigation}) {
   const styles = StyleSheet.create({
     container: {
       marginTop: 80,
@@ -12,14 +12,55 @@ function BackButton() {
     },
   });
 
+  function onPressBackButton() {
+    if (navigation?.canGoBack()) {
+      navigation.goBack();
+      return true;
+    }
+
+    return false;
+  }
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPressBackButton}>
       <Text style={styles.text}>{'<  '}뒤로가기</Text>
     </TouchableOpacity>
   );
 }
 
-function VetAccount() {
+function LogoutButton({navigation, title}) {
+  const styles = StyleSheet.create({
+    loginButton: {
+      borderStyle: 'solid',
+      borderWidth: 1,
+      borderColor: '#00835C',
+      backgroundColor: 'white',
+      width: 280,
+      height: 50,
+      justifyContent: 'center',
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: 20,
+      marginTop: 30,
+      borderRadius: 8,
+    },
+    loginButtonText: {
+      color: '#00835C',
+      fontWeight: '700',
+      fontSize: 25,
+    },
+  });
+
+  async function onPressLogoutnButton() {}
+
+  return (
+    <TouchableOpacity style={styles.loginButton} onPress={onPressLogoutnButton}>
+      <Text style={styles.loginButtonText}>{title}</Text>
+    </TouchableOpacity>
+  );
+}
+
+function VetAccount({navigation}) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -32,13 +73,22 @@ function VetAccount() {
       alignItems: 'center',
       backgroundColor: 'white',
     },
+    logoutButtonContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white',
+      height: 150,
+    },
   });
 
   return (
     <View style={styles.container}>
-      <BackButton />
+      <BackButton navigation={navigation} />
       <View style={styles.smallContainer}>
         <Text>vet account</Text>
+      </View>
+      <View style={styles.logoutButtonContainer}>
+        <LogoutButton title="로그아웃" />
       </View>
     </View>
   );
