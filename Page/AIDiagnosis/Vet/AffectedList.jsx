@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     height: 50,
-    borderColor: 'whites',
     borderWidth: 0.2,
     borderRadius: 8,
     paddingHorizontal: 8,
@@ -106,6 +105,7 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     fontSize: 16,
+    marginLeft: 10,
   },
   iconStyle: {
     width: 20,

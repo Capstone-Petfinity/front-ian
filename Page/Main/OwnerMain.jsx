@@ -21,9 +21,13 @@ function OwnerMain({navigation}) {
       <View style={styles.subContainer}>
         <Button
           text="AI 진단"
+          subText="사진으로 간편하게 AI 진단을 받아보세요!"
           onPress={() => navigation.navigate('OwnerAIDiagnosis')}
         />
-        <Button text="병원 예약" />
+        <Button
+          text="병원 예약"
+          subText="원하는 날짜에 원하는 동물병원을 바로 예약해보세요!"
+        />
       </View>
     </View>
   );

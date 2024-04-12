@@ -1,4 +1,5 @@
 export default async function LoginFunction({userId, password}) {
+  console.log('userId: %o, password: %o', userId, password);
   const result = await fetch('https://capstone-petfinity.com/user/login', {
     method: 'POST',
     headers: {

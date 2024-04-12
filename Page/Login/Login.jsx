@@ -59,7 +59,7 @@ function Input({text, value, onChange, security}) {
   );
 }
 
-function LoginButton({title, userId, password}) {
+function LoginButton({navigation, title, userId, password}) {
   const styles = StyleSheet.create({
     loginButton: {
       borderStyle: 'solid',
@@ -84,6 +84,7 @@ function LoginButton({title, userId, password}) {
 
   async function onPressLoginButton() {
     const result = await LoginFunction({userId, password});
+    navigation.navigate('OwnerMain');
   }
 
   return (
@@ -153,14 +154,19 @@ function LoginScreen({navigation}) {
         security={true}
       />
 
-      <LoginButton title="Login" userId={userId} password={password} />
+      <LoginButton
+        navigation={navigation}
+        title="Login"
+        userId={userId}
+        password={password}
+      />
 
       <SignUpButton
         title="회원이 아니신가요?"
         onPress={() => navigation.navigate('SignUp')}
       />
 
-      {/* <Button title="hey" onPress={() => navigation.navigate('VetMain')} /> */}
+      <Button title="hey" onPress={() => navigation.navigate('VetMain')} />
     </View>
   );
 }
