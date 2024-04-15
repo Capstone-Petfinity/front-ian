@@ -32,7 +32,9 @@ function Button({text, subText, onPress}) {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.subContainer}>
-        <Text style={styles.text}>{text}</Text>
+        <View>
+          <Text style={styles.text}>{text}</Text>
+        </View>
         <Text style={styles.subText}>{subText}</Text>
       </View>
     </TouchableOpacity>

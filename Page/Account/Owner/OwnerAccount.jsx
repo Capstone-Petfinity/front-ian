@@ -1,10 +1,13 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import UserInfo from '../../Main/Component/UserInfo';
+import PetInfo from '../../Main/Component/PetInfo';
+import OwnerHeader2 from '../../Component/OwnerHeader2';
 
 function BackButton({navigation}) {
   const styles = StyleSheet.create({
     container: {
-      marginTop: 80,
+      marginTop: 30,
       marginLeft: 30,
     },
     text: {
@@ -83,10 +86,12 @@ function OwnerAccount({navigation}) {
 
   return (
     <View style={styles.container}>
+      <OwnerHeader2 />
       <BackButton navigation={navigation} />
 
       <View style={styles.smallContainer}>
-        <Text>owner account</Text>
+        <UserInfo />
+        <PetInfo />
       </View>
       <View style={styles.logoutButtonContainer}>
         <LogoutButton title="로그아웃" />
