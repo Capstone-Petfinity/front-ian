@@ -1,6 +1,8 @@
 import {StyleSheet, View} from 'react-native';
 import OwnerHeader from '../Component/OwnerHeader';
 import Button from './Button';
+import UserInfo from './Component/UserInfo';
+import PetInfo from './Component/PetInfo';
 
 function OwnerMain({navigation}) {
   const styles = StyleSheet.create({
@@ -11,7 +13,7 @@ function OwnerMain({navigation}) {
     subContainer: {
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 120,
+      marginTop: 50,
     },
   });
 
@@ -28,6 +30,8 @@ function OwnerMain({navigation}) {
           text="병원 예약"
           subText="원하는 날짜에 원하는 동물병원을 바로 예약해보세요!"
         />
+        <UserInfo />
+        <PetInfo />
       </View>
     </View>
   );

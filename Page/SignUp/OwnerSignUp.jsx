@@ -10,7 +10,7 @@ import {
 import addressFunction from './function/addressFunction';
 import ownerSignUpFunction from './function/ownerSignUpFunction';
 import CityList from './CityList';
-import DuplicateCheckFunction from './function/DuplicateCheckFunction';
+import DuplicateCheckParentFunction from './function/DuplicateCheckParentFunction';
 
 function Input1({placeholder, value, onChange, security, message}) {
   const styles = StyleSheet.create({
@@ -222,7 +222,7 @@ function DuplicatedCheckButton({userId, setUserIdMessage}) {
   });
 
   async function onPressCheckButton() {
-    const result = await DuplicateCheckFunction({userId});
+    const result = await DuplicateCheckParentFunction({userId});
 
     if (result === '200') {
       setUserIdMessage('* 사용 가능한 아이디입니다.');
@@ -230,9 +230,7 @@ function DuplicatedCheckButton({userId, setUserIdMessage}) {
       return;
     }
 
-    if (result === '403') {
-      setUserIdMessage('* 중복된 아이디입니다.');
-    }
+    setUserIdMessage('* 사용할 수 없는 아이디입니다.');
   }
 
   return (

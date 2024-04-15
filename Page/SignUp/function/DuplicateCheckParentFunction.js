@@ -1,6 +1,6 @@
-export default async function DuplicateCheckFunction({userId}) {
+export default async function DuplicateCheckParentFunction({userId}) {
   const result = await fetch(
-    'https://capstone-petfinity.com/user/signup/parent/id',
+    'https://capstone-petfinity.com/user/signup/parent/idduplicate',
     {
       method: 'POST',
       headers: {

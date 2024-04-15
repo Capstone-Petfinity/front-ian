@@ -84,7 +84,16 @@ function LoginButton({navigation, title, userId, password}) {
 
   async function onPressLoginButton() {
     const result = await LoginFunction({userId, password});
-    navigation.navigate('OwnerMain');
+    if (result.statusCode === '200') {
+      if (result.isParent) {
+        navigation.navigate('OwnerMain');
+        return;
+      }
+      if (!result.isParent) {
+        navigation.navigate('VetMain');
+        return;
+      }
+    }
   }
 
   return (

@@ -10,7 +10,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ant-design/react-native": "^5.1.1",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^6.1.16",
     "@react-navigation/stack": "^6.3.28",
@@ -26,6 +25,8 @@
     "react-native-screens": "^3.29.0",
     "react-native-vision-camera": "^3.9.2",
     "react-navigation": "^5.0.0",
+    "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
     "save": "^2.9.0"
   },
   "devDependencies": {

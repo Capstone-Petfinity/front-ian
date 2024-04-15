@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import vetSignUpFunctoin from './function/vetSignupFunction';
+import DuplicateCheckVetFunction from './function/DuplicateCheckVetFunction';
 
 function Input1({placeholder, value, onChange, security, message}) {
   const styles = StyleSheet.create({
@@ -137,7 +138,7 @@ function Input2({placeholder, value, onChange, security, message}) {
   );
 }
 
-function DuplicatedCheckButton() {
+function DuplicatedCheckButton({setUserIdMessage, userId}) {
   const styles = StyleSheet.create({
     container: {
       borderColor: '#00835C',
@@ -156,8 +157,20 @@ function DuplicatedCheckButton() {
       fontSize: 15,
     },
   });
+
+  async function onPressCheckButton() {
+    const result = await DuplicateCheckVetFunction({userId});
+
+    if (result === '200') {
+      setUserIdMessage('* 사용 가능한 아이디입니다.');
+
+      return;
+    }
+
+    setUserIdMessage('* 사용할 수 없는 아이디입니다.');
+  }
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPressCheckButton}>
       <Text style={styles.text}>중복확인</Text>
     </TouchableOpacity>
   );
@@ -266,7 +279,10 @@ function VetSignUp({navigation}) {
           security={false}
           message={userIdMessage}
         />
-        <DuplicatedCheckButton />
+        <DuplicatedCheckButton
+          setUserIdMessage={setUserIdMessage}
+          userId={userId}
+        />
       </View>
       <Input1
         placeholder="비밀번호를 입력하세요"

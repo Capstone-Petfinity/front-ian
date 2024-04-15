@@ -15,17 +15,16 @@ function VetHeader({navigation}) {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      flexDirection: 'row',
     },
     title: {
       color: 'white',
       fontWeight: '800',
       fontSize: 27,
+      marginLeft: 108,
+      marginRight: 70,
     },
-    iconDiv: {
-      position: 'absolute',
-      top: 10,
-      right: 30,
-    },
+
     icon: {
       width: 38,
       height: 38,

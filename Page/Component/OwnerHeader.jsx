@@ -1,30 +1,37 @@
-import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import accountIcon from '../../asset/account.png';
 
 function OwnerHeader({navigation}) {
+  const windowWidth = Dimensions.get('window').width;
+
   const styles = StyleSheet.create({
     topArea: {
-      height: 70,
+      height: 60,
     },
     container: {
       borderWidth: 1,
       borderColor: '#00835C',
       backgroundColor: '#00835C',
-      width: 400,
+      width: {windowWidth},
       height: 60,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      flexDirection: 'row',
     },
     title: {
       color: 'white',
       fontWeight: '800',
       fontSize: 27,
-    },
-    iconDiv: {
-      position: 'absolute',
-      top: 10,
-      right: 30,
+      marginLeft: 108,
+      marginRight: 70,
     },
     icon: {
       width: 38,
