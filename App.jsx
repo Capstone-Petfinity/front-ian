@@ -8,7 +8,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import LoginScreen from './Page/Login/Login';
 import SignUp from './Page/SignUp/SignUp';
@@ -25,13 +25,13 @@ import OwnerResult from './Page/AIDiagnosis/Owner/OwnerResult';
 import VetResult from './Page/AIDiagnosis/Vet/VetResult';
 import RegisterPet from './Page/RegisterPet/RegisterPet';
 
-function App(): React.JSX.Element {
+function App() {
   const Stack = createStackNavigator();
 
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Login"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUp} />

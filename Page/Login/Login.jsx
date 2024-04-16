@@ -1,18 +1,11 @@
 import {useState, useEffect} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Button,
-  Alert,
-} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 import * as React from 'react';
 import LoginFunction from './function/LoginFunction';
-
 function Input({text, value, onChange, security}) {
   const inputStyles = StyleSheet.create({
     inputContainer: {
@@ -66,7 +59,14 @@ function Input({text, value, onChange, security}) {
   );
 }
 
-function LoginButton({navigation, title, userId, password}) {
+function LoginButton({
+  navigation,
+  title,
+  userId,
+  password,
+  setUserId,
+  setPassword,
+}) {
   const styles = StyleSheet.create({
     loginButton: {
       borderStyle: 'solid',
@@ -93,6 +93,17 @@ function LoginButton({navigation, title, userId, password}) {
     const result = await LoginFunction({userId, password});
 
     if (result.statusCode === '200') {
+      setUserId('');
+      setPassword('');
+      AsyncStorage.setItem(
+        'userState',
+        JSON.stringify({
+          uuid: result.uuid,
+          isParent: result.isParent,
+          isLoggedIn: true,
+        }),
+      );
+
       if (result.isParent) {
         navigation.navigate('OwnerMain');
         return;
@@ -180,6 +191,19 @@ function LoginScreen({navigation}) {
     },
   });
 
+  useEffect(() => {
+    AsyncStorage.getItem('userState', async (err, result) => {
+      const resultData = JSON.parse(result);
+      if (resultData.isLoggedIn) {
+        if (resultData.isParent) {
+          navigation.navigate('OwnerMain');
+        } else {
+          navigation.navigate('VetMain');
+        }
+      }
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>PetPinity</Text>
@@ -203,6 +227,8 @@ function LoginScreen({navigation}) {
         title="Login"
         userId={userId}
         password={password}
+        setUserId={setUserId}
+        setPassword={setPassword}
       />
 
       <SignUpButton

@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import UserInfoFunction from '../function/UserInfoFunction';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function UserInfo() {
   const [userInfo, setUserInfo] = useState(null);
@@ -60,10 +61,19 @@ function UserInfo() {
       </View>
     );
   }
+
   async function LoadUserInfo() {
-    const uuid = '7857edbe-06a7-4d2c-b2c2-e32a22f60636';
-    const result = await UserInfoFunction({uuid});
-    setUserInfo(result);
+    AsyncStorage.getItem('userState', async (err, result) => {
+      const resultData = JSON.parse(result);
+
+      const res = await UserInfoFunction({uuid: resultData.uuid});
+
+      if (res.statusCode === '200') {
+        setUserInfo(res);
+      }
+    });
+
+    return;
   }
 
   useEffect(() => {

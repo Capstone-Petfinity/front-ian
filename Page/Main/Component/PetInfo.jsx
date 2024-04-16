@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import PetInfoFunction from '../function/PetInfoFunction';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function PetInfo() {
   const [petInfo, setPetInfo] = useState(null);
@@ -62,12 +63,16 @@ function PetInfo() {
   });
 
   async function LoadPetInfo() {
-    const uuid = '7857edbe-06a7-4d2c-b2c2-e32a22f60636';
-    const result = await PetInfoFunction({uuid});
-    if (result.statusCode === '200') {
-      const pets = await result.pets;
-      setPetInfo(pets);
-    }
+    AsyncStorage.getItem('userState', async (err, result) => {
+      const resultData = JSON.parse(result);
+
+      const res = await PetInfoFunction({uuid: resultData.uuid});
+
+      if (res.statusCode === '200') {
+        const pets = await res.pets;
+        setPetInfo(pets);
+      }
+    });
 
     return;
   }

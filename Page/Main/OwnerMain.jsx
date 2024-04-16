@@ -1,3 +1,6 @@
+import {useEffect} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import OwnerHeader from '../Component/OwnerHeader';
 import Button from './Button';
@@ -22,6 +25,14 @@ function OwnerMain({navigation}) {
       height: 30,
     },
   });
+
+  useEffect(() => {
+    AsyncStorage.getItem('userState', (err, result) => {
+      const resultData = JSON.parse(result);
+      console.log(resultData.uuid);
+      console.log(resultData.isParent);
+    });
+  }, []);
 
   return (
     <View style={styles.container}>

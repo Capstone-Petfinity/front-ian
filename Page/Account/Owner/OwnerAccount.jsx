@@ -1,9 +1,13 @@
-import {StyleSheet, Text, View} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {Alert, StyleSheet, Text, View} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import UserInfo from '../../Main/Component/UserInfo';
 import PetInfo from '../../Main/Component/PetInfo';
 import OwnerHeader2 from '../../Component/OwnerHeader2';
 import RegisterPetButton from '../component/RegisterPetButton';
+import LogoutFunction from '../function/LogoutFunction';
+import {useEffect, useState} from 'react';
 
 function BackButton({navigation}) {
   const styles = StyleSheet.create({
@@ -34,6 +38,9 @@ function BackButton({navigation}) {
 }
 
 function LogoutButton({navigation, title}) {
+  const [uuid, setUuid] = useState('');
+  const [isParent, setIsParent] = useState();
+
   const styles = StyleSheet.create({
     loginButton: {
       borderStyle: 'solid',
@@ -56,8 +63,49 @@ function LogoutButton({navigation, title}) {
     },
   });
 
-  async function onPressLogoutnButton() {}
+  async function onPressLogoutnButton() {
+    Alert.alert(
+      '로그아웃',
+      '로그아웃 하시겠습니까?',
+      [
+        {
+          text: '확인',
+          onPress: () => {
+            onClick();
+          },
+          style: 'cancel',
+        },
+        {text: '취소', onPress: () => {}, style: 'destructive'},
+      ],
 
+      {
+        cancelable: true,
+        onDismiss: () => {},
+      },
+    );
+  }
+
+  async function onClick() {
+    AsyncStorage.getItem('userState', async (err, result) => {
+      const resultData = JSON.parse(result);
+
+      const res = await LogoutFunction({
+        uuid: resultData.uuid,
+        isParent: resultData.isParent,
+      });
+
+      if (res.statusCode === '200') {
+        AsyncStorage.setItem(
+          'userState',
+          JSON.stringify({uuid: '', isParent: false, isLoggedIn: false}),
+        );
+
+        navigation.navigate('Login');
+
+        return;
+      }
+    });
+  }
   return (
     <TouchableOpacity style={styles.loginButton} onPress={onPressLogoutnButton}>
       <Text style={styles.loginButtonText}>{title}</Text>
@@ -95,7 +143,7 @@ function OwnerAccount({navigation}) {
           <RegisterPetButton />
         </View>
         <View style={styles.logoutButtonContainer}>
-          <LogoutButton title="로그아웃" />
+          <LogoutButton navigation={navigation} title="로그아웃" />
         </View>
       </ScrollView>
     </View>

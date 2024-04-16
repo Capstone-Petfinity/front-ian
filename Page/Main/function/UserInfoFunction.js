@@ -1,4 +1,5 @@
 export default async function UserInfoFunction({uuid}) {
+  console.log(uuid);
   const result = await fetch(
     'https://capstone-petfinity.com/user/info/parent',
     {
