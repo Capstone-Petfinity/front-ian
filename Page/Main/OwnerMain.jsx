@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import OwnerHeader from '../Component/OwnerHeader';
 import Button from './Button';
 import UserInfo from './Component/UserInfo';
@@ -8,20 +8,25 @@ function OwnerMain({navigation}) {
   const styles = StyleSheet.create({
     container: {
       backgroundColor: 'white',
-      // flex: 1,
+      flex: 1,
+    },
+    scrollViewContent: {
+      flexGrow: 1,
+      backgroundColor: 'white',
     },
     subContainer: {
-      // justifyContent: 'center',
       alignItems: 'center',
       marginTop: 30,
-      marginBottom: 40,
+    },
+    bottomMargin: {
+      height: 30,
     },
   });
 
   return (
-    <View>
+    <View style={styles.container}>
       <OwnerHeader navigation={navigation} />
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.scrollViewContent}>
         <View style={styles.subContainer}>
           <Button
             text="AI 진단"
@@ -34,6 +39,8 @@ function OwnerMain({navigation}) {
           />
           <UserInfo />
           <PetInfo />
+
+          <View style={styles.bottomMargin} />
         </View>
       </ScrollView>
     </View>

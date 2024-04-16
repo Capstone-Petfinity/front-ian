@@ -45,7 +45,7 @@ function VetAIDiagnosis({navigation}) {
     container: {
       backgroundColor: 'white',
       flex: 1,
-      alignItems: 'center',
+      // alignItems: 'center',
     },
     smallContainer: {
       marginTop: 30,

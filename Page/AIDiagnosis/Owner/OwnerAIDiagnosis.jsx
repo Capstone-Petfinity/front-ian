@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {useEffect, useState} from 'react';
 import AffectedList from './AffectedList';
 import Picture from '../Picture';
@@ -42,7 +42,11 @@ function OwnerAIDiagnosis({navigation}) {
     container: {
       backgroundColor: 'white',
       flex: 1,
-      alignItems: 'center',
+      // alignItems: 'center',
+    },
+    scrollViewContent: {
+      flexGrow: 1,
+      backgroundColor: 'white',
     },
     smallContainer: {
       marginTop: 30,
@@ -65,15 +69,17 @@ function OwnerAIDiagnosis({navigation}) {
   return (
     <View style={styles.container}>
       <OwnerHeader navigation={navigation} />
-      <View style={styles.smallContainer}>
-        <View style={styles.picture}></View>
-        <Picture />
-        <AffectedList area={area} setArea={setArea} />
-        <DiagnosisButton
-          title="AI 진단하기"
-          onPress={() => navigation.navigate('OwnerResult')}
-        />
-      </View>
+      <ScrollView style={styles.scrollViewContent}>
+        <View style={styles.smallContainer}>
+          <View style={styles.picture}></View>
+          <Picture />
+          <AffectedList area={area} setArea={setArea} />
+          <DiagnosisButton
+            title="AI 진단하기"
+            onPress={() => navigation.navigate('OwnerResult')}
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 }
