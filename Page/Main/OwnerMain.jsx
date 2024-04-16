@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import OwnerHeader from '../Component/OwnerHeader';
 import Button from './Button';
 import UserInfo from './Component/UserInfo';
@@ -8,31 +8,34 @@ function OwnerMain({navigation}) {
   const styles = StyleSheet.create({
     container: {
       backgroundColor: 'white',
-      flex: 1,
+      // flex: 1,
     },
     subContainer: {
-      justifyContent: 'center',
+      // justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 50,
+      marginTop: 30,
+      marginBottom: 40,
     },
   });
 
   return (
-    <View style={styles.container}>
+    <View>
       <OwnerHeader navigation={navigation} />
-      <View style={styles.subContainer}>
-        <Button
-          text="AI 진단"
-          subText="사진으로 간편하게 AI 진단을 받아보세요!"
-          onPress={() => navigation.navigate('OwnerAIDiagnosis')}
-        />
-        <Button
-          text="병원 예약"
-          subText="원하는 날짜에 원하는 동물병원을 바로 예약해보세요!"
-        />
-        <UserInfo />
-        <PetInfo />
-      </View>
+      <ScrollView style={styles.container}>
+        <View style={styles.subContainer}>
+          <Button
+            text="AI 진단"
+            subText="사진으로 간편하게 AI 진단을 받아보세요!"
+            onPress={() => navigation.navigate('OwnerAIDiagnosis')}
+          />
+          <Button
+            text="병원 예약"
+            subText="원하는 날짜에 원하는 동물병원을 바로 예약해보세요!"
+          />
+          <UserInfo />
+          <PetInfo />
+        </View>
+      </ScrollView>
     </View>
   );
 }

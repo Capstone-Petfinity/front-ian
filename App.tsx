@@ -23,30 +23,29 @@ import OwnerAccount from './Page/Account/Owner/OwnerAccount';
 import VetAccount from './Page/Account/Vet/VetAccount';
 import OwnerResult from './Page/AIDiagnosis/Owner/OwnerResult';
 import VetResult from './Page/AIDiagnosis/Vet/VetResult';
-import {RecoilRoot} from 'recoil';
+import RegisterPet from './Page/RegisterPet/RegisterPet';
 
 function App(): React.JSX.Element {
   const Stack = createStackNavigator();
 
   return (
-    <RecoilRoot>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="SignUp" component={SignUp} />
-          <Stack.Screen name="OwnerAccount" component={OwnerAccount} />
-          <Stack.Screen name="VetAccount" component={VetAccount} />
-          <Stack.Screen name="OwnerMain" component={OnwerMain} />
-          <Stack.Screen name="VetMain" component={VetMain} />
-          <Stack.Screen name="OwnerAIDiagnosis" component={OnwerAIDiagnosis} />
-          <Stack.Screen name="VetAIDiagnosis" component={VetAIDiagnosis} />
-          <Stack.Screen name="OwnerResult" component={OwnerResult} />
-          <Stack.Screen name="VetResult" component={VetResult} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </RecoilRoot>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="OwnerAccount" component={OwnerAccount} />
+        <Stack.Screen name="VetAccount" component={VetAccount} />
+        <Stack.Screen name="RegisterPet" component={RegisterPet} />
+        <Stack.Screen name="OwnerMain" component={OnwerMain} />
+        <Stack.Screen name="VetMain" component={VetMain} />
+        <Stack.Screen name="OwnerAIDiagnosis" component={OnwerAIDiagnosis} />
+        <Stack.Screen name="VetAIDiagnosis" component={VetAIDiagnosis} />
+        <Stack.Screen name="OwnerResult" component={OwnerResult} />
+        <Stack.Screen name="VetResult" component={VetResult} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

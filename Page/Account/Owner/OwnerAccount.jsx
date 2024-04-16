@@ -1,14 +1,16 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import UserInfo from '../../Main/Component/UserInfo';
 import PetInfo from '../../Main/Component/PetInfo';
 import OwnerHeader2 from '../../Component/OwnerHeader2';
+import RegisterPetButton from '../component/RegisterPetButton';
 
 function BackButton({navigation}) {
   const styles = StyleSheet.create({
     container: {
       marginTop: 30,
       marginLeft: 30,
+      marginBottom: 30,
     },
     text: {
       fontSize: 16,
@@ -43,7 +45,7 @@ function LogoutButton({navigation, title}) {
       justifyContent: 'center',
       display: 'flex',
       alignItems: 'center',
-      marginBottom: 20,
+      marginBottom: 30,
       marginTop: 30,
       borderRadius: 8,
     },
@@ -66,36 +68,36 @@ function LogoutButton({navigation, title}) {
 function OwnerAccount({navigation}) {
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: 'center',
       backgroundColor: 'white',
     },
     smallContainer: {
       flex: 1,
-      justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'white',
     },
     logoutButtonContainer: {
-      justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'white',
       height: 150,
+      marginBottom: 30,
     },
   });
 
   return (
-    <View style={styles.container}>
+    <View>
       <OwnerHeader2 />
-      <BackButton navigation={navigation} />
+      <ScrollView style={styles.container}>
+        <BackButton navigation={navigation} />
 
-      <View style={styles.smallContainer}>
-        <UserInfo />
-        <PetInfo />
-      </View>
-      <View style={styles.logoutButtonContainer}>
-        <LogoutButton title="로그아웃" />
-      </View>
+        <View style={styles.smallContainer}>
+          <UserInfo />
+          <PetInfo />
+          <RegisterPetButton />
+        </View>
+        <View style={styles.logoutButtonContainer}>
+          <LogoutButton title="로그아웃" />
+        </View>
+      </ScrollView>
     </View>
   );
 }

@@ -43,23 +43,19 @@ function PetInfo() {
     petContainer: {
       display: 'flex',
       flexDirection: 'row',
-      // borderWidth: 0.2,
       fontSize: 15,
       marginLeft: 5,
       marginBottom: 10,
       width: 300,
     },
     petName: {
-      // borderWidth: 0.2,
       marginTop: 1,
       height: 20,
     },
     petAge: {
-      // borderWidth: 0.2,
       height: 20,
     },
     petKind: {
-      // borderWidth: 0.2,
       marginTop: 2,
       height: 20,
     },
