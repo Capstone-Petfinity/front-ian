@@ -46,6 +46,20 @@ function UserInfo() {
     },
   });
 
+  function PhoneNumberRender({phone_number}) {
+    const formattedPhoneNumber =
+      phone_number.substring(0, 3) +
+      '-' +
+      phone_number.substring(3, 7) +
+      '-' +
+      phone_number.substring(7);
+    return (
+      <View style={styles.smallContainer}>
+        <Text style={styles.title}>전화번호</Text>
+        <Text style={styles.content}>{formattedPhoneNumber}</Text>
+      </View>
+    );
+  }
   async function LoadUserInfo() {
     const uuid = '7857edbe-06a7-4d2c-b2c2-e32a22f60636';
     const result = await UserInfoFunction({uuid});
@@ -66,10 +80,7 @@ function UserInfo() {
           <Text style={styles.title}>이름</Text>
           <Text style={styles.content}>{userInfo.name}</Text>
         </View>
-        <View style={styles.smallContainer}>
-          <Text style={styles.title}>전화번호</Text>
-          <Text style={styles.content}>{userInfo.phone_number}</Text>
-        </View>
+        <PhoneNumberRender phone_number={userInfo.phone_number} />
         <View style={styles.smallContainer}>
           <Text style={styles.title}>거주지</Text>
           <Text style={styles.content}>{userInfo.city}</Text>

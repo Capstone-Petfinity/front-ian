@@ -1,6 +1,13 @@
 import {useState, useEffect} from 'react';
 
-import {Text, View, TextInput, TouchableOpacity, Button} from 'react-native';
+import {
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Button,
+  Alert,
+} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 import * as React from 'react';
@@ -14,13 +21,13 @@ function Input({text, value, onChange, security}) {
     input: {
       height: 50,
       width: 280,
-      maxWidth: 500,
       borderColor: 'black',
       backgroundColor: 'white',
       borderWidth: 0.2,
-      paddingHorizontal: 10,
       borderRadius: 8,
-      marginBottom: 10,
+      paddingHorizontal: 10,
+      marginBottom: 15,
+      paddingLeft: 15,
     },
     placeholderContainer: {
       position: 'absolute',
@@ -29,7 +36,7 @@ function Input({text, value, onChange, security}) {
     },
     placeholder: {
       color: 'black',
-      fontSize: 15,
+      fontSize: 16,
     },
     transparent: {
       color: 'transparent',
@@ -84,17 +91,44 @@ function LoginButton({navigation, title, userId, password}) {
 
   async function onPressLoginButton() {
     const result = await LoginFunction({userId, password});
-    navigation.navigate('OwnerMain');
-    // if (result.statusCode === '200') {
-    //   if (result.isParent) {
 
-    //     return;
-    //   }
-    //   if (!result.isParent) {
-    //     navigation.navigate('VetMain');
-    //     return;
-    //   }
-    // }
+    if (result.statusCode === '200') {
+      if (result.isParent) {
+        navigation.navigate('OwnerMain');
+        return;
+      }
+      if (!result.isParent) {
+        navigation.navigate('VetMain');
+        return;
+      }
+      return;
+    }
+    if (result.statusCode === '404' || result.statusCode === '405') {
+      Alert.alert(
+        '로그인 실패',
+        '아이디/비밀번호가 일치하지 않습니다.',
+        [{text: '확인', onPress: () => {}, style: 'cancel'}],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+
+      return;
+    }
+    if (result.statusCode === '406') {
+      Alert.alert(
+        '로그인 실패',
+        '이미 로그인 된 계정입니다.',
+        [{text: '확인', onPress: () => {}, style: 'cancel'}],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+
+      return;
+    }
   }
 
   return (
@@ -175,8 +209,6 @@ function LoginScreen({navigation}) {
         title="회원이 아니신가요?"
         onPress={() => navigation.navigate('SignUp')}
       />
-
-      <Button title="hey" onPress={() => navigation.navigate('VetMain')} />
     </View>
   );
 }
