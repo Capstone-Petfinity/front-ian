@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-function RegisterPetButton() {
+function RegisterPetButton({navigation}) {
   const styles = StyleSheet.create({
     container: {
       borderWidth: 0.2,
@@ -9,13 +9,13 @@ function RegisterPetButton() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: 340,
-      paddingTop: 20,
-      paddingBottom: 20,
+      width: 300,
+      paddingTop: 10,
+      paddingBottom: 10,
     },
     button: {
-      width: 50,
-      height: 50,
+      width: 25,
+      height: 25,
       borderWidth: 0.2,
       borderRadius: 50,
       borderColor: 'black',
@@ -24,18 +24,20 @@ function RegisterPetButton() {
       alignItems: 'center',
     },
     text: {
-      fontSize: 30,
       marginLeft: 1,
+      fontSize: 15,
       marginBottom: 2,
     },
   });
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('RegisterPet')}>
+      <View style={styles.button}>
         <Text style={styles.text}>+</Text>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 }
 

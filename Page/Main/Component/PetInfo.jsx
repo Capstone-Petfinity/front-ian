@@ -2,8 +2,9 @@ import {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import PetInfoFunction from '../function/PetInfoFunction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RegisterPetButton from '../../Account/component/RegisterPetButton';
 
-function PetInfo() {
+function PetInfo({navigation}) {
   const [petInfo, setPetInfo] = useState(null);
 
   const styles = StyleSheet.create({
@@ -117,6 +118,7 @@ function PetInfo() {
           <Text style={styles.text}>반려동물 정보</Text>
         </View>
         <RenderPets />
+        <RegisterPetButton navigation={navigation} />
       </View>
     );
   }

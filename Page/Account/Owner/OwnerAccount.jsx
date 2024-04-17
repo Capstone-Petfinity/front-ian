@@ -139,8 +139,7 @@ function OwnerAccount({navigation}) {
 
         <View style={styles.smallContainer}>
           <UserInfo />
-          <PetInfo />
-          <RegisterPetButton />
+          <PetInfo navigation={navigation} />
         </View>
         <View style={styles.logoutButtonContainer}>
           <LogoutButton navigation={navigation} title="로그아웃" />
