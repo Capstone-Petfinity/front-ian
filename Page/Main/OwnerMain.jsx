@@ -49,7 +49,7 @@ function OwnerMain({navigation}) {
             subText="원하는 날짜에 원하는 동물병원을 바로 예약해보세요!"
           />
           <UserInfo />
-          <PetInfo />
+          <PetInfo navigation={navigation} />
 
           <View style={styles.bottomMargin} />
         </View>
