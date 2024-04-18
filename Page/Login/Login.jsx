@@ -6,7 +6,7 @@ import {Text, View, TextInput, TouchableOpacity, Alert} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 import LoginFunction from './function/LoginFunction';
-import MainButton from '../Component/MainButton';
+import MainButton from '../Component/Button/MainButton';
 function Input({text, value, onChange, security}) {
   const inputStyles = StyleSheet.create({
     inputContainer: {

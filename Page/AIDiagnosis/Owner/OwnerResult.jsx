@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 
-import OwnerHeader from '../../Component/OwnerHeader';
-import MainButton from '../../Component/MainButton';
+import OwnerHeader from '../../Component/Header/OwnerHeader';
+import MainButton from '../../Component/Button/MainButton';
 
 function OwnerResult({navigation}) {
   const styles = StyleSheet.create({

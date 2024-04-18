@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import OwnerHeader from '../Component/OwnerHeader';
+import OwnerHeader from '../Component/Header/OwnerHeader';
 import Button from './Button';
 import UserInfo from './Component/UserInfo';
 import PetInfo from './Component/PetInfo';

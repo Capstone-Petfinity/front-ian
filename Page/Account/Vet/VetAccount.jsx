@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import BackButton from '../../Component/BackButton';
+import BackButton from '../../Component/Button/BackButton';
 
 function LogoutButton({navigation, title}) {
   const styles = StyleSheet.create({

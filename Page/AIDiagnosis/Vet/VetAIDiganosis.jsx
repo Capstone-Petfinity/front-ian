@@ -1,11 +1,11 @@
 import {StyleSheet, View} from 'react-native';
 import {useState} from 'react';
 
-import VetHeader from '../../Component/VetHeader';
+import VetHeader from '../../Component/Header/VetHeader';
 import Picture from '../Picture';
 import AffectedList from './AffectedList';
 import FormatList from './FormatList';
-import MainButton from '../../Component/MainButton';
+import MainButton from '../../Component/Button/MainButton';
 
 function VetAIDiagnosis({navigation}) {
   const [format, setFormat] = useState(null);

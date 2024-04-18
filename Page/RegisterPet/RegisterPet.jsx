@@ -10,62 +10,10 @@ import {
 import {StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RegisterPetFunction from './function/RegisterPetFunction';
-import OwnerHeader2 from '../Component/OwnerHeader2';
-import MainButton from '../Component/MainButton';
-import BackButton from '../Component/BackButton';
-
-function Input({text, value, onChange, security}) {
-  const inputStyles = StyleSheet.create({
-    inputContainer: {
-      position: 'relative',
-    },
-    input: {
-      height: 50,
-      width: 280,
-      borderColor: 'black',
-      backgroundColor: 'white',
-      borderWidth: 0.2,
-      borderRadius: 8,
-      paddingHorizontal: 10,
-      marginBottom: 15,
-      paddingLeft: 15,
-    },
-    placeholderContainer: {
-      position: 'absolute',
-      left: 16,
-      top: 15,
-    },
-    placeholder: {
-      color: 'black',
-      fontSize: 16,
-    },
-    transparent: {
-      color: 'transparent',
-    },
-  });
-
-  return (
-    <View style={inputStyles.inputContainer}>
-      <TextInput
-        placeholder=" "
-        placeholderTextColor="transparent"
-        style={inputStyles.input}
-        value={value}
-        onChangeText={onChange}
-        secureTextEntry={security}
-        autoCapitalize="none"
-      />
-      <View pointerEvents="none" style={inputStyles.placeholderContainer}>
-        <Text
-          style={
-            value == '' ? inputStyles.placeholder : inputStyles.transparent
-          }>
-          {text}
-        </Text>
-      </View>
-    </View>
-  );
-}
+import OwnerHeader2 from '../Component/Header/OwnerHeader2';
+import MainButton from '../Component/Button/MainButton';
+import BackButton from '../Component/Button/BackButton';
+import Input from '../Component/Input/Input';
 
 function RegisterPet({navigation}) {
   const [name, setName] = useState('');
@@ -178,18 +126,28 @@ function RegisterPet({navigation}) {
       <ScrollView style={styles.scrollViewContent}>
         <BackButton navigation={navigation} />
         <View style={styles.subContainer}>
-          <Input text="이름" value={name} onChange={setName} security={false} />
           <Input
-            text="생년월일"
+            placeholder="이름"
+            value={name}
+            onChange={setName}
+            security={false}
+          />
+          <Input
+            placeholder="성별"
+            value={gender}
+            onChange={setGender}
+            security={false}
+          />
+          <Input
+            placeholder="생년월일"
             value={birth}
             onChange={setBirth}
             security={false}
           />
-          <Input text="견종" value={kind} onChange={setKind} security={false} />
           <Input
-            text="성별"
-            value={gender}
-            onChange={setGender}
+            placeholder="견종"
+            value={kind}
+            onChange={setKind}
             security={false}
           />
           <View style={styles.buttonDiv}>

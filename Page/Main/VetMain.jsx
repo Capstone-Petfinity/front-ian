@@ -1,5 +1,5 @@
 import {StyleSheet, View} from 'react-native';
-import VetHeader from '../Component/VetHeader';
+import VetHeader from '../Component/Header/VetHeader';
 import Button from './Button';
 
 function VetMain({navigation}) {

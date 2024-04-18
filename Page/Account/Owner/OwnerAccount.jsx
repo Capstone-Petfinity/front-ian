@@ -4,9 +4,9 @@ import {Alert, StyleSheet, Text, View} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import UserInfo from '../../Main/Component/UserInfo';
 import PetInfo from '../../Main/Component/PetInfo';
-import OwnerHeader2 from '../../Component/OwnerHeader2';
+import OwnerHeader2 from '../../Component/Header/OwnerHeader2';
 import LogoutFunction from '../function/LogoutFunction';
-import BackButton from '../../Component/BackButton';
+import BackButton from '../../Component/Button/BackButton';
 
 function LogoutButton({navigation, title}) {
   const styles = StyleSheet.create({
