@@ -2,63 +2,12 @@ import * as React from 'react';
 import {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {Text, View, TextInput, TouchableOpacity, Alert} from 'react-native';
+import {Text, View, TouchableOpacity, Alert} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 import LoginFunction from './function/LoginFunction';
 import MainButton from '../Component/Button/MainButton';
-function Input({text, value, onChange, security}) {
-  const inputStyles = StyleSheet.create({
-    inputContainer: {
-      position: 'relative',
-    },
-    input: {
-      height: 50,
-      width: 280,
-      borderColor: 'black',
-      backgroundColor: 'white',
-      borderWidth: 0.2,
-      borderRadius: 8,
-      paddingHorizontal: 10,
-      marginBottom: 15,
-      paddingLeft: 15,
-    },
-    placeholderContainer: {
-      position: 'absolute',
-      left: 16,
-      top: 15,
-    },
-    placeholder: {
-      color: 'black',
-      fontSize: 16,
-    },
-    transparent: {
-      color: 'transparent',
-    },
-  });
-
-  return (
-    <View style={inputStyles.inputContainer}>
-      <TextInput
-        placeholder=" "
-        placeholderTextColor="transparent"
-        style={inputStyles.input}
-        value={value}
-        onChangeText={onChange}
-        secureTextEntry={security}
-        autoCapitalize="none"
-      />
-      <View pointerEvents="none" style={inputStyles.placeholderContainer}>
-        <Text
-          style={
-            value == '' ? inputStyles.placeholder : inputStyles.transparent
-          }>
-          {text}
-        </Text>
-      </View>
-    </View>
-  );
-}
+import Input from '../Component/Input/Input';
 
 async function onPressLoginButton({
   navigation,
@@ -91,6 +40,7 @@ async function onPressLoginButton({
     }
     return;
   }
+
   if (result.statusCode === '404' || result.statusCode === '405') {
     Alert.alert(
       '로그인 실패',
@@ -104,6 +54,7 @@ async function onPressLoginButton({
 
     return;
   }
+
   if (result.statusCode === '406') {
     Alert.alert(
       '로그인 실패',
@@ -182,20 +133,18 @@ function LoginScreen({navigation}) {
     <View style={styles.container}>
       <Text style={styles.title}>PetPinity</Text>
       <Text style={styles.subTitle}>반려동물을 위한 끝없는 연결</Text>
-
       <Input
-        text="아이디를 입력하세요"
+        placeholder="아이디를 입력하세요"
         value={userId}
         onChange={setUserId}
         security={false}
       />
       <Input
-        text="비밀번호를 입력하세요"
+        placeholder="비밀번호를 입력하세요"
         value={password}
         onChange={setPassword}
         security={true}
       />
-
       <View style={styles.buttonDiv}>
         <MainButton
           title="Login"

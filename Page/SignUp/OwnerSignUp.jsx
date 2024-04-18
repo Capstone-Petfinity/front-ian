@@ -1,205 +1,13 @@
 import {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  TextInput,
-  Alert,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, Alert} from 'react-native';
 import addressFunction from './function/addressFunction';
 import ownerSignUpFunction from './function/ownerSignUpFunction';
 import CityList from './CityList';
 import DuplicateCheckParentFunction from './function/DuplicateCheckParentFunction';
-
-function Input1({placeholder, value, onChange, security, message}) {
-  const styles = StyleSheet.create({
-    continer: {
-      flexDirection: 'row',
-    },
-    inputContainer: {
-      position: 'relative',
-    },
-    input: {
-      height: 50,
-      width: 300,
-      borderColor: 'black',
-      backgroundColor: 'white',
-      borderWidth: 0.2,
-      borderRadius: 8,
-      paddingHorizontal: 10,
-      marginBottom: 15,
-      paddingLeft: 15,
-    },
-    placeholderContainer: {
-      position: 'absolute',
-      left: 16,
-      top: 15,
-    },
-    placeholder: {
-      color: 'black',
-      fontSize: 16,
-    },
-    transparent: {
-      color: 'transparent',
-    },
-    message: {
-      marginTop: -10,
-      marginBottom: 10,
-      marginLeft: 10,
-      fontSize: 12,
-    },
-  });
-
-  return (
-    <View style={styles.continer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder=" "
-          placeholderTextColor="transparent"
-          style={styles.input}
-          value={value}
-          onChangeText={onChange}
-          secureTextEntry={security}
-          autoCapitalize="none"
-        />
-        <View pointerEvents="none" style={styles.placeholderContainer}>
-          <Text style={value == '' ? styles.placeholder : styles.transparent}>
-            {placeholder}
-          </Text>
-        </View>
-        <Text style={styles.message}>{message}</Text>
-      </View>
-    </View>
-  );
-}
-
-function Input2({placeholder, value, onChange, security, message}) {
-  const styles = StyleSheet.create({
-    continer: {
-      flexDirection: 'row',
-    },
-    inputContainer: {
-      position: 'relative',
-    },
-    input: {
-      height: 50,
-      width: 210,
-      borderColor: 'black',
-      backgroundColor: 'white',
-      borderWidth: 0.2,
-      borderRadius: 8,
-      paddingHorizontal: 10,
-      marginBottom: 15,
-      marginRight: 10,
-      paddingLeft: 15,
-    },
-    placeholderContainer: {
-      position: 'absolute',
-      left: 16,
-      top: 15,
-    },
-    placeholder: {
-      color: 'black',
-      fontSize: 16,
-    },
-    transparent: {
-      color: 'transparent',
-    },
-    message: {
-      marginTop: -10,
-      marginBottom: 10,
-      marginLeft: 10,
-      fontSize: 12,
-    },
-  });
-
-  return (
-    <View style={styles.continer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder=" "
-          placeholderTextColor="transparent"
-          style={styles.input}
-          value={value}
-          onChangeText={onChange}
-          secureTextEntry={security}
-          autoCapitalize="none"
-        />
-        <View pointerEvents="none" style={styles.placeholderContainer}>
-          <Text style={value == '' ? styles.placeholder : styles.transparent}>
-            {placeholder}
-          </Text>
-        </View>
-        <Text style={styles.message}>{message}</Text>
-      </View>
-    </View>
-  );
-}
-
-function Input3({placeholder, value, onChange, security, message}) {
-  const styles = StyleSheet.create({
-    continer: {
-      flexDirection: 'row',
-    },
-    inputContainer: {
-      position: 'relative',
-    },
-    input: {
-      height: 50,
-      width: 300,
-      borderColor: 'black',
-      backgroundColor: 'white',
-      borderWidth: 0.2,
-      borderRadius: 8,
-      paddingHorizontal: 10,
-      marginBottom: 15,
-      paddingLeft: 15,
-    },
-    placeholderContainer: {
-      position: 'absolute',
-      left: 16,
-      top: 15,
-    },
-    placeholder: {
-      color: 'black',
-      fontSize: 16,
-    },
-    transparent: {
-      color: 'transparent',
-    },
-    message: {
-      marginTop: -10,
-      marginBottom: 10,
-      marginLeft: 10,
-      fontSize: 12,
-    },
-  });
-
-  return (
-    <View style={styles.continer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder=" "
-          placeholderTextColor="transparent"
-          style={styles.input}
-          value={value}
-          onChangeText={onChange}
-          secureTextEntry={security}
-          autoCapitalize="none"
-          keyboardType="numeric"
-          returnKeyType="done"
-        />
-        <View pointerEvents="none" style={styles.placeholderContainer}>
-          <Text style={value == '' ? styles.placeholder : styles.transparent}>
-            {placeholder}
-          </Text>
-        </View>
-        <Text style={styles.message}>{message}</Text>
-      </View>
-    </View>
-  );
-}
+import SignUpInput1 from '../Component/Input/SignUpInput1';
+import SignUpInput2 from '../Component/Input/SignUpInput2';
+import SignUpInput3 from '../Component/Input/SignUpInput3';
+import MainButton2 from '../Component/Button/MainButton2';
 
 function DuplicatedCheckButton({userId, setUserIdMessage}) {
   const styles = StyleSheet.create({
@@ -240,28 +48,35 @@ function DuplicatedCheckButton({userId, setUserIdMessage}) {
   );
 }
 
-function SignUpButton({navigation, userId, password, name, phone, city}) {
+function OwnerSignUp({navigation}) {
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const [checkPassword, setCheckPassword] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [city, setCity] = useState('');
+  const [userIdMessage, setUserIdMessage] = useState('');
+  const [passwordMessage, setPasswordMessage] = useState('');
+
+  const [cityList, setCityList] = useState(null);
+
   const styles = StyleSheet.create({
-    button: {
-      borderStyle: 'solid',
-      borderWidth: 1,
-      borderColor: '#00835C',
-      backgroundColor: '#00835C',
-      width: 300,
-      height: 50,
-      justifyContent: 'center',
-      display: 'flex',
-      alignItems: 'center',
+    loginView: {
+      flexDirection: 'row',
+    },
+    buttonDiv: {
       marginBottom: 20,
       marginTop: 30,
-      borderRadius: 8,
-    },
-    text: {
-      color: 'white',
-      fontWeight: '700',
-      fontSize: 25,
     },
   });
+
+  async function addresss() {
+    const result = await addressFunction();
+
+    if (result != null) setCityList(result);
+
+    return;
+  }
 
   async function onPressSignUpButton() {
     const result = await ownerSignUpFunction({
@@ -309,39 +124,6 @@ function SignUpButton({navigation, userId, password, name, phone, city}) {
     }
   }
 
-  return (
-    <TouchableOpacity style={styles.button} onPress={onPressSignUpButton}>
-      <Text style={styles.text}>Sign Up</Text>
-    </TouchableOpacity>
-  );
-}
-
-function OwnerSignUp({navigation}) {
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
-  const [checkPassword, setCheckPassword] = useState('');
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [city, setCity] = useState('');
-  const [userIdMessage, setUserIdMessage] = useState('');
-  const [passwordMessage, setPasswordMessage] = useState('');
-
-  const [cityList, setCityList] = useState(null);
-
-  const styles = StyleSheet.create({
-    loginView: {
-      flexDirection: 'row',
-    },
-  });
-
-  async function addresss() {
-    const result = await addressFunction();
-
-    if (result != null) setCityList(result);
-
-    return;
-  }
-
   useEffect(() => {
     addresss();
   }, []);
@@ -357,7 +139,7 @@ function OwnerSignUp({navigation}) {
     return (
       <View>
         <View style={styles.loginView}>
-          <Input2
+          <SignUpInput2
             placeholder="아이디를 입력하세요"
             value={userId}
             onChange={setUserId}
@@ -369,27 +151,27 @@ function OwnerSignUp({navigation}) {
             setUserIdMessage={setUserIdMessage}
           />
         </View>
-        <Input1
+        <SignUpInput1
           placeholder="비밀번호를 입력하세요"
           value={password}
           onChange={setPassword}
           security={true}
           message="* 영문, 숫자 조합 9자 이상 작성해 주세요."
         />
-        <Input1
+        <SignUpInput1
           placeholder="비밀번호를 다시 입력하세요"
           value={checkPassword}
           onChange={setCheckPassword}
           security={true}
           message={passwordMessage}
         />
-        <Input1
+        <SignUpInput1
           placeholder="이름을 입력하세요"
           value={name}
           onChange={setName}
           security={false}
         />
-        <Input3
+        <SignUpInput3
           placeholder="휴대폰 번호를 입력하세요"
           value={phone}
           onChange={setPhone}
@@ -397,14 +179,9 @@ function OwnerSignUp({navigation}) {
           message="* 숫자만 입력해주세요."
         />
         <CityList city={city} setCity={setCity} cityList={cityList} />
-        <SignUpButton
-          navigation={navigation}
-          userId={userId}
-          password={password}
-          name={name}
-          phone={phone}
-          city={city}
-        />
+        <View style={styles.buttonDiv}>
+          <MainButton2 title="SignUp" onPress={() => onPressSignUpButton()} />
+        </View>
       </View>
     );
   }
