@@ -3,29 +3,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import OwnerHeader from '../Component/Header/OwnerHeader';
-import Button from './Button';
+import Button from '../Component/Button/MainPageButton';
 import UserInfo from './Component/UserInfo';
 import PetInfo from './Component/PetInfo';
 
 function OwnerMain({navigation}) {
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: 'white',
-      flex: 1,
-    },
-    scrollViewContent: {
-      flexGrow: 1,
-      backgroundColor: 'white',
-    },
-    subContainer: {
-      alignItems: 'center',
-      marginTop: 30,
-    },
-    bottomMargin: {
-      height: 30,
-    },
-  });
-
   useEffect(() => {
     AsyncStorage.getItem('userState', (err, result) => {
       const resultData = JSON.parse(result);
@@ -59,3 +41,21 @@ function OwnerMain({navigation}) {
 }
 
 export default OwnerMain;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    backgroundColor: 'white',
+  },
+  subContainer: {
+    alignItems: 'center',
+    marginTop: 30,
+  },
+  bottomMargin: {
+    height: 30,
+  },
+});

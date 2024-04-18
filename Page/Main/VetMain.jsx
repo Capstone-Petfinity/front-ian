@@ -1,20 +1,8 @@
 import {StyleSheet, View} from 'react-native';
 import VetHeader from '../Component/Header/VetHeader';
-import Button from './Button';
+import Button from '../Component/Button/MainPageButton';
 
 function VetMain({navigation}) {
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: 'white',
-      flex: 1,
-    },
-    subContainer: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 50,
-    },
-  });
-
   return (
     <View style={styles.container}>
       <VetHeader navigation={navigation} />
@@ -50,3 +38,15 @@ function VetMain({navigation}) {
 }
 
 export default VetMain;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  subContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 50,
+  },
+});
