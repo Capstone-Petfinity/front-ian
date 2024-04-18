@@ -1,32 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-
-function BackButton({navigation}) {
-  const styles = StyleSheet.create({
-    container: {
-      marginTop: 80,
-      marginLeft: 30,
-    },
-    text: {
-      fontSize: 16,
-    },
-  });
-
-  function onPressBackButton() {
-    if (navigation?.canGoBack()) {
-      navigation.goBack();
-      return true;
-    }
-
-    return false;
-  }
-
-  return (
-    <TouchableOpacity style={styles.container} onPress={onPressBackButton}>
-      <Text style={styles.text}>{'<  '}뒤로가기</Text>
-    </TouchableOpacity>
-  );
-}
+import BackButton from '../../Component/BackButton';
 
 function LogoutButton({navigation, title}) {
   const styles = StyleSheet.create({

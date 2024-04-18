@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import RegisterPetFunction from './function/RegisterPetFunction';
 import OwnerHeader2 from '../Component/OwnerHeader2';
 import MainButton from '../Component/MainButton';
+import BackButton from '../Component/BackButton';
 
 function Input({text, value, onChange, security}) {
   const inputStyles = StyleSheet.create({
@@ -175,6 +176,7 @@ function RegisterPet({navigation}) {
     <View style={styles.container}>
       <OwnerHeader2 />
       <ScrollView style={styles.scrollViewContent}>
+        <BackButton navigation={navigation} />
         <View style={styles.subContainer}>
           <Input text="이름" value={name} onChange={setName} security={false} />
           <Input

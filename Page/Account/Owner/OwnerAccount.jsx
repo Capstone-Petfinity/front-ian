@@ -5,42 +5,10 @@ import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import UserInfo from '../../Main/Component/UserInfo';
 import PetInfo from '../../Main/Component/PetInfo';
 import OwnerHeader2 from '../../Component/OwnerHeader2';
-import RegisterPetButton from '../component/RegisterPetButton';
 import LogoutFunction from '../function/LogoutFunction';
-import {useEffect, useState} from 'react';
-
-function BackButton({navigation}) {
-  const styles = StyleSheet.create({
-    container: {
-      marginTop: 30,
-      marginLeft: 30,
-      marginBottom: 30,
-    },
-    text: {
-      fontSize: 16,
-    },
-  });
-
-  function onPressBackButton() {
-    if (navigation?.canGoBack()) {
-      navigation.goBack();
-      return true;
-    }
-
-    return false;
-  }
-
-  return (
-    <TouchableOpacity style={styles.container} onPress={onPressBackButton}>
-      <Text style={styles.text}>{'<  '}뒤로가기</Text>
-    </TouchableOpacity>
-  );
-}
+import BackButton from '../../Component/BackButton';
 
 function LogoutButton({navigation, title}) {
-  const [uuid, setUuid] = useState('');
-  const [isParent, setIsParent] = useState();
-
   const styles = StyleSheet.create({
     loginButton: {
       borderStyle: 'solid',
@@ -136,7 +104,6 @@ function OwnerAccount({navigation}) {
       <OwnerHeader2 />
       <ScrollView style={styles.container}>
         <BackButton navigation={navigation} />
-
         <View style={styles.smallContainer}>
           <UserInfo />
           <PetInfo navigation={navigation} />
