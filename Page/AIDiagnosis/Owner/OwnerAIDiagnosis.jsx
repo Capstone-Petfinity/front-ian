@@ -9,33 +9,6 @@ import MainButton from '../../Component/Button/MainButton';
 function OwnerAIDiagnosis({navigation}) {
   const [area, setArea] = useState('');
 
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: 'white',
-      flex: 1,
-    },
-    scrollViewContent: {
-      flexGrow: 1,
-      backgroundColor: 'white',
-    },
-    smallContainer: {
-      marginTop: 30,
-      alignItems: 'center',
-    },
-    picture: {
-      width: 300,
-      height: 300,
-      borderWidth: 1,
-      backgroundColor: 'gray',
-      borderColor: 'gray',
-      marginBottom: 30,
-    },
-    buttonDiv: {
-      marginBottom: 20,
-      marginTop: 30,
-    },
-  });
-
   useEffect(() => {
     console.log(area);
   }, [area]);
@@ -61,3 +34,30 @@ function OwnerAIDiagnosis({navigation}) {
 }
 
 export default OwnerAIDiagnosis;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    backgroundColor: 'white',
+  },
+  smallContainer: {
+    marginTop: 30,
+    alignItems: 'center',
+  },
+  picture: {
+    width: 300,
+    height: 300,
+    borderWidth: 1,
+    backgroundColor: 'gray',
+    borderColor: 'gray',
+    marginBottom: 30,
+  },
+  buttonDiv: {
+    marginBottom: 20,
+    marginTop: 30,
+  },
+});

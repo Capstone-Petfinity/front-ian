@@ -4,40 +4,6 @@ import OwnerHeader from '../../Component/Header/OwnerHeader';
 import MainButton from '../../Component/Button/MainButton';
 
 function VetResult({navigation}) {
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: 'white',
-      flex: 1,
-    },
-    smallContainer: {
-      marginTop: 30,
-      alignItems: 'center',
-    },
-    picture: {
-      width: 300,
-      height: 300,
-      borderWidth: 1,
-      backgroundColor: 'gray',
-      borderColor: 'gray',
-      marginBottom: 35,
-    },
-    resultText: {
-      fontSize: 20,
-      fontWeight: '500',
-      marginBottom: 50,
-    },
-    additionalTextView: {
-      marginBottom: 45,
-    },
-    additionalText: {
-      fontSize: 17,
-    },
-    buttonDiv: {
-      marginBottom: 20,
-      marginTop: 30,
-    },
-  });
-
   return (
     <View style={styles.container}>
       <OwnerHeader navigation={navigation} />
@@ -62,3 +28,37 @@ function VetResult({navigation}) {
 }
 
 export default VetResult;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  smallContainer: {
+    marginTop: 30,
+    alignItems: 'center',
+  },
+  picture: {
+    width: 300,
+    height: 300,
+    borderWidth: 1,
+    backgroundColor: 'gray',
+    borderColor: 'gray',
+    marginBottom: 35,
+  },
+  resultText: {
+    fontSize: 20,
+    fontWeight: '500',
+    marginBottom: 50,
+  },
+  additionalTextView: {
+    marginBottom: 45,
+  },
+  additionalText: {
+    fontSize: 17,
+  },
+  buttonDiv: {
+    marginBottom: 20,
+    marginTop: 30,
+  },
+});

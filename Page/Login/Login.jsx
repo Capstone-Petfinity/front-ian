@@ -21,6 +21,7 @@ async function onPressLoginButton({
   if (result.statusCode === '200') {
     setUserId('');
     setPassword('');
+
     AsyncStorage.setItem(
       'userState',
       JSON.stringify({
@@ -38,6 +39,7 @@ async function onPressLoginButton({
       navigation.navigate('VetMain');
       return;
     }
+
     return;
   }
 

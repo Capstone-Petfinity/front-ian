@@ -11,29 +11,6 @@ function VetAIDiagnosis({navigation}) {
   const [format, setFormat] = useState(null);
   const [area, setArea] = useState(null);
 
-  const sytles = StyleSheet.create({
-    container: {
-      backgroundColor: 'white',
-      flex: 1,
-    },
-    smallContainer: {
-      marginTop: 30,
-      alignItems: 'center',
-    },
-    picture: {
-      width: 300,
-      height: 300,
-      borderWidth: 1,
-      backgroundColor: 'gray',
-      borderColor: 'gray',
-      marginBottom: 30,
-    },
-    buttonDiv: {
-      marginBottom: 20,
-      marginTop: 30,
-    },
-  });
-
   return (
     <View style={sytles.container}>
       <VetHeader navigation={navigation} />
@@ -55,3 +32,26 @@ function VetAIDiagnosis({navigation}) {
 }
 
 export default VetAIDiagnosis;
+
+const sytles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  smallContainer: {
+    marginTop: 30,
+    alignItems: 'center',
+  },
+  picture: {
+    width: 300,
+    height: 300,
+    borderWidth: 1,
+    backgroundColor: 'gray',
+    borderColor: 'gray',
+    marginBottom: 30,
+  },
+  buttonDiv: {
+    marginBottom: 20,
+    marginTop: 30,
+  },
+});

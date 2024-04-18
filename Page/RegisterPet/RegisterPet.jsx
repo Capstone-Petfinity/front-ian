@@ -1,12 +1,5 @@
 import {useState} from 'react';
-import {
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-  ScrollView,
-} from 'react-native';
+import {View, Alert, ScrollView} from 'react-native';
 import {StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RegisterPetFunction from './function/RegisterPetFunction';
