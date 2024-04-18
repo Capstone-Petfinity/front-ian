@@ -1,39 +1,10 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {StyleSheet, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {useEffect, useState} from 'react';
 import AffectedList from './AffectedList';
 import Picture from '../Picture';
 import OwnerHeader from '../../Component/OwnerHeader';
-
-function DiagnosisButton({title, onPress}) {
-  const styles = StyleSheet.create({
-    loginButton: {
-      borderStyle: 'solid',
-      borderWidth: 1,
-      borderColor: '#00835C',
-      backgroundColor: '#00835C',
-      width: 280,
-      height: 50,
-      justifyContent: 'center',
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: 20,
-      marginTop: 30,
-      borderRadius: 5,
-    },
-    loginButtonText: {
-      color: 'white',
-      fontWeight: '700',
-      fontSize: 25,
-    },
-  });
-
-  return (
-    <TouchableOpacity style={styles.loginButton} onPress={onPress}>
-      <Text style={styles.loginButtonText}>{title}</Text>
-    </TouchableOpacity>
-  );
-}
+import MainButton from '../../Component/MainButton';
 
 function OwnerAIDiagnosis({navigation}) {
   const [area, setArea] = useState('');
@@ -42,7 +13,6 @@ function OwnerAIDiagnosis({navigation}) {
     container: {
       backgroundColor: 'white',
       flex: 1,
-      // alignItems: 'center',
     },
     scrollViewContent: {
       flexGrow: 1,
@@ -60,6 +30,10 @@ function OwnerAIDiagnosis({navigation}) {
       borderColor: 'gray',
       marginBottom: 30,
     },
+    buttonDiv: {
+      marginBottom: 20,
+      marginTop: 30,
+    },
   });
 
   useEffect(() => {
@@ -74,10 +48,12 @@ function OwnerAIDiagnosis({navigation}) {
           <View style={styles.picture}></View>
           <Picture />
           <AffectedList area={area} setArea={setArea} />
-          <DiagnosisButton
-            title="AI 진단하기"
-            onPress={() => navigation.navigate('OwnerResult')}
-          />
+          <View style={styles.buttonDiv}>
+            <MainButton
+              title="AI 진단하기"
+              onPress={() => navigation.navigate('OwnerResult')}
+            />
+          </View>
         </View>
       </ScrollView>
     </View>

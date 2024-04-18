@@ -1,41 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {StyleSheet, View} from 'react-native';
 import {useState} from 'react';
 
 import VetHeader from '../../Component/VetHeader';
 import Picture from '../Picture';
 import AffectedList from './AffectedList';
 import FormatList from './FormatList';
-
-function DiagnosisButton({title, onPress}) {
-  const styles = StyleSheet.create({
-    loginButton: {
-      borderStyle: 'solid',
-      borderWidth: 1,
-      borderColor: '#00835C',
-      backgroundColor: '#00835C',
-      width: 280,
-      height: 50,
-      justifyContent: 'center',
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: 20,
-      marginTop: 30,
-      borderRadius: 5,
-    },
-    loginButtonText: {
-      color: 'white',
-      fontWeight: '700',
-      fontSize: 25,
-    },
-  });
-
-  return (
-    <TouchableOpacity style={styles.loginButton} onPress={onPress}>
-      <Text style={styles.loginButtonText}>{title}</Text>
-    </TouchableOpacity>
-  );
-}
+import MainButton from '../../Component/MainButton';
 
 function VetAIDiagnosis({navigation}) {
   const [format, setFormat] = useState(null);
@@ -45,7 +15,6 @@ function VetAIDiagnosis({navigation}) {
     container: {
       backgroundColor: 'white',
       flex: 1,
-      // alignItems: 'center',
     },
     smallContainer: {
       marginTop: 30,
@@ -59,6 +28,10 @@ function VetAIDiagnosis({navigation}) {
       borderColor: 'gray',
       marginBottom: 30,
     },
+    buttonDiv: {
+      marginBottom: 20,
+      marginTop: 30,
+    },
   });
 
   return (
@@ -70,14 +43,12 @@ function VetAIDiagnosis({navigation}) {
 
         <FormatList format={format} setFormat={setFormat} />
         <AffectedList format={format} area={area} setArea={setArea} />
-
-        <DiagnosisButton
-          title="AI 진단하기"
-          // onPress={() => {
-          //   console.log(format, area);
-          // }}
-          onPress={() => navigation.navigate('VetResult')}
-        />
+        <View style={sytles.buttonDiv}>
+          <MainButton
+            title="AI 진단하기"
+            onPress={() => navigation.navigate('VetResult')}
+          />
+        </View>
       </View>
     </View>
   );

@@ -10,8 +10,8 @@ import {
 import {StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RegisterPetFunction from './function/RegisterPetFunction';
-import OwnerHeader from '../Component/OwnerHeader';
 import OwnerHeader2 from '../Component/OwnerHeader2';
+import MainButton from '../Component/MainButton';
 
 function Input({text, value, onChange, security}) {
   const inputStyles = StyleSheet.create({
@@ -63,36 +63,6 @@ function Input({text, value, onChange, security}) {
         </Text>
       </View>
     </View>
-  );
-}
-
-function SubmitButton({onPress}) {
-  const styles = StyleSheet.create({
-    submitButton: {
-      borderStyle: 'solid',
-      borderWidth: 1,
-      borderColor: '#00835C',
-      backgroundColor: '#00835C',
-      width: 280,
-      height: 50,
-      justifyContent: 'center',
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: 20,
-      marginTop: 30,
-      borderRadius: 8,
-    },
-    submitButtonText: {
-      color: 'white',
-      fontWeight: '700',
-      fontSize: 25,
-    },
-  });
-
-  return (
-    <TouchableOpacity style={styles.submitButton} onPress={onPress}>
-      <Text style={styles.submitButtonText}>반려동물 등록하기</Text>
-    </TouchableOpacity>
   );
 }
 
@@ -195,6 +165,10 @@ function RegisterPet({navigation}) {
       alignItems: 'center',
       marginTop: 30,
     },
+    buttonDiv: {
+      marginBottom: 20,
+      marginTop: 30,
+    },
   });
 
   return (
@@ -216,7 +190,12 @@ function RegisterPet({navigation}) {
             onChange={setGender}
             security={false}
           />
-          <SubmitButton onPress={() => onPressRegisterButton()} />
+          <View style={styles.buttonDiv}>
+            <MainButton
+              title="반려동물 등록하기"
+              onPress={() => onPressRegisterButton()}
+            />
+          </View>
         </View>
       </ScrollView>
     </View>
