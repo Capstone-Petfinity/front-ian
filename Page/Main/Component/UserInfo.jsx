@@ -1,21 +1,25 @@
 import {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import UserInfoFunction from '../function/UserInfoFunction';
+import ParentInfoFunction from '../function/ParentInfoFunction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import VetInfoFunction from '../function/VetInfoFunction';
 
 function PhoneNumberRender({phone_number}) {
-  const formattedPhoneNumber =
-    phone_number.substring(0, 3) +
-    '-' +
-    phone_number.substring(3, 7) +
-    '-' +
-    phone_number.substring(7);
-  return (
-    <View style={styles.smallContainer}>
-      <Text style={styles.title}>전화번호</Text>
-      <Text style={styles.content}>{formattedPhoneNumber}</Text>
-    </View>
-  );
+  if (phone_number) {
+    const formattedPhoneNumber =
+      phone_number.substring(0, 3) +
+      '-' +
+      phone_number.substring(3, 7) +
+      '-' +
+      phone_number.substring(7);
+
+    return (
+      <View style={styles.smallContainer}>
+        <Text style={styles.title}>전화번호</Text>
+        <Text style={styles.content}>{formattedPhoneNumber}</Text>
+      </View>
+    );
+  }
 }
 
 function UserInfo() {
@@ -25,10 +29,12 @@ function UserInfo() {
     AsyncStorage.getItem('userState', async (err, result) => {
       const resultData = JSON.parse(result);
 
-      const res = await UserInfoFunction({uuid: resultData.uuid});
-
-      if (res.statusCode === '200') {
-        setUserInfo(res);
+      if (resultData.isParent) {
+        const res = await ParentInfoFunction({uuid: resultData.uuid});
+        if (res.statusCode === '200') setUserInfo(res);
+      } else {
+        const res = await VetInfoFunction({uuid: resultData.uuid});
+        if (res.statusCode === '200') setUserInfo(res);
       }
     });
 

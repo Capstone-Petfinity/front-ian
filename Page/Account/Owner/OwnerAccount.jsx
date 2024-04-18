@@ -3,14 +3,14 @@ import {StyleSheet, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import UserInfo from '../../Main/Component/UserInfo';
 import PetInfo from '../../Main/Component/PetInfo';
-import OwnerHeader2 from '../../Component/Header/OwnerHeader2';
 import BackButton from '../../Component/Button/BackButton';
 import LogoutButton from '../../Component/Button/LogoutButton';
+import Header2 from '../../Component/Header/Header2';
 
 function OwnerAccount({navigation}) {
   return (
     <View>
-      <OwnerHeader2 />
+      <Header2 />
       <ScrollView style={styles.container}>
         <BackButton navigation={navigation} />
         <View style={styles.smallContainer}>

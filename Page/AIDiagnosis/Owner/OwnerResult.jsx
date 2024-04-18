@@ -1,46 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 
-import OwnerHeader from '../../Component/Header/OwnerHeader';
 import MainButton from '../../Component/Button/MainButton';
+import Header1 from '../../Component/Header/Header1';
 
 function OwnerResult({navigation}) {
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: 'white',
-      flex: 1,
-    },
-    smallContainer: {
-      marginTop: 30,
-      alignItems: 'center',
-    },
-    picture: {
-      width: 300,
-      height: 300,
-      borderWidth: 1,
-      backgroundColor: 'gray',
-      borderColor: 'gray',
-      marginBottom: 35,
-    },
-    resultText: {
-      fontSize: 20,
-      fontWeight: '500',
-      marginBottom: 50,
-    },
-    additionalTextView: {
-      marginBottom: 45,
-    },
-    additionalText: {
-      fontSize: 17,
-    },
-    buttonDiv: {
-      marginBottom: 20,
-      marginTop: 30,
-    },
-  });
-
   return (
     <View style={styles.container}>
-      <OwnerHeader navigation={navigation} />
+      <Header1 navigation={navigation} />
       <View style={styles.smallContainer}>
         <View style={styles.picture}></View>
         <Text style={styles.resultText}>ooo이 97% 의심됩니다.</Text>
@@ -56,5 +22,39 @@ function OwnerResult({navigation}) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  smallContainer: {
+    marginTop: 30,
+    alignItems: 'center',
+  },
+  picture: {
+    width: 300,
+    height: 300,
+    borderWidth: 1,
+    backgroundColor: 'gray',
+    borderColor: 'gray',
+    marginBottom: 35,
+  },
+  resultText: {
+    fontSize: 20,
+    fontWeight: '500',
+    marginBottom: 50,
+  },
+  additionalTextView: {
+    marginBottom: 45,
+  },
+  additionalText: {
+    fontSize: 17,
+  },
+  buttonDiv: {
+    marginBottom: 20,
+    marginTop: 30,
+  },
+});
 
 export default OwnerResult;

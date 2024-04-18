@@ -2,10 +2,10 @@ import {useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import OwnerHeader from '../Component/Header/OwnerHeader';
 import Button from '../Component/Button/MainPageButton';
 import UserInfo from './Component/UserInfo';
 import PetInfo from './Component/PetInfo';
+import Header1 from '../Component/Header/Header1';
 
 function OwnerMain({navigation}) {
   useEffect(() => {
@@ -18,7 +18,7 @@ function OwnerMain({navigation}) {
 
   return (
     <View style={styles.container}>
-      <OwnerHeader navigation={navigation} />
+      <Header1 navigation={navigation} />
       <ScrollView style={styles.scrollViewContent}>
         <View style={styles.subContainer}>
           <Button

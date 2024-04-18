@@ -3,8 +3,8 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {useEffect, useState} from 'react';
 import AffectedList from './AffectedList';
 import Picture from '../Picture';
-import OwnerHeader from '../../Component/Header/OwnerHeader';
 import MainButton from '../../Component/Button/MainButton';
+import Header1 from '../../Component/Header/Header1';
 
 function OwnerAIDiagnosis({navigation}) {
   const [area, setArea] = useState('');
@@ -15,7 +15,7 @@ function OwnerAIDiagnosis({navigation}) {
 
   return (
     <View style={styles.container}>
-      <OwnerHeader navigation={navigation} />
+      <Header1 navigation={navigation} />
       <ScrollView style={styles.scrollViewContent}>
         <View style={styles.smallContainer}>
           <View style={styles.picture}></View>

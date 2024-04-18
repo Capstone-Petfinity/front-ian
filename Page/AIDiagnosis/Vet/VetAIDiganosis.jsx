@@ -1,11 +1,11 @@
 import {StyleSheet, View} from 'react-native';
 import {useState} from 'react';
 
-import VetHeader from '../../Component/Header/VetHeader';
 import Picture from '../Picture';
 import AffectedList from './AffectedList';
 import FormatList from './FormatList';
 import MainButton from '../../Component/Button/MainButton';
+import Header1 from '../../Component/Header/Header1';
 
 function VetAIDiagnosis({navigation}) {
   const [format, setFormat] = useState(null);
@@ -13,7 +13,7 @@ function VetAIDiagnosis({navigation}) {
 
   return (
     <View style={sytles.container}>
-      <VetHeader navigation={navigation} />
+      <Header1 navigation={navigation} />
       <View style={sytles.smallContainer}>
         <View style={sytles.picture}></View>
         <Picture />

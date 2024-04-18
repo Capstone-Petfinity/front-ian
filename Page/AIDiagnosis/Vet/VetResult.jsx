@@ -2,11 +2,12 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import OwnerHeader from '../../Component/Header/OwnerHeader';
 import MainButton from '../../Component/Button/MainButton';
+import Header1 from '../../Component/Header/Header1';
 
 function VetResult({navigation}) {
   return (
     <View style={styles.container}>
-      <OwnerHeader navigation={navigation} />
+      <Header1 navigation={navigation} />
       <View style={styles.smallContainer}>
         <View style={styles.picture}></View>
         <Text style={styles.resultText}>ooo이 97% 의심됩니다.</Text>

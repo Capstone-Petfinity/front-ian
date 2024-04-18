@@ -7,6 +7,7 @@ import OwnerHeader2 from '../Component/Header/OwnerHeader2';
 import MainButton from '../Component/Button/MainButton';
 import BackButton from '../Component/Button/BackButton';
 import Input from '../Component/Input/Input';
+import Header2 from '../Component/Header/Header2';
 
 function RegisterPet({navigation}) {
   const [name, setName] = useState('');
@@ -115,7 +116,7 @@ function RegisterPet({navigation}) {
 
   return (
     <View style={styles.container}>
-      <OwnerHeader2 />
+      <Header2 />
       <ScrollView style={styles.scrollViewContent}>
         <BackButton navigation={navigation} />
         <View style={styles.subContainer}>
