@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import accountIcon from '../../../asset/account.png';
+import accountIcon from '../../../asset/accountwhite.png';
 import {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -53,24 +53,24 @@ const styles = StyleSheet.create({
   },
   container: {
     borderWidth: 1,
-    borderColor: '#00835C',
-    backgroundColor: '#00835C',
+    borderColor: 'white',
+    backgroundColor: 'white',
     width: {windowWidth},
-    height: 60,
+    height: 50,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
   },
   title: {
-    color: 'white',
+    color: '#00835C',
     fontWeight: '800',
-    fontSize: 27,
+    fontSize: 30,
     marginLeft: 108,
     marginRight: 70,
   },
   icon: {
-    width: 38,
-    height: 38,
+    width: 36,
+    height: 36,
   },
 });

@@ -33,11 +33,12 @@ export default Header2;
 const styles = StyleSheet.create({
   topArea: {
     height: 60,
+    backgroundColor: 'white',
   },
   container: {
     borderWidth: 1,
-    borderColor: '#00835C',
-    backgroundColor: '#00835C',
+    borderColor: 'white',
+    backgroundColor: 'white',
     width: {windowWidth},
     height: 60,
     display: 'flex',
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   title: {
-    color: 'white',
+    color: '#00835C',
     fontWeight: '800',
     fontSize: 27,
   },

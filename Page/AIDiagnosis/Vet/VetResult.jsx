@@ -1,6 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
 
-import OwnerHeader from '../../Component/Header/OwnerHeader';
 import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
 

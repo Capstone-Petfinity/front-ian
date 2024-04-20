@@ -3,11 +3,11 @@ import {View, Alert, ScrollView} from 'react-native';
 import {StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RegisterPetFunction from './function/RegisterPetFunction';
-import OwnerHeader2 from '../Component/Header/OwnerHeader2';
 import MainButton from '../Component/Button/MainButton';
 import BackButton from '../Component/Button/BackButton';
 import Input from '../Component/Input/Input';
 import Header2 from '../Component/Header/Header2';
+import Gender from './Gender';
 
 function RegisterPet({navigation}) {
   const [name, setName] = useState('');
@@ -126,12 +126,7 @@ function RegisterPet({navigation}) {
             onChange={setName}
             security={false}
           />
-          <Input
-            placeholder="성별"
-            value={gender}
-            onChange={setGender}
-            security={false}
-          />
+
           <Input
             placeholder="생년월일"
             value={birth}
@@ -144,6 +139,7 @@ function RegisterPet({navigation}) {
             onChange={setKind}
             security={false}
           />
+          <Gender setGender={setGender} />
           <View style={styles.buttonDiv}>
             <MainButton
               title="반려동물 등록하기"
