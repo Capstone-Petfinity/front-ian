@@ -16,7 +16,10 @@ function OwnerResult({navigation}) {
           <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
         </View>
         <View style={styles.buttonDiv}>
-          <MainButton title="병원 예약" />
+          <MainButton
+            title="병원 예약"
+            onPress={() => navigation.navigate('Reservation1')}
+          />
         </View>
       </View>
     </View>

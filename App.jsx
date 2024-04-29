@@ -24,6 +24,8 @@ import VetAccount from './Page/Account/Vet/VetAccount';
 import OwnerResult from './Page/AIDiagnosis/Owner/OwnerResult';
 import VetResult from './Page/AIDiagnosis/Vet/VetResult';
 import RegisterPet from './Page/RegisterPet/RegisterPet';
+import Reservation1 from './Page/Reservation/page/Reservation1';
+import Reservation2 from './Page/Reservation/page/Reservation2';
 
 function App() {
   const Stack = createStackNavigator();
@@ -44,6 +46,8 @@ function App() {
         <Stack.Screen name="VetAIDiagnosis" component={VetAIDiagnosis} />
         <Stack.Screen name="OwnerResult" component={OwnerResult} />
         <Stack.Screen name="VetResult" component={VetResult} />
+        <Stack.Screen name="Reservation1" component={Reservation1} />
+        <Stack.Screen name="Reservation2" component={Reservation2} />
       </Stack.Navigator>
     </NavigationContainer>
   );

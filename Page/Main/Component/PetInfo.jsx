@@ -18,21 +18,8 @@ function RenderPets({petInfo}) {
       return (
         <View style={styles.petContainer} key={pet.uuid}>
           <View style={styles.rowDiv}>
-            <Text style={styles.title}>이름</Text>
-            <Text style={styles.petName}>{pet.name}</Text>
-          </View>
-          <View style={styles.rowDiv}>
-            <Text style={styles.title}>나이</Text>
-            <Text style={styles.petAge}>({age}) </Text>
-          </View>
-          <View style={styles.rowDiv}>
-            <Text style={styles.title}>견종</Text>
-            <Text style={styles.petKind}>{pet.kind}</Text>
-          </View>
-          <View style={styles.rowDiv}>
-            <Text style={styles.title}>성별</Text>
-            <Text style={styles.petKind}>
-              {pet.gender === '1' ? '남' : '여'}
+            <Text>
+              {pet.name} ({age})
             </Text>
           </View>
         </View>
