@@ -1,4 +1,11 @@
-import {Image, StyleSheet, Text, View, Dimensions} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -22,7 +29,14 @@ function Header2({navigation}) {
     <>
       <View style={styles.topArea} />
       <View style={styles.container}>
-        <Text style={styles.title}>Petfinity</Text>
+        <TouchableOpacity
+          onPress={() =>
+            isParent
+              ? navigation.navigate('OwnerMain')
+              : navigation.navigate('VetMain')
+          }>
+          <Text style={styles.title}>Petfinity</Text>
+        </TouchableOpacity>
       </View>
     </>
   );

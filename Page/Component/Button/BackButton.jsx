@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 function BackButton({navigation}) {
   function onPressBackButton() {
@@ -11,9 +11,10 @@ function BackButton({navigation}) {
   }
 
   return (
-    <TouchableOpacity style={styles.container} onPress={onPressBackButton}>
-      <Text style={styles.text}>{'<  '}뒤로가기</Text>
-    </TouchableOpacity>
+    // <TouchableOpacity style={styles.container} onPress={onPressBackButton}>
+    //   <Text style={styles.text}>{'<  '}뒤로가기</Text>
+    // </TouchableOpacity>
+    <View style={styles.container} />
   );
 }
 
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 30,
     marginLeft: 30,
-    marginBottom: 30,
+    // marginBottom: 30,
   },
   text: {
     fontSize: 16,

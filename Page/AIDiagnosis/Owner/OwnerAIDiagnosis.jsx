@@ -10,7 +10,7 @@ function OwnerAIDiagnosis({navigation}) {
   const [area, setArea] = useState('');
 
   useEffect(() => {
-    console.log(area);
+    console.log('selected area: ', area);
   }, [area]);
 
   return (

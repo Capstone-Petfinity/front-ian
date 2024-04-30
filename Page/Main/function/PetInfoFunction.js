@@ -11,7 +11,7 @@ export default async function PetInfoFunction({uuid}) {
   });
 
   const res = await result.json();
-  console.log(res);
+  console.log('petInfoFunction: ', res);
 
   return res;
 }

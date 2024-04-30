@@ -19,6 +19,7 @@
     "pod": "^0.9.0",
     "react": "18.2.0",
     "react-native": "0.73.6",
+    "react-native-calendars": "^1.1304.1",
     "react-native-dotenv": "^3.4.11",
     "react-native-element-dropdown": "^2.10.4",
     "react-native-gesture-handler": "^2.15.0",

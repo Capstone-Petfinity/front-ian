@@ -15,7 +15,7 @@ export default async function ParentInfoFunction({uuid}) {
   );
 
   const res = await result.json();
-  console.log(res);
+  console.log('parentInfoFunction: ', res);
 
   return res;
 }

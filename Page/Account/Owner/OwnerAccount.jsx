@@ -9,18 +9,18 @@ import Header2 from '../../Component/Header/Header2';
 
 function OwnerAccount({navigation}) {
   return (
-    <View>
-      <Header2 />
-      <ScrollView style={styles.container}>
+    <View style={styles.container}>
+      <Header2 navigation={navigation} />
+      <ScrollView style={styles.scrollViewContent}>
         <BackButton navigation={navigation} />
         <View style={styles.smallContainer}>
           <UserInfo />
           <PetInfo navigation={navigation} />
         </View>
-        <View style={styles.logoutButtonContainer}>
-          <LogoutButton title="로그아웃" navigation={navigation} />
-        </View>
       </ScrollView>
+      <View style={styles.logoutButtonContainer}>
+        <LogoutButton title="로그아웃" navigation={navigation} />
+      </View>
     </View>
   );
 }
@@ -30,6 +30,12 @@ export default OwnerAccount;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
+    flex: 1,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    backgroundColor: 'white',
+    width: 400,
   },
   smallContainer: {
     flex: 1,

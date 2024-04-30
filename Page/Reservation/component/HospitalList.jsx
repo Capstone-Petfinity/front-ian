@@ -16,12 +16,12 @@ function InfoRender({isOpened, hospital}) {
           {hospital.hospital_callnumber}
         </Text>
         <Text style={styles.hospital_time}>
-          운영시간{'  '} {editTime({time: hospital.open_time})} ~{' '}
+          운영시간{'  '} {editTime({time: hospital.open_time})} -{' '}
           {editTime({time: hospital.close_time})}
         </Text>
 
         <Text style={styles.hospital_lunch_time}>
-          점심시간{'  '} {editTime({time: hospital.lunch_start})} ~{' '}
+          점심시간{'  '} {editTime({time: hospital.lunch_start})} -{' '}
           {editTime({time: hospital.lunch_finish})}
         </Text>
       </>
@@ -59,7 +59,7 @@ function HospitalList({hospitalList, selectedHospital, setSelectedHospital}) {
             />
           </TouchableOpacity>
         </View>
-        <Text style={styles.hospital_city}>{hospital.city}</Text>
+        <Text style={styles.hospital_city}>{hospital.city} 오금로 438 2층</Text>
 
         <InfoRender isOpened={isOpened} hospital={hospital} />
       </TouchableOpacity>
@@ -80,9 +80,9 @@ const styles = StyleSheet.create({
   },
   highlighted: {
     borderColor: '#00835C',
-    borderWidth: 1,
-    marginTop: 4.2,
-    marginBottom: 4.2,
+    borderWidth: 1.5,
+    marginTop: 3.7,
+    marginBottom: 3.7,
   },
   smallContent: {
     display: 'flex',

@@ -116,7 +116,7 @@ function RegisterPet({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Header2 />
+      <Header2 navigation={navigation} />
       <ScrollView style={styles.scrollViewContent}>
         <BackButton navigation={navigation} />
         <View style={styles.subContainer}>

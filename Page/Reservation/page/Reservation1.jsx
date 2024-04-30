@@ -11,12 +11,14 @@ import MainButton from '../../Component/Button/MainButton';
 function Reservation1({navigation}) {
   const [hospitalList, setHospitalList] = useState(null);
   const [selectedHospital, setSelectedHospital] = useState(-1);
+  const [uuid, setUuid] = useState(null);
 
   async function LoadHospital() {
     AsyncStorage.getItem('userState', async (err, result) => {
       const resultData = JSON.parse(result);
 
       const res = await LoadHospitalFunction({uuid: resultData.uuid});
+      setUuid(resultData.uuid);
       if (res.statusCode === '200') {
         const hospitalList = res.hospitalList.slice(0, 4);
         setHospitalList(hospitalList);
@@ -49,7 +51,12 @@ function Reservation1({navigation}) {
         <View style={styles.mainButtonView}>
           <MainButton
             title="병원 선택하기"
-            onPress={() => console.log(selectedHospital)}
+            onPress={() =>
+              navigation.navigate('Reservation2', {
+                uuid: uuid,
+                hospitalUuid: selectedHospital,
+              })
+            }
           />
         </View>
       </View>

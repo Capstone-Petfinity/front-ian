@@ -30,7 +30,14 @@ function Header1({navigation}) {
     <>
       <View style={styles.topArea} />
       <View style={styles.container}>
-        <Text style={styles.title}>Petfinity</Text>
+        <TouchableOpacity
+          onPress={() =>
+            isParent
+              ? navigation.navigate('OwnerMain')
+              : navigation.navigate('VetMain')
+          }>
+          <Text style={styles.title}>Petfinity</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.iconDiv}
           onPress={() =>
