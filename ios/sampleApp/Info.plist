@@ -25,14 +25,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
+
 	<dict>
+		<!-- 카메라 권한 -->
+		<key>NSCameraUsageDescription</key>
+		<string>$(PRODUCT_NAME) needs access to your Camera.</string>
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
-		<!-- 카메라 권한 -->
-		<key>NSCameraUsageDescription</key>
-		<string>$(PRODUCT_NAME) needs access to your Camera.</string>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
