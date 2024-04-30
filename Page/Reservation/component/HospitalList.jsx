@@ -45,7 +45,7 @@ function HospitalList({hospitalList, selectedHospital, setSelectedHospital}) {
     return (
       <TouchableOpacity
         key={hospital.uuid}
-        style={[styles.contaier, isSelected && styles.highlighted]}
+        style={[styles.container, isSelected && styles.highlighted]}
         onPress={() => handleSelectHospital(hospital.uuid)}>
         <View style={styles.smallContent}>
           <Text style={styles.hospital_name}>{hospital.hospital_name}</Text>
@@ -59,7 +59,7 @@ function HospitalList({hospitalList, selectedHospital, setSelectedHospital}) {
             />
           </TouchableOpacity>
         </View>
-        <Text style={styles.hospital_city}>{hospital.city} 오금로 438 2층</Text>
+        <Text style={styles.hospital_city}>{hospital.address}</Text>
 
         <InfoRender isOpened={isOpened} hospital={hospital} />
       </TouchableOpacity>
@@ -70,7 +70,7 @@ function HospitalList({hospitalList, selectedHospital, setSelectedHospital}) {
 export default HospitalList;
 
 const styles = StyleSheet.create({
-  contaier: {
+  container: {
     borderWidth: 0.2,
     width: 320,
     marginTop: 5,
@@ -101,7 +101,8 @@ const styles = StyleSheet.create({
   },
   hospital_city: {
     marginTop: 13,
-    fontSize: 16,
+    fontSize: 13,
+    width: 250,
   },
   hospital_callnumber: {
     marginTop: 10,

@@ -29,6 +29,7 @@ function OwnerMain({navigation}) {
           <Button
             text="병원 예약"
             subText="원하는 날짜에 원하는 동물병원을 바로 예약해보세요!"
+            onPress={() => navigation.navigate('Reservation1')}
           />
           <UserInfo />
           <PetInfo navigation={navigation} />

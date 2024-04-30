@@ -39,7 +39,9 @@ function Reservation1({navigation}) {
         <ScrollView style={styles.scrollViewContent}>
           <View style={styles.subContainer}>
             <View style={styles.addressView}>
-              <Text style={styles.address}>송파구 송파대로 567</Text>
+              <Text style={styles.address}>
+                {hospitalList[0].city} 지역 동물병원 리스트
+              </Text>
             </View>
             <HospitalList
               hospitalList={hospitalList}

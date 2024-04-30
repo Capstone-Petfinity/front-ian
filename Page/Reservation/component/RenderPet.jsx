@@ -1,8 +1,9 @@
 import {useState} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
+import RegisterPetButton from './RegisterPetButton';
 
-function RenderPet({petList, setSelectedPet}) {
+function RenderPet({navigation, petList, setSelectedPet}) {
   const [isFocus, setIsFocus] = useState(false);
 
   const renderItem = item => {
@@ -26,35 +27,54 @@ function RenderPet({petList, setSelectedPet}) {
   };
 
   if (petList) {
-    return (
-      <View>
-        <Dropdown
-          style={styles.dropdown}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          placeholder="반려동물을 선택하세요"
-          data={petList}
-          maxHeight={300}
-          labelField="name"
-          valueField="uuid"
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(true)}
-          onChange={item => {
-            setIsFocus(false);
-            setSelectedPet(item.uuid);
-          }}
-          renderItem={renderItem}
-        />
-      </View>
-    );
+    if (petList.length > 0) {
+      return (
+        <>
+          <Text style={styles.title}>반려동물 선택</Text>
+          <Dropdown
+            style={styles.dropdown}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            placeholder="반려동물을 선택하세요"
+            data={petList}
+            maxHeight={80}
+            labelField="name"
+            valueField="uuid"
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(true)}
+            onChange={item => {
+              setIsFocus(false);
+              setSelectedPet(item.uuid);
+            }}
+            renderItem={renderItem}
+          />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Text style={styles.title}>반려동물 선택</Text>
+          <RegisterPetButton navigation={navigation} />
+          <Text style={styles.text}>
+            등록된 반려동물이 없습니다. {'\n'}반려동물을 먼저 등록해주세요.
+          </Text>
+        </>
+      );
+    }
   }
 }
 
 export default RenderPet;
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 17,
+    marginBottom: 10,
+    fontWeight: '500',
+    marginLeft: 10,
+  },
   container: {
     backgroundColor: 'white',
     padding: 16,
@@ -66,7 +86,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
     width: 280,
-    marginBottom: 70,
+    marginBottom: 20,
   },
   icon: {
     marginRight: 5,
@@ -105,5 +125,14 @@ const styles = StyleSheet.create({
   },
   textItem: {
     marginLeft: 15,
+  },
+  text: {
+    fontSize: 15,
+    marginTop: 10,
+    marginBottom: 20,
+    display: 'flex',
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontWeight: '300',
   },
 });
