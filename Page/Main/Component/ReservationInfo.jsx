@@ -5,7 +5,7 @@ import ReservationInfoFunction from '../function/ReservationInfoFunction';
 
 function RenderReservation({reservationList}) {
   if (reservationList.length != 0) {
-    return reservationList.map(reservation => {
+    return reservationList.map((reservation, index) => {
       const hospital = reservation.hospital;
       const pet = reservation.pet;
 
@@ -24,7 +24,11 @@ function RenderReservation({reservationList}) {
             <Text style={styles.content}>{reservation.reservationDate}</Text>
           </View>
 
-          <View style={styles.hr}></View>
+          {index != reservationList.length - 1 ? (
+            <View style={styles.hr} />
+          ) : (
+            <View style={styles.hr_transparent} />
+          )}
         </View>
       );
     });
@@ -112,5 +116,13 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     marginTop: 10,
     marginBottom: 20,
+  },
+  hr_transparent: {
+    width: 280,
+    height: 1,
+    borderWidth: 0.2,
+    borderColor: 'white',
+    marginTop: 10,
+    // marginBottom: 20,
   },
 });

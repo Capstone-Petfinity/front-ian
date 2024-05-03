@@ -6,6 +6,7 @@ import PetInfo from '../../Main/Component/PetInfo';
 import BackButton from '../../Component/Button/BackButton';
 import LogoutButton from '../../Component/Button/LogoutButton';
 import Header2 from '../../Component/Header/Header2';
+import ReservationInfo from '../../Main/Component/ReservationInfo';
 
 function OwnerAccount({navigation}) {
   return (
@@ -16,11 +17,12 @@ function OwnerAccount({navigation}) {
         <View style={styles.smallContainer}>
           <UserInfo />
           <PetInfo navigation={navigation} />
+          <ReservationInfo />
+        </View>
+        <View style={styles.logoutButtonContainer}>
+          <LogoutButton title="로그아웃" navigation={navigation} />
         </View>
       </ScrollView>
-      <View style={styles.logoutButtonContainer}>
-        <LogoutButton title="로그아웃" navigation={navigation} />
-      </View>
     </View>
   );
 }

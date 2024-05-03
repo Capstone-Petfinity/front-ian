@@ -34,7 +34,7 @@ function OwnerMain({navigation}) {
           />
           <UserInfo />
           <PetInfo navigation={navigation} />
-          <ReservationInfo />
+          {/* <ReservationInfo /> */}
           <View style={styles.bottomMargin} />
         </View>
       </ScrollView>
