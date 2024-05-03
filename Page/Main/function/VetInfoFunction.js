@@ -12,7 +12,7 @@ export default async function VetInfoFunction({uuid}) {
   });
 
   const res = await result.json();
-  console.log('vetInfoFunction: ', res);
+  console.log('VetInfoFunction:', res);
 
   return res;
 }
