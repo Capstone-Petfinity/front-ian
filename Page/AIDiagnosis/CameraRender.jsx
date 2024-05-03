@@ -1,28 +1,38 @@
-import {StyleSheet, Text, View} from 'react-native';
-import {Camera, useCameraDevices} from 'react-native-vision-camera';
+import {useRef} from 'react';
+import {Button, StyleSheet, Text, View} from 'react-native';
+import {Camera, useCameraDevice} from 'react-native-vision-camera';
 
 function CameraRender() {
-  const devices = useCameraDevices();
-  const device = devices.back;
+  const device = useCameraDevice('back');
+  const camera = useRef(null);
 
-  if (device) {
-    return (
-      <Camera
-        style={StyleSheet.absoluteFill}
-        device={device}
-        photo={true}
-        video={false}
-        audio={false} // 선택사항
-        isActive={true}
-      />
-    );
-  } else {
+  const takePhoto = async () => {
+    const photo = await camera.current.takePhoto({
+      flash: 'off',
+    });
+    console.log('Photo:', photo);
+  };
+
+  if (!device) {
     return (
       <View>
         <Text>Camera is null</Text>
       </View>
     );
   }
+
+  return (
+    <>
+      <Camera
+        style={StyleSheet.absoluteFill}
+        ref={camera}
+        device={device}
+        photo={true}
+        isActive={true}
+      />
+      <Button title="take photo" onPress={takePhoto} />
+    </>
+  );
 }
 
 export default CameraRender;

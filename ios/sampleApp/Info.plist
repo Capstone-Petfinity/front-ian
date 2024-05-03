@@ -2,6 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!-- 카메라 권한 -->
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME)이(가) 카메라에 접근하려고 합니다.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -27,9 +30,7 @@
 	<key>NSAppTransportSecurity</key>
 
 	<dict>
-		<!-- 카메라 권한 -->
-		<key>NSCameraUsageDescription</key>
-		<string>$(PRODUCT_NAME) needs access to your Camera.</string>
+		
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 		<key>NSAllowsLocalNetworking</key>

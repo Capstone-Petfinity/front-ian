@@ -60,7 +60,7 @@ function ReservationInfo() {
     return (
       <View style={styles.container}>
         <View style={styles.textContainer}>
-          <Text style={styles.text}>병원 예약 정보</Text>
+          <Text style={styles.text}>병원 예약 내역</Text>
         </View>
         <RenderReservation reservationList={reservationList} />
       </View>

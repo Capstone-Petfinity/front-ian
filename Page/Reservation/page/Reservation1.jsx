@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Header1 from '../../Component/Header/Header1';
 
 import LoadHospitalFunction from '../function/LoadHospitalFunction';
@@ -26,6 +26,34 @@ function Reservation1({navigation}) {
     });
 
     return;
+  }
+
+  function onPressReservationButton() {
+    if (selectedHospital != -1) {
+      navigation.navigate('Reservation2', {
+        uuid: uuid,
+        hospitalUuid: selectedHospital,
+      });
+
+      return;
+    }
+
+    Alert.alert(
+      '병원 예약 실패',
+      '병원을 선택해주세요',
+      [
+        {
+          text: '확인',
+          onPress: () => {},
+          style: 'cancel',
+        },
+      ],
+
+      {
+        cancelable: true,
+        onDismiss: () => {},
+      },
+    );
   }
 
   useEffect(() => {
@@ -53,12 +81,7 @@ function Reservation1({navigation}) {
         <View style={styles.mainButtonView}>
           <MainButton
             title="병원 선택하기"
-            onPress={() =>
-              navigation.navigate('Reservation2', {
-                uuid: uuid,
-                hospitalUuid: selectedHospital,
-              })
-            }
+            onPress={onPressReservationButton}
           />
         </View>
       </View>
@@ -98,7 +121,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     height: 150,
-    // borderWidth: 1,
     marginTop: 30,
   },
 });
