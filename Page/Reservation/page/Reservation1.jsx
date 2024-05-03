@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     flexGrow: 1,
     backgroundColor: 'white',
-    width: 400,
   },
   subContainer: {
     alignItems: 'center',
@@ -99,5 +98,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     height: 150,
+    // borderWidth: 1,
+    marginTop: 30,
   },
 });

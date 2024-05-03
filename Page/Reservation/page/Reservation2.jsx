@@ -38,6 +38,58 @@ function Reservation2({navigation, route}) {
   }
 
   async function onPressReservationButton() {
+    if (!selectedPet || !selectedDate) {
+      Alert.alert(
+        '병원 예약 실패',
+        '모든 항목을 선택하여주세요',
+        [
+          {
+            text: '확인',
+            onPress: () => {},
+            style: 'cancel',
+          },
+        ],
+
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+
+      return;
+    }
+
+    // 현재 날짜와 시간을 가져오기
+    var currentDate = new Date();
+
+    // 특정 시간 설정 (예: 2024년 4월 1일)
+    var specificDate = new Date(selectedDate);
+
+    // 현재 날짜와 특정 시간 사이의 차이 계산
+    var timeDiff = specificDate.getTime() - currentDate.getTime();
+    var dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)); // 밀리초를 일로 변환하고, 올림하여 일수 계산
+
+    if (dayDiff < 0) {
+      Alert.alert(
+        '병원 예약 실패',
+        '유효한 날짜를 선택해주세요',
+        [
+          {
+            text: '확인',
+            onPress: () => {},
+            style: 'cancel',
+          },
+        ],
+
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+
+      return;
+    }
+
     const res = await reservationFunction({
       userUuid: uuid,
       petUuid: selectedPet,

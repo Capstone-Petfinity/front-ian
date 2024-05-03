@@ -9,17 +9,13 @@ import Header1 from '../../Component/Header/Header1';
 function OwnerAIDiagnosis({navigation}) {
   const [area, setArea] = useState('');
 
-  useEffect(() => {
-    console.log('selected area: ', area);
-  }, [area]);
-
   return (
     <View style={styles.container}>
       <Header1 navigation={navigation} />
       <ScrollView style={styles.scrollViewContent}>
         <View style={styles.smallContainer}>
           <View style={styles.picture}></View>
-          <Picture />
+          <Picture navigation={navigation} />
           <AffectedList area={area} setArea={setArea} />
           <View style={styles.buttonDiv}>
             <MainButton

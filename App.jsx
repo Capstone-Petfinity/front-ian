@@ -27,6 +27,7 @@ import RegisterPet from './Page/RegisterPet/RegisterPet';
 import Reservation1 from './Page/Reservation/page/Reservation1';
 import Reservation2 from './Page/Reservation/page/Reservation2';
 import Reservation3 from './Page/Reservation/page/Reservation3';
+import CameraRender from './Page/AIDiagnosis/CameraRender';
 
 function App() {
   const Stack = createStackNavigator();
@@ -45,6 +46,7 @@ function App() {
         <Stack.Screen name="VetMain" component={VetMain} />
         <Stack.Screen name="OwnerAIDiagnosis" component={OnwerAIDiagnosis} />
         <Stack.Screen name="VetAIDiagnosis" component={VetAIDiagnosis} />
+        <Stack.Screen name="CameraRender" component={CameraRender} />
         <Stack.Screen name="OwnerResult" component={OwnerResult} />
         <Stack.Screen name="VetResult" component={VetResult} />
         <Stack.Screen name="Reservation1" component={Reservation1} />
