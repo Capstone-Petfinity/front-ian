@@ -86,9 +86,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 100,
-    // height: 30,
-    // borderWidth: 1,
-    // borderColor: 'white',
+
     display: 'flex',
     alignItems: 'center',
   },

@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   item: {
-    height: 40,
+    height: 50,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'left',
@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
   },
   textItem: {
     marginLeft: 15,
+    fontSize: 15,
   },
   text: {
     fontSize: 15,

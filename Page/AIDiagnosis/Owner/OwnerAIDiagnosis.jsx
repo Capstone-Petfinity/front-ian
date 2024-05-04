@@ -9,34 +9,20 @@ import Header1 from '../../Component/Header/Header1';
 function OwnerAIDiagnosis({navigation, route}) {
   const [area, setArea] = useState('');
   const uri = route.params;
-  if (uri) {
-    return (
-      <View style={styles.container}>
-        <Header1 navigation={navigation} />
-        <ScrollView style={styles.scrollViewContent}>
-          <View style={styles.smallContainer}>
-            <Image source={uri} style={styles.picture2} />
-            <Picture navigation={navigation} />
-            <AffectedList area={area} setArea={setArea} />
-            <View style={styles.buttonDiv}>
-              <MainButton
-                title="AI 진단하기"
-                onPress={() => navigation.navigate('OwnerResult')}
-              />
-            </View>
-          </View>
-        </ScrollView>
-      </View>
-    );
-  }
+
   return (
     <View style={styles.container}>
       <Header1 navigation={navigation} />
       <ScrollView style={styles.scrollViewContent}>
         <View style={styles.smallContainer}>
-          <View style={styles.picture}>
-            <Text>사진을 선택해주세요</Text>
-          </View>
+          {uri ? (
+            <Image source={uri} style={styles.picture2} />
+          ) : (
+            <View style={styles.picture}>
+              <Text>사진을 선택해주세요</Text>
+            </View>
+          )}
+
           <Picture navigation={navigation} />
           <AffectedList area={area} setArea={setArea} />
           <View style={styles.buttonDiv}>
