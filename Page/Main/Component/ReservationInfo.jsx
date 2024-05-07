@@ -2,15 +2,22 @@ import {StyleSheet, Text, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from 'react';
 import ReservationInfoFunction from '../function/ReservationInfoFunction';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-function RenderReservation({reservationList}) {
+function RenderReservation({reservationList, navigation}) {
   if (reservationList.length != 0) {
     return reservationList.map((reservation, index) => {
       const hospital = reservation.hospital;
       const pet = reservation.pet;
 
       return (
-        <View key={reservation.reservationUuid}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('ReservationDescription', {
+              reservation: reservation,
+            })
+          }
+          key={reservation.reservationUuid}>
           <View style={styles.smallContainer}>
             <Text style={styles.title}>병원</Text>
             <Text style={styles.content}>{hospital.hospital_name}</Text>
@@ -29,13 +36,13 @@ function RenderReservation({reservationList}) {
           ) : (
             <View style={styles.hr_transparent} />
           )}
-        </View>
+        </TouchableOpacity>
       );
     });
   }
 }
 
-function ReservationInfo() {
+function ReservationInfo({navigation}) {
   const [reservationList, setReservationList] = useState(null);
 
   async function LoadReservationList() {
@@ -63,7 +70,10 @@ function ReservationInfo() {
           <Text style={styles.text}>병원 예약 내역</Text>
         </View>
         {reservationList.length > 0 ? (
-          <RenderReservation reservationList={reservationList} />
+          <RenderReservation
+            reservationList={reservationList}
+            navigation={navigation}
+          />
         ) : (
           <View style={styles.subContainer}>
             <Text>등록된 예약이 없습니다.</Text>
