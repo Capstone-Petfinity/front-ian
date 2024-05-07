@@ -45,8 +45,16 @@ function App() {
         <Stack.Screen name="OwnerAccount" component={OwnerAccount} />
         <Stack.Screen name="VetAccount" component={VetAccount} />
         <Stack.Screen name="RegisterPet" component={RegisterPet} />
-        <Stack.Screen name="OwnerMain" component={OnwerMain} />
-        <Stack.Screen name="VetMain" component={VetMain} />
+        <Stack.Screen
+          name="OwnerMain"
+          component={OnwerMain}
+          options={{gestureEnabled: false}}
+        />
+        <Stack.Screen
+          name="VetMain"
+          component={VetMain}
+          options={{gestureEnabled: false}}
+        />
         <Stack.Screen name="OwnerAIDiagnosis" component={OnwerAIDiagnosis} />
         <Stack.Screen name="VetAIDiagnosis" component={VetAIDiagnosis} />
         <Stack.Screen name="CameraRender" component={CameraRender} />

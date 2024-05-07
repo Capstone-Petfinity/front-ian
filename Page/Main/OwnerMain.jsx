@@ -1,12 +1,11 @@
 import {useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import Button from '../Component/Button/MainPageButton';
 import UserInfo from './Component/UserInfo';
 import PetInfo from './Component/PetInfo';
 import Header1 from '../Component/Header/Header1';
-import ReservationInfo from './Component/ReservationInfo';
 
 function OwnerMain({navigation}) {
   useEffect(() => {
