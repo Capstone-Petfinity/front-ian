@@ -5,14 +5,17 @@ import vetSignUpFunctoin from './function/vetSignupFunction';
 import DuplicateCheckVetFunction from './function/DuplicateCheckVetFunction';
 import MainButton2 from '../Component/Button/MainButton2';
 import SignUpInput1 from './component/SignUpInput1';
-import SignUpInput2 from './component/SignUpInput2';
+import SignUpInput4 from './component/SignUpInput4';
 import DuplicateCheckButton from './component/DuplicatedCheckButton';
+import SignUpInput3 from './component/SignUpInput3';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 function VetSignUp({navigation}) {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [userIdMessage, setUserIdMessage] = useState(
     '* 면허번호 5자리를 입력해주세요.',
   );
@@ -31,7 +34,7 @@ function VetSignUp({navigation}) {
   }
 
   async function onPressSignUpButton() {
-    const result = await vetSignUpFunctoin({userId, password, name});
+    const result = await vetSignUpFunctoin({userId, password, name, phone});
 
     if (result.statusCode === '200') {
       Alert.alert(
@@ -78,10 +81,10 @@ function VetSignUp({navigation}) {
   }, [password, checkPassword]);
 
   return (
-    <KeyboardAvoidingView>
+    <KeyboardAwareScrollView style={styles.container} extraScrollHeight={25}>
       <View>
         <View style={styles.loginView}>
-          <SignUpInput2
+          <SignUpInput4
             placeholder="아이디를 입력하세요"
             value={userId}
             onChange={setUserId}
@@ -110,23 +113,32 @@ function VetSignUp({navigation}) {
           onChange={setName}
           security={false}
         />
-
+        <SignUpInput3
+          placeholder="휴대폰 번호를 입력하세요"
+          value={phone}
+          onChange={setPhone}
+          security={false}
+          message="* 숫자만 입력해주세요."
+        />
         <View style={styles.buttonDiv}>
           <MainButton2 title="SignUp" onPress={() => onPressSignUpButton()} />
         </View>
       </View>
-    </KeyboardAvoidingView>
+    </KeyboardAwareScrollView>
   );
 }
 
 export default VetSignUp;
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 65,
+  },
   loginView: {
     flexDirection: 'row',
   },
   buttonDiv: {
     marginBottom: 20,
-    marginTop: 160,
+    marginTop: 90,
   },
 });

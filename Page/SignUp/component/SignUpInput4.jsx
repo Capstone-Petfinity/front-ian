@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 
-function SignUpInput2({placeholder, value, onChange, security, message}) {
+function SignUpInput4({placeholder, value, onChange, security, message}) {
   return (
     <View style={styles.continer}>
       <View style={styles.inputContainer}>
@@ -12,6 +12,7 @@ function SignUpInput2({placeholder, value, onChange, security, message}) {
           onChangeText={onChange}
           secureTextEntry={security}
           autoCapitalize="none"
+          keyboardType="numeric"
           returnKeyType="done"
         />
         <View pointerEvents="none" style={styles.placeholderContainer}>
@@ -25,7 +26,7 @@ function SignUpInput2({placeholder, value, onChange, security, message}) {
   );
 }
 
-export default SignUpInput2;
+export default SignUpInput4;
 
 const styles = StyleSheet.create({
   continer: {

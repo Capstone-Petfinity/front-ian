@@ -1,4 +1,9 @@
-export default async function vetSignUpFunctoin({userId, password, name}) {
+export default async function vetSignUpFunctoin({
+  userId,
+  password,
+  name,
+  phone,
+}) {
   const result = await fetch('https://capstone-petfinity.com/user/signup/vet', {
     method: 'POST',
     headers: {
@@ -9,6 +14,7 @@ export default async function vetSignUpFunctoin({userId, password, name}) {
       id: userId,
       pw: password,
       name: name,
+      phone_number: phone,
     }),
   });
 

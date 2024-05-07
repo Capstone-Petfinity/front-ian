@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     flexGrow: 1,
     backgroundColor: 'white',
-    // width: 400,
   },
   smallContainer: {
     flex: 1,

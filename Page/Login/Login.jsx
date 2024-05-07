@@ -40,8 +40,8 @@ async function onPressLoginButton({
   const result = await LoginFunction({userId, password});
 
   if (result.statusCode === '200') {
-    setUserId('');
-    setPassword('');
+    setUserId(null);
+    setPassword(null);
 
     AsyncStorage.setItem(
       'userState',

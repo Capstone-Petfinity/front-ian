@@ -7,7 +7,7 @@ import {useIsFocused} from '@react-navigation/native';
 
 function RenderPets({petInfo}) {
   if (petInfo.length != 0) {
-    return petInfo.map(pet => {
+    return petInfo.map((pet, index) => {
       const date = new Date(pet.birth);
       const year = date.getFullYear();
 
@@ -17,12 +17,30 @@ function RenderPets({petInfo}) {
       const age = currentYear - year + 1;
 
       return (
-        <View style={styles.petContainer} key={pet.uuid}>
-          <View style={styles.rowDiv}>
-            <Text>
-              {pet.name} ({age})
+        <View key={pet.uuid}>
+          <View style={styles.smallContainer}>
+            <Text style={styles.title}>이름</Text>
+            <Text style={styles.content}>{pet.name}</Text>
+          </View>
+          <View style={styles.smallContainer}>
+            <Text style={styles.title}>생년월일</Text>
+            <Text style={styles.content}>
+              {pet.birth} ({age}살)
             </Text>
           </View>
+          <View style={styles.smallContainer}>
+            <Text style={styles.title}>견종</Text>
+            <Text style={styles.content}>{pet.kind}</Text>
+          </View>
+          <View style={styles.smallContainer}>
+            <Text style={styles.title}>성별</Text>
+            <Text style={styles.content}>{pet.gender}</Text>
+          </View>
+          {index != petInfo.length - 1 ? (
+            <View style={styles.hr} />
+          ) : (
+            <View style={styles.hr_transparent} />
+          )}
         </View>
       );
     });
@@ -104,30 +122,25 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     width: 60,
-    // marginLeft: -45,
   },
-
-  petContainer: {
-    display: 'flex',
-    // flexDirection: 'row',
+  content: {
     fontSize: 15,
-    marginLeft: 5,
-    marginBottom: 10,
-    width: 300,
+    marginLeft: 30,
+    width: 200,
   },
-  rowDiv: {
-    display: 'flex',
-    flexDirection: 'row',
+  hr: {
+    width: 280,
+    height: 1,
+    borderWidth: 0.2,
+    borderColor: 'gray',
+    marginTop: 10,
+    marginBottom: 20,
   },
-  petName: {
-    marginTop: 1,
-    height: 20,
-  },
-  petAge: {
-    height: 20,
-  },
-  petKind: {
-    marginTop: 2,
-    height: 20,
+  hr_transparent: {
+    width: 280,
+    height: 1,
+    borderWidth: 0.2,
+    borderColor: 'white',
+    marginTop: 10,
   },
 });

@@ -12,6 +12,7 @@ function SignUpInput1({placeholder, value, onChange, security, message}) {
           onChangeText={onChange}
           secureTextEntry={security}
           autoCapitalize="none"
+          returnKeyType="done"
         />
         <View pointerEvents="none" style={styles.placeholderContainer}>
           <Text style={value == '' ? styles.placeholder : styles.transparent}>

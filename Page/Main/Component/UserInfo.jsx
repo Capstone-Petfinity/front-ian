@@ -56,10 +56,12 @@ function UserInfo() {
           <Text style={styles.content}>{userInfo.name}</Text>
         </View>
         <PhoneNumberRender phone_number={userInfo.phone_number} />
-        <View style={styles.smallContainer}>
-          <Text style={styles.title}>거주지</Text>
-          <Text style={styles.content}>{userInfo.city}</Text>
-        </View>
+        {userInfo.city ? (
+          <View style={styles.smallContainer}>
+            <Text style={styles.title}>거주지</Text>
+            <Text style={styles.content}>{userInfo.city}</Text>
+          </View>
+        ) : null}
       </View>
     );
   }
