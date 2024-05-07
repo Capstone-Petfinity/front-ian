@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {Calendar} from 'react-native-calendars';
 
 function CalendarRender({selectedDate, setSelectedDate}) {
@@ -22,7 +22,7 @@ function CalendarRender({selectedDate, setSelectedDate}) {
           setSelectedDate(day.dateString);
         }}
         hideExtraDays={false}
-        monthFormat={'M월'}
+        monthFormat={'yyyy년 M월'}
         markedDates={{
           [selectedDate]: {
             selected: true,
