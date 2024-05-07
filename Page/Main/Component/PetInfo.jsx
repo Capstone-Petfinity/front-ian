@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import PetInfoFunction from '../function/PetInfoFunction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RegisterPetButton from '../../Account/component/RegisterPetButton';
+import {useIsFocused} from '@react-navigation/native';
 
 function RenderPets({petInfo}) {
   if (petInfo.length != 0) {
@@ -36,7 +37,7 @@ function RenderPets({petInfo}) {
 
 function PetInfo({navigation}) {
   const [petInfo, setPetInfo] = useState(null);
-
+  const isFocused = useIsFocused();
   async function LoadPetInfo() {
     AsyncStorage.getItem('userState', async (err, result) => {
       const resultData = JSON.parse(result);
@@ -54,7 +55,7 @@ function PetInfo({navigation}) {
 
   useEffect(() => {
     LoadPetInfo();
-  }, []);
+  }, [isFocused]);
 
   if (petInfo) {
     return (

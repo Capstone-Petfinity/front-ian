@@ -62,7 +62,13 @@ function ReservationInfo() {
         <View style={styles.textContainer}>
           <Text style={styles.text}>병원 예약 내역</Text>
         </View>
-        <RenderReservation reservationList={reservationList} />
+        {reservationList.length > 0 ? (
+          <RenderReservation reservationList={reservationList} />
+        ) : (
+          <View style={styles.subContainer}>
+            <Text>등록된 예약이 없습니다.</Text>
+          </View>
+        )}
       </View>
     );
   }
@@ -123,6 +129,12 @@ const styles = StyleSheet.create({
     borderWidth: 0.2,
     borderColor: 'white',
     marginTop: 10,
-    // marginBottom: 20,
+  },
+  subContainer: {
+    display: 'flex',
+    fontSize: 15,
+    marginLeft: 5,
+    marginBottom: 10,
+    width: 300,
   },
 });

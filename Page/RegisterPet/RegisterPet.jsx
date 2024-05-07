@@ -8,12 +8,13 @@ import BackButton from '../Component/Button/BackButton';
 import Input from '../Component/Input/Input';
 import Header2 from '../Component/Header/Header2';
 import Gender from './Gender';
+import {CommonActions} from '@react-navigation/native';
 
 function RegisterPet({navigation}) {
-  const [name, setName] = useState('');
-  const [birth, setBirth] = useState('');
-  const [gender, setGender] = useState('');
-  const [kind, setKind] = useState('');
+  const [name, setName] = useState(null);
+  const [birth, setBirth] = useState(null);
+  const [gender, setGender] = useState(null);
+  const [kind, setKind] = useState(null);
 
   async function onPressRegisterButton() {
     Alert.alert(
@@ -65,7 +66,7 @@ function RegisterPet({navigation}) {
               text: '확인',
               onPress: () => {
                 setNull();
-                navigation.navigate('OwnerAccount');
+                navigation.dispatch(CommonActions.navigate('OwnerAccount'));
               },
               style: 'destructive',
             },

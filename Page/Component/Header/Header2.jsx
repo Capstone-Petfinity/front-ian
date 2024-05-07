@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CommonActions} from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -32,8 +33,8 @@ function Header2({navigation}) {
         <TouchableOpacity
           onPress={() =>
             isParent
-              ? navigation.navigate('OwnerMain')
-              : navigation.navigate('VetMain')
+              ? navigation.dispatch(CommonActions.navigate('OwnerMain'))
+              : navigation.dispatch(CommonActions.navigate('VetMain'))
           }>
           <Text style={styles.title}>Petfinity</Text>
         </TouchableOpacity>

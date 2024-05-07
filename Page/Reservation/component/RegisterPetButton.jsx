@@ -4,7 +4,7 @@ function RegisterPetButton({navigation}) {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate('RegisterPet')}>
+      onPress={() => navigation.navigate('RegisterPet2')}>
       <View style={styles.button}>
         <Text style={styles.text}>+</Text>
       </View>

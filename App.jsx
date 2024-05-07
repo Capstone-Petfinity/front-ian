@@ -18,17 +18,19 @@ import VetMain from './Page/Main/VetMain';
 
 import OnwerAIDiagnosis from './Page/AIDiagnosis/Owner/OwnerAIDiagnosis';
 import VetAIDiagnosis from './Page/AIDiagnosis/Vet/VetAIDiganosis';
+import CameraRender from './Page/AIDiagnosis/CameraRender';
+import PictureReneder from './Page/AIDiagnosis/PictureRender';
+import OwnerResult from './Page/AIDiagnosis/Owner/OwnerResult';
+import VetResult from './Page/AIDiagnosis/Vet/VetResult';
 
 import OwnerAccount from './Page/Account/Owner/OwnerAccount';
 import VetAccount from './Page/Account/Vet/VetAccount';
-import OwnerResult from './Page/AIDiagnosis/Owner/OwnerResult';
-import VetResult from './Page/AIDiagnosis/Vet/VetResult';
+
 import RegisterPet from './Page/RegisterPet/RegisterPet';
 import Reservation1 from './Page/Reservation/page/Reservation1';
 import Reservation2 from './Page/Reservation/page/Reservation2';
 import Reservation3 from './Page/Reservation/page/Reservation3';
-import CameraRender from './Page/AIDiagnosis/CameraRender';
-import PictureReneder from './Page/AIDiagnosis/PictureRender';
+import RegisterPet2 from './Page/Reservation/page/RegisterPet';
 
 function App() {
   const Stack = createStackNavigator();
@@ -54,6 +56,7 @@ function App() {
         <Stack.Screen name="Reservation2" component={Reservation2} />
         <Stack.Screen name="Reservation3" component={Reservation3} />
         <Stack.Screen name="PictureRender" component={PictureReneder} />
+        <Stack.Screen name="RegisterPet2" component={RegisterPet2} />
       </Stack.Navigator>
     </NavigationContainer>
   );

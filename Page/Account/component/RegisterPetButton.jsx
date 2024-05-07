@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     width: 300,
     paddingTop: 10,
     paddingBottom: 10,
+    marginTop: 10,
   },
   button: {
     width: 25,

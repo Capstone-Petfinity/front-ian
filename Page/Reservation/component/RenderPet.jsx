@@ -39,7 +39,7 @@ function RenderPet({navigation, petList, setSelectedPet}) {
             iconStyle={styles.iconStyle}
             placeholder="반려동물을 선택하세요"
             data={petList}
-            maxHeight={80}
+            maxHeight={50}
             labelField="name"
             valueField="uuid"
             onFocus={() => setIsFocus(true)}

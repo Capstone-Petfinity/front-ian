@@ -9,6 +9,7 @@ import {
 import accountIcon from '../../../asset/accountwhite.png';
 import {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CommonActions} from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -33,8 +34,8 @@ function Header1({navigation}) {
         <TouchableOpacity
           onPress={() =>
             isParent
-              ? navigation.navigate('OwnerMain')
-              : navigation.navigate('VetMain')
+              ? navigation.dispatch(CommonActions.navigate('OwnerMain'))
+              : navigation.dispatch(CommonActions.navigate('VetMain'))
           }>
           <Text style={styles.title}>Petfinity</Text>
         </TouchableOpacity>
@@ -42,8 +43,8 @@ function Header1({navigation}) {
           style={styles.iconDiv}
           onPress={() =>
             isParent
-              ? navigation.navigate('OwnerAccount')
-              : navigation.navigate('VetAccount')
+              ? navigation.dispatch(CommonActions.navigate('OwnerAccount'))
+              : navigation.dispatch(CommonActions.navigate('VetAccount'))
           }>
           <Image style={styles.icon} source={accountIcon} />
         </TouchableOpacity>
