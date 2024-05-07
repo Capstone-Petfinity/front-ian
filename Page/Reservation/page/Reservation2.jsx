@@ -9,11 +9,15 @@ import LoadOneHospitalFunction from '../function/LoadOneHospitalFunction';
 import HospitalInfo from '../component/HospitalInfo';
 import MainButton from '../../Component/Button/MainButton';
 import reservationFunction from '../function/ReservationFunction';
+import {useIsFocused} from '@react-navigation/native';
 
 function Reservation2({navigation, route}) {
   const {uuid, hospitalUuid} = route.params;
+  const isFocused = useIsFocused();
+
   const [petInfo, setPetInfo] = useState(null);
   const [hospitalInfo, setHospitalInfo] = useState(null);
+
   const [selectedPet, setSelectedPet] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -122,11 +126,7 @@ function Reservation2({navigation, route}) {
   useEffect(() => {
     LoadPetInfo();
     LoadHospitalInfo();
-  }, []);
-
-  useEffect(() => {
-    console.log(selectedPet);
-  }, [selectedPet]);
+  }, [isFocused]);
 
   return (
     <View style={styles.container}>
@@ -137,6 +137,8 @@ function Reservation2({navigation, route}) {
             navigation={navigation}
             petList={petInfo}
             setSelectedPet={setSelectedPet}
+            uuid={uuid}
+            hospitalUuid={hospitalUuid}
           />
           <HospitalInfo hospital={hospitalInfo} />
           <CalendarRender

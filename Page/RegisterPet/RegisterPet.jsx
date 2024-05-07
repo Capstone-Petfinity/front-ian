@@ -38,10 +38,10 @@ function RegisterPet({navigation}) {
   }
 
   function setNull() {
-    setName('');
-    setBirth('');
-    setGender('');
-    setKind('');
+    setName(null);
+    setBirth(null);
+    setGender(null);
+    setKind(null);
 
     return;
   }
@@ -96,25 +96,6 @@ function RegisterPet({navigation}) {
     });
   }
 
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: 'white',
-      flex: 1,
-    },
-    scrollViewContent: {
-      flexGrow: 1,
-      backgroundColor: 'white',
-    },
-    subContainer: {
-      alignItems: 'center',
-      marginTop: 30,
-    },
-    buttonDiv: {
-      marginBottom: 20,
-      marginTop: 30,
-    },
-  });
-
   return (
     <View style={styles.container}>
       <Header2 navigation={navigation} />
@@ -154,3 +135,22 @@ function RegisterPet({navigation}) {
 }
 
 export default RegisterPet;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    backgroundColor: 'white',
+  },
+  subContainer: {
+    alignItems: 'center',
+    marginTop: 30,
+  },
+  buttonDiv: {
+    marginBottom: 20,
+    marginTop: 30,
+  },
+});

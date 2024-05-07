@@ -1,10 +1,15 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-function RegisterPetButton({navigation}) {
+function RegisterPetButton({navigation, uuid, hospitalUuid}) {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate('RegisterPet2')}>
+      onPress={() =>
+        navigation.navigate('RegisterPet2', {
+          uuid: uuid,
+          hospitalUuid: hospitalUuid,
+        })
+      }>
       <View style={styles.button}>
         <Text style={styles.text}>+</Text>
       </View>
@@ -22,7 +27,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 280,
+    width: 300,
     height: 80,
     paddingTop: 10,
     paddingBottom: 10,

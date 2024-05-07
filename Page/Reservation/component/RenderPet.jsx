@@ -1,9 +1,9 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 import RegisterPetButton from './RegisterPetButton';
 
-function RenderPet({navigation, petList, setSelectedPet}) {
+function RenderPet({navigation, petList, setSelectedPet, uuid, hospitalUuid}) {
   const [isFocus, setIsFocus] = useState(false);
 
   const renderItem = item => {
@@ -39,7 +39,7 @@ function RenderPet({navigation, petList, setSelectedPet}) {
             iconStyle={styles.iconStyle}
             placeholder="반려동물을 선택하세요"
             data={petList}
-            maxHeight={50}
+            maxHeight={100}
             labelField="name"
             valueField="uuid"
             onFocus={() => setIsFocus(true)}
@@ -50,13 +50,23 @@ function RenderPet({navigation, petList, setSelectedPet}) {
             }}
             renderItem={renderItem}
           />
+          <RegisterPetButton
+            navigation={navigation}
+            uuid={uuid}
+            hospitalUuid={hospitalUuid}
+          />
+          <Text style={styles.text}>추가로 반려동물을 등록해보세요.</Text>
         </>
       );
     } else {
       return (
         <>
           <Text style={styles.title}>반려동물 선택</Text>
-          <RegisterPetButton navigation={navigation} />
+          <RegisterPetButton
+            navigation={navigation}
+            uuid={uuid}
+            hospitalUuid={hospitalUuid}
+          />
           <Text style={styles.text}>
             등록된 반려동물이 없습니다. {'\n'}반려동물을 먼저 등록해주세요.
           </Text>

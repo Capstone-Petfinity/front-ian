@@ -42,9 +42,6 @@ function App() {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="OwnerAccount" component={OwnerAccount} />
-        <Stack.Screen name="VetAccount" component={VetAccount} />
-        <Stack.Screen name="RegisterPet" component={RegisterPet} />
         <Stack.Screen
           name="OwnerMain"
           component={OnwerMain}
@@ -55,15 +52,20 @@ function App() {
           component={VetMain}
           options={{gestureEnabled: false}}
         />
+        <Stack.Screen name="OwnerAccount" component={OwnerAccount} />
+        <Stack.Screen name="VetAccount" component={VetAccount} />
+        <Stack.Screen name="RegisterPet" component={RegisterPet} />
+
         <Stack.Screen name="OwnerAIDiagnosis" component={OnwerAIDiagnosis} />
         <Stack.Screen name="VetAIDiagnosis" component={VetAIDiagnosis} />
         <Stack.Screen name="CameraRender" component={CameraRender} />
+        <Stack.Screen name="PictureRender" component={PictureReneder} />
+
         <Stack.Screen name="OwnerResult" component={OwnerResult} />
         <Stack.Screen name="VetResult" component={VetResult} />
         <Stack.Screen name="Reservation1" component={Reservation1} />
         <Stack.Screen name="Reservation2" component={Reservation2} />
         <Stack.Screen name="Reservation3" component={Reservation3} />
-        <Stack.Screen name="PictureRender" component={PictureReneder} />
         <Stack.Screen name="RegisterPet2" component={RegisterPet2} />
       </Stack.Navigator>
     </NavigationContainer>
