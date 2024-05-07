@@ -63,6 +63,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingBottom: 5,
     paddingTop: 5,
+    display: 'flex',
+    flexDirection: 'row',
   },
 
   radio: {

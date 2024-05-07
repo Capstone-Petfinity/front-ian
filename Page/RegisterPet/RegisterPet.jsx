@@ -1,18 +1,21 @@
-import {useState} from 'react';
-import {View, Alert, ScrollView} from 'react-native';
+import {useEffect, useState} from 'react';
+import {View, Alert, ScrollView, Text} from 'react-native';
 import {StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RegisterPetFunction from './function/RegisterPetFunction';
 import MainButton from '../Component/Button/MainButton';
-import BackButton from '../Component/Button/BackButton';
 import Input from '../Component/Input/Input';
 import Header2 from '../Component/Header/Header2';
 import Gender from './Gender';
 import {CommonActions} from '@react-navigation/native';
+import BirthInput from '../Component/Input/BirthInput';
 
 function RegisterPet({navigation}) {
   const [name, setName] = useState(null);
   const [birth, setBirth] = useState(null);
+  const [year, setYear] = useState(null);
+  const [month, setMonth] = useState(null);
+  const [date, setDate] = useState(null);
   const [gender, setGender] = useState(null);
   const [kind, setKind] = useState(null);
 
@@ -96,25 +99,45 @@ function RegisterPet({navigation}) {
     });
   }
 
+  useEffect(() => {
+    setBirth(year + '-' + month + '-' + date);
+  }, [year, month, date]);
+
   return (
     <View style={styles.container}>
       <Header2 navigation={navigation} />
       <ScrollView style={styles.scrollViewContent}>
-        <BackButton navigation={navigation} />
         <View style={styles.subContainer}>
+          <Text style={styles.title}>반려동물 등록</Text>
+
           <Input
             placeholder="이름"
             value={name}
             onChange={setName}
             security={false}
           />
-
-          <Input
-            placeholder="생년월일"
-            value={birth}
-            onChange={setBirth}
-            security={false}
-          />
+          <View style={styles.birthContainer}>
+            <BirthInput
+              placeholder="연도"
+              value={year}
+              onChange={setYear}
+              security={false}
+            />
+            <Text style={styles.text}>/</Text>
+            <BirthInput
+              placeholder="월"
+              value={month}
+              onChange={setMonth}
+              security={false}
+            />
+            <Text style={styles.text}>/</Text>
+            <BirthInput
+              placeholder="일"
+              value={date}
+              onChange={setDate}
+              security={false}
+            />
+          </View>
           <Input
             placeholder="견종"
             value={kind}
@@ -152,5 +175,22 @@ const styles = StyleSheet.create({
   buttonDiv: {
     marginBottom: 20,
     marginTop: 30,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '700',
+    marginBottom: 34,
+    marginTop: -20,
+  },
+  text: {
+    fontSize: 18,
+    marginTop: 12,
+    color: 'gray',
+  },
+  birthContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    gap: 10,
   },
 });
