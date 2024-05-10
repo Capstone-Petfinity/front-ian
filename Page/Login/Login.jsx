@@ -14,7 +14,6 @@ import {StyleSheet} from 'react-native';
 import LoginFunction from './function/LoginFunction';
 import MainButton from '../Component/Button/MainButton';
 import Input from '../Component/Input/Input';
-import {ScrollView} from 'react-native-gesture-handler';
 
 async function onPressLoginButton({
   navigation,
