@@ -5,10 +5,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import RegisterPetFunction from './function/RegisterPetFunction';
 import MainButton from '../Component/Button/MainButton';
 import Input from '../Component/Input/Input';
-import Header2 from '../Component/Header/Header2';
 import Gender from './Gender';
 import {CommonActions} from '@react-navigation/native';
 import BirthInput from '../Component/Input/BirthInput';
+import BackButton from '../Component/Button/BackButton';
 
 function RegisterPet({navigation}) {
   const [name, setName] = useState(null);
@@ -105,11 +105,9 @@ function RegisterPet({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Header2 navigation={navigation} />
       <ScrollView style={styles.scrollViewContent}>
+        <BackButton navigation={navigation} title="반려동물 등록" />
         <View style={styles.subContainer}>
-          <Text style={styles.title}>반려동물 등록</Text>
-
           <Input
             placeholder="이름"
             value={name}

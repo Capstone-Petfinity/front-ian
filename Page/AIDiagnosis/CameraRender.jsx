@@ -1,6 +1,5 @@
-import {useCallback, useRef} from 'react';
+import {useRef} from 'react';
 import {
-  Button,
   Dimensions,
   StyleSheet,
   Text,

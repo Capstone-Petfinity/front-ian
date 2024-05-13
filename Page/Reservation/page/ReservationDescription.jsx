@@ -88,8 +88,7 @@ function ReservationDescription({navigation, route}) {
   if (hospital && pet) {
     return (
       <View style={styles.container}>
-        <Header1 navigation={navigation} />
-        <BackButton navigation={navigation} />
+        <BackButton navigation={navigation} title="예약 정보" />
         <ScrollView style={styles.scrollViewContent}>
           <View style={styles.smallContainer}>
             <Text>예약 날짜</Text>

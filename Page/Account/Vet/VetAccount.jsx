@@ -1,15 +1,13 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import BackButton from '../../Component/Button/BackButton';
 import LogoutButton from '../../Component/Button/LogoutButton';
-import Header2 from '../../Component/Header/Header2';
 import UserInfo from '../../Main/Component/UserInfo';
 
 function VetAccount({navigation}) {
   return (
     <View style={styles.container}>
-      <Header2 navigation={navigation} />
       <ScrollView style={styles.scrollViewContent}>
-        <BackButton navigation={navigation} />
+        <BackButton navigation={navigation} title="계정 정보" />
         <View style={styles.smallContainer}>
           <UserInfo />
         </View>
