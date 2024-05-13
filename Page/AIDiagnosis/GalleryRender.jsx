@@ -1,6 +1,13 @@
 import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import BackButton from '../Component/Button/BackButton';
 
 function GalleryRender({navigation}) {
@@ -9,7 +16,7 @@ function GalleryRender({navigation}) {
   const getPhotos = async () => {
     try {
       const {edges} = await CameraRoll.getPhotos({
-        first: 10,
+        first: 50,
       });
       console.log('📸', edges);
       setPhotoList(edges);
@@ -23,16 +30,21 @@ function GalleryRender({navigation}) {
   }, []);
 
   function PictureRender() {
-    return photoList.map(photo => {
-      console.log(photo.node.image.uri);
-      return (
-        <Image
-          key={photo.node.id}
-          style={styles.picture}
-          source={{uri: photo.node.image.uri}}
-        />
-      );
-    });
+    return (
+      <FlatList
+        data={photoList}
+        numColumns={3}
+        renderItem={({item}) => (
+          <Image
+            style={{
+              width: '33%',
+              height: 150,
+            }}
+            source={{uri: item.node.image.uri}}
+          />
+        )}
+      />
+    );
   }
 
   if (photoList) {
