@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Header1 from '../../Component/Header/Header1';
 import {ScrollView} from 'react-native-gesture-handler';
 import BackButton from '../../Component/Button/BackButton';
 
@@ -13,7 +12,9 @@ function editTime({time}) {
 function RenderHospital({hospital}) {
   return (
     <>
-      <Text>병원 정보</Text>
+      <View style={styles.title2Container}>
+        <Text style={styles.title2}>병원 정보</Text>
+      </View>
       <View style={styles.innerContainer}>
         <View style={styles.container}>
           <View style={styles.smallContent}>
@@ -49,7 +50,9 @@ function RenderPet({pet}) {
 
   return (
     <>
-      <Text>반려동물 정보</Text>
+      <View style={styles.title2Container}>
+        <Text style={styles.title2}>반려동물 정보</Text>
+      </View>
       <View style={styles.innerContainer} key={pet.uuid}>
         <View style={styles.smallContainer2}>
           <Text style={styles.title}>이름</Text>
@@ -91,8 +94,12 @@ function ReservationDescription({navigation, route}) {
         <BackButton navigation={navigation} title="예약 정보" />
         <ScrollView style={styles.scrollViewContent}>
           <View style={styles.smallContainer}>
-            <Text>예약 날짜</Text>
-            <Text>{reservation.reservationDate}</Text>
+            <View style={styles.title2Container}>
+              <Text style={styles.title2}>예약 날짜</Text>
+            </View>
+            <Text style={styles.reservationDate}>
+              {reservation.reservationDate}
+            </Text>
             <RenderHospital hospital={hospital} />
             <RenderPet pet={pet} />
           </View>
@@ -156,9 +163,25 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     width: 60,
   },
+  title2Container: {
+    width: 300,
+    marginBottom: 10,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title2: {
+    fontSize: 20,
+    fontWeight: '500',
+  },
   content: {
     fontSize: 15,
     marginLeft: 30,
     width: 200,
+  },
+  reservationDate: {
+    fontSize: 20,
+    fontWeight: '700',
+    marginBottom: 20,
   },
 });
