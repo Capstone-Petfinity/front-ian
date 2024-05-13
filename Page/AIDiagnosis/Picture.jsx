@@ -1,10 +1,9 @@
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Camera} from 'react-native-vision-camera';
 
 function Picture({navigation}) {
   const checkPermission = async () => {
     const cameraPermission = await Camera.getCameraPermissionStatus();
-    const galleryPermissoion = await Camera.get;
     switch (cameraPermission) {
       case 'granted':
         navigation.navigate('CameraRender');
@@ -25,15 +24,26 @@ function Picture({navigation}) {
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={checkPermission}>
-      <Text style={styles.text}>사진 변경</Text>
-    </TouchableOpacity>
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity style={styles.container} onPress={checkPermission}>
+        <Text style={styles.text}>사진 찍기</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => navigation.navigate('GalleryRender')}>
+        <Text style={styles.text}>갤러리</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
 export default Picture;
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
   container: {
     backgroundColor: 'white',
     borderWidth: 0.2,
