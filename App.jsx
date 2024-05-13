@@ -33,6 +33,7 @@ import Reservation3 from './Page/Reservation/page/Reservation3';
 import RegisterPet2 from './Page/Reservation/page/RegisterPet';
 import ReservationDescription from './Page/Reservation/page/ReservationDescription';
 import GalleryRender from './Page/AIDiagnosis/GalleryRender';
+import PictureReneder2 from './Page/AIDiagnosis/PictureRender2';
 
 function App() {
   const Stack = createStackNavigator();
@@ -64,6 +65,7 @@ function App() {
         <Stack.Screen name="GalleryRender" component={GalleryRender} />
 
         <Stack.Screen name="PictureRender" component={PictureReneder} />
+        <Stack.Screen name="PictureRender2" component={PictureReneder2} />
 
         <Stack.Screen name="OwnerResult" component={OwnerResult} />
         <Stack.Screen name="VetResult" component={VetResult} />

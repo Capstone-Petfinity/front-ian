@@ -35,13 +35,20 @@ function GalleryRender({navigation}) {
         data={photoList}
         numColumns={3}
         renderItem={({item}) => (
-          <Image
-            style={{
-              width: '33%',
-              height: 150,
-            }}
-            source={{uri: item.node.image.uri}}
-          />
+          <TouchableOpacity
+            style={styles.touchable}
+            onPress={() =>
+              navigation.navigate('PictureRender2', {
+                photo: item.node.image.uri,
+              })
+            }>
+            <Image
+              style={{
+                height: 140,
+              }}
+              source={{uri: item.node.image.uri}}
+            />
+          </TouchableOpacity>
         )}
       />
     );
@@ -64,6 +71,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
+  },
+  touchable: {
+    width: '34%',
+    height: 140,
   },
   picture: {
     width: 70,
