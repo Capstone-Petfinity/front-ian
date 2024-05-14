@@ -6,8 +6,8 @@ import UserInfo from '../../Main/Component/UserInfo';
 function VetAccount({navigation}) {
   return (
     <View style={styles.container}>
+      <BackButton navigation={navigation} title="계정 정보" />
       <ScrollView style={styles.scrollViewContent}>
-        <BackButton navigation={navigation} title="계정 정보" />
         <View style={styles.smallContainer}>
           <UserInfo />
         </View>

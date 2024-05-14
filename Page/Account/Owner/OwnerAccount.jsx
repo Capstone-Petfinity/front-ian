@@ -11,8 +11,8 @@ import ReservationInfo from '../../Main/Component/ReservationInfo';
 function OwnerAccount({navigation}) {
   return (
     <View style={styles.container}>
+      <BackButton navigation={navigation} title="계정 정보" />
       <ScrollView style={styles.scrollViewContent}>
-        <BackButton navigation={navigation} title="계정 정보" />
         <View style={styles.smallContainer}>
           <UserInfo />
           <PetInfo navigation={navigation} />

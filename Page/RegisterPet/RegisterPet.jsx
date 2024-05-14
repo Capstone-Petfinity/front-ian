@@ -59,6 +59,9 @@ function RegisterPet({navigation}) {
     setBirth(null);
     setGender(null);
     setKind(null);
+    setYear(null);
+    setMonth(null);
+    setDate(null);
 
     return;
   }
@@ -116,13 +119,14 @@ function RegisterPet({navigation}) {
   useEffect(() => {
     const formattedMonth = month && month.length === 1 ? '0' + month : month;
     const formattedDate = date && date.length === 1 ? '0' + date : date;
+
     setBirth(year + '-' + formattedMonth + '-' + formattedDate);
   }, [year, month, date]);
 
   return (
     <View style={styles.container}>
+      <BackButton navigation={navigation} title="반려동물 등록" />
       <ScrollView style={styles.scrollViewContent}>
-        <BackButton navigation={navigation} title="반려동물 등록" />
         <View style={styles.subContainer}>
           <Input
             placeholder="이름"
