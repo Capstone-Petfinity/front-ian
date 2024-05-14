@@ -1,4 +1,5 @@
 import {StyleSheet, View} from 'react-native';
+
 import Button from '../Component/Button/MainPageButton';
 import Header1 from '../Component/Header/Header1';
 

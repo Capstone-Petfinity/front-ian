@@ -1,3 +1,7 @@
+import {useState, useEffect} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CommonActions} from '@react-navigation/native';
+
 import {
   Image,
   StyleSheet,
@@ -7,9 +11,6 @@ import {
   Dimensions,
 } from 'react-native';
 import accountIcon from '../../../asset/accountwhite.png';
-import {useState, useEffect} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {CommonActions} from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 

@@ -1,14 +1,17 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from 'react';
-import {Alert, StyleSheet, Text, View} from 'react-native';
-import Header2 from '../../Component/Header/Header2';
-import {ScrollView} from 'react-native-gesture-handler';
-import Input from '../../Component/Input/Input';
-import Gender from '../../RegisterPet/Gender';
-import MainButton from '../../Component/Button/MainButton';
-import RegisterPetFunction from '../../RegisterPet/function/RegisterPetFunction';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CommonActions} from '@react-navigation/native';
+
+import {Alert, StyleSheet, Text, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+
+import Gender from '../../RegisterPet/Gender';
+import Header2 from '../../Component/Header/Header2';
+import Input from '../../Component/Input/Input';
+import MainButton from '../../Component/Button/MainButton';
 import BirthInput from '../../Component/Input/BirthInput';
+
+import RegisterPetFunction from '../../RegisterPet/function/RegisterPetFunction';
 
 function RegisterPet({navigation, route}) {
   const {uuid, hospitalUuid} = route.params;

@@ -1,11 +1,10 @@
 import {StyleSheet, View} from 'react-native';
-
 import {ScrollView} from 'react-native-gesture-handler';
+
 import UserInfo from '../../Main/Component/UserInfo';
 import PetInfo from '../../Main/Component/PetInfo';
 import BackButton from '../../Component/Button/BackButton';
 import LogoutButton from '../../Component/Button/LogoutButton';
-import Header2 from '../../Component/Header/Header2';
 import ReservationInfo from '../../Main/Component/ReservationInfo';
 
 function OwnerAccount({navigation}) {

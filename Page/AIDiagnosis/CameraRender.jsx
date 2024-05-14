@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
+
 const windowWidth = Dimensions.get('window').width;
 
 function CameraButton({onPress}) {

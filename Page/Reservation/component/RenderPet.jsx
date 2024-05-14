@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 import RegisterPetButton from './RegisterPetButton';

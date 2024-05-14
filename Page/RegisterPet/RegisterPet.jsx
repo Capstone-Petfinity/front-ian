@@ -1,14 +1,16 @@
 import {useEffect, useState} from 'react';
-import {View, Alert, ScrollView, Text} from 'react-native';
-import {StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import RegisterPetFunction from './function/RegisterPetFunction';
+import {CommonActions} from '@react-navigation/native';
+
+import {StyleSheet, View, Alert, ScrollView, Text} from 'react-native';
+
+import Gender from './Gender';
 import MainButton from '../Component/Button/MainButton';
 import Input from '../Component/Input/Input';
-import Gender from './Gender';
-import {CommonActions} from '@react-navigation/native';
 import BirthInput from '../Component/Input/BirthInput';
 import BackButton from '../Component/Button/BackButton';
+
+import RegisterPetFunction from './function/RegisterPetFunction';
 
 function RegisterPet({navigation}) {
   const [name, setName] = useState(null);

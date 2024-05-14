@@ -1,9 +1,12 @@
 import {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import PetInfoFunction from '../function/PetInfoFunction';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import RegisterPetButton from '../../Account/component/RegisterPetButton';
 import {useIsFocused} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {StyleSheet, Text, View} from 'react-native';
+
+import PetInfoFunction from '../function/PetInfoFunction';
+
+import RegisterPetButton from '../../Account/component/RegisterPetButton';
 
 function RenderPets({petInfo}) {
   if (petInfo.length != 0) {

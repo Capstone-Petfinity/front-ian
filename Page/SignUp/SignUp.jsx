@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {Text, View, TouchableOpacity, Alert} from 'react-native';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
+
 import OwnerSignUp from './OwnerSignUp';
 import VetSignUp from './VetSignUp';
 

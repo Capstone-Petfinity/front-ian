@@ -1,18 +1,17 @@
 import {useEffect, useState} from 'react';
 import {StyleSheet, View, Alert} from 'react-native';
-import {
-  KeyboardAwareScrollView,
-  keyboardAwaireScrollView,
-} from 'react-native-keyboard-aware-scroll-view';
-import addressFunction from './function/addressFunction';
-import ownerSignUpFunction from './function/ownerSignUpFunction';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
 import CityList from './CityList';
-import DuplicateCheckParentFunction from './function/DuplicateCheckParentFunction';
 import SignUpInput1 from './component/SignUpInput1';
 import SignUpInput2 from './component/SignUpInput2';
 import SignUpInput3 from './component/SignUpInput3';
 import MainButton2 from '../Component/Button/MainButton2';
 import DuplicateCheckButton from './component/DuplicatedCheckButton';
+
+import addressFunction from './function/addressFunction';
+import ownerSignUpFunction from './function/ownerSignUpFunction';
+import DuplicateCheckParentFunction from './function/DuplicateCheckParentFunction';
 
 function OwnerSignUp({navigation}) {
   const [userId, setUserId] = useState('');

@@ -1,4 +1,5 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
+
 import BackButton from '../../Component/Button/BackButton';
 import LogoutButton from '../../Component/Button/LogoutButton';
 import UserInfo from '../../Main/Component/UserInfo';

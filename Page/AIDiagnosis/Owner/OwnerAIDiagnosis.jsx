@@ -1,6 +1,8 @@
+import {useState} from 'react';
+
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {useState} from 'react';
+
 import AffectedList from './AffectedList';
 import Picture from '../Picture';
 import MainButton from '../../Component/Button/MainButton';

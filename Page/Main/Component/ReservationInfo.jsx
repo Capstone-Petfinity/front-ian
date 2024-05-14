@@ -1,8 +1,9 @@
-import {StyleSheet, Text, View} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+
 import ReservationInfoFunction from '../function/ReservationInfoFunction';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 function RenderReservation({reservationList, navigation}) {
   if (reservationList.length != 0) {

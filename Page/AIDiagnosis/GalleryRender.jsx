@@ -4,10 +4,10 @@ import {
   FlatList,
   Image,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+
 import BackButton from '../Component/Button/BackButton';
 
 function GalleryRender({navigation}) {

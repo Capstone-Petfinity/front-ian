@@ -1,14 +1,14 @@
+import {useState, useEffect} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CommonActions} from '@react-navigation/native';
+
 import {
-  Image,
   StyleSheet,
   Text,
   View,
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import {useState, useEffect} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {CommonActions} from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 

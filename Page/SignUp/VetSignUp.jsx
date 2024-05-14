@@ -1,14 +1,15 @@
 import {useEffect, useState} from 'react';
-import {StyleSheet, View, Alert, KeyboardAvoidingView} from 'react-native';
+import {StyleSheet, View, Alert} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
+import MainButton2 from '../Component/Button/MainButton2';
+import SignUpInput1 from './component/SignUpInput1';
+import SignUpInput3 from './component/SignUpInput3';
+import SignUpInput4 from './component/SignUpInput4';
+import DuplicateCheckButton from './component/DuplicatedCheckButton';
 
 import vetSignUpFunctoin from './function/vetSignupFunction';
 import DuplicateCheckVetFunction from './function/DuplicateCheckVetFunction';
-import MainButton2 from '../Component/Button/MainButton2';
-import SignUpInput1 from './component/SignUpInput1';
-import SignUpInput4 from './component/SignUpInput4';
-import DuplicateCheckButton from './component/DuplicatedCheckButton';
-import SignUpInput3 from './component/SignUpInput3';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 function VetSignUp({navigation}) {
   const [userId, setUserId] = useState('');

@@ -1,7 +1,9 @@
 import {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import ParentInfoFunction from '../function/ParentInfoFunction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {StyleSheet, Text, View} from 'react-native';
+
+import ParentInfoFunction from '../function/ParentInfoFunction';
 import VetInfoFunction from '../function/VetInfoFunction';
 
 function PhoneNumberRender({phone_number}) {

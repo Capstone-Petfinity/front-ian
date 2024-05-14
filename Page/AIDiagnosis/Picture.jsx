@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View, Modal} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Camera} from 'react-native-vision-camera';
 
 function Picture({navigation}) {

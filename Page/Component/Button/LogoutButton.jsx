@@ -1,8 +1,10 @@
+import {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {StyleSheet, Alert, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import LogoutFunction from '../../Account/function/LogoutFunction';
-import {useEffect, useState} from 'react';
 
 function LogoutButton({title, navigation}) {
   const [uuid, setUuid] = useState(null);
