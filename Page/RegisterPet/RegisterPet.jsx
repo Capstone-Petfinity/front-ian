@@ -4,7 +4,7 @@ import {CommonActions} from '@react-navigation/native';
 
 import {StyleSheet, View, Alert, ScrollView, Text} from 'react-native';
 
-import Gender from './Gender';
+import Gender from './component/Gender';
 import MainButton from '../Component/Button/MainButton';
 import Input from '../Component/Input/Input';
 import BirthInput from '../Component/Input/BirthInput';

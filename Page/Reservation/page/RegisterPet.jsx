@@ -5,7 +5,7 @@ import {CommonActions} from '@react-navigation/native';
 import {Alert, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
-import Gender from '../../RegisterPet/Gender';
+import Gender from '../../RegisterPet/component/Gender';
 import Header2 from '../../Component/Header/Header2';
 import Input from '../../Component/Input/Input';
 import MainButton from '../../Component/Button/MainButton';
