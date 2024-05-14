@@ -1,7 +1,10 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useState} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View, Modal} from 'react-native';
 import {Camera} from 'react-native-vision-camera';
 
 function Picture({navigation}) {
+  const [state, setState] = useState({open: false});
+
   const checkPermission = async () => {
     const cameraPermission = await Camera.getCameraPermissionStatus();
     switch (cameraPermission) {
@@ -24,16 +27,20 @@ function Picture({navigation}) {
   };
 
   return (
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.container} onPress={checkPermission}>
-        <Text style={styles.text}>사진 찍기</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.container}
-        onPress={() => navigation.navigate('GalleryRender')}>
-        <Text style={styles.text}>갤러리</Text>
-      </TouchableOpacity>
-    </View>
+    <>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.leftContainer}
+          onPress={checkPermission}>
+          <Text style={styles.text}>카메라</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.rightContainer}
+          onPress={() => navigation.navigate('GalleryRender')}>
+          <Text style={styles.text}>갤러리</Text>
+        </TouchableOpacity>
+      </View>
+    </>
   );
 }
 
@@ -43,19 +50,29 @@ const styles = StyleSheet.create({
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',
+    marginBottom: 40,
   },
-  container: {
-    backgroundColor: 'white',
-    borderWidth: 0.2,
-    width: 100,
+  leftContainer: {
+    borderTopWidth: 0.4,
+    borderLeftWidth: 0.4,
+    borderBottomWidth: 0.4,
     height: 40,
+    width: 80,
+    display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 30,
   },
-  text: {
-    color: 'black',
-    fontSize: 15,
-    fontWeight: '600',
+  rightContainer: {
+    borderTopWidth: 0.4,
+    borderLeftWidth: 0.4,
+    borderRightWidth: 0.4,
+    borderBottomWidth: 0.4,
+    height: 40,
+    width: 80,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

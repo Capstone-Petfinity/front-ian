@@ -57,8 +57,8 @@ function OwnerSignUp({navigation}) {
 
     if (result.statusCode === '200') {
       Alert.alert(
-        result.statusCode,
-        result.message,
+        '회원가입 성공',
+        '로그인 창으로 이동합니다',
         [
           {
             text: '확인',
@@ -75,8 +75,8 @@ function OwnerSignUp({navigation}) {
       );
     } else {
       Alert.alert(
-        result.statusCode,
-        result.message,
+        '회원가입 실패',
+        '회원가입에 실패하였습니다',
         [
           {
             text: '확인',

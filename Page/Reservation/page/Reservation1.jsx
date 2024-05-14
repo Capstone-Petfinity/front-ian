@@ -77,13 +77,13 @@ function Reservation1({navigation}) {
               setSelectedHospital={setSelectedHospital}
             />
           </View>
+          <View style={styles.mainButtonView}>
+            <MainButton
+              title="병원 선택하기"
+              onPress={onPressReservationButton}
+            />
+          </View>
         </ScrollView>
-        <View style={styles.mainButtonView}>
-          <MainButton
-            title="병원 선택하기"
-            onPress={onPressReservationButton}
-          />
-        </View>
       </View>
     );
   }

@@ -5,25 +5,7 @@ import {StyleSheet, View, Text} from 'react-native';
 const dataFormat = [
   {label: '카메라 이미지', value: '1'},
   {label: '현미경', value: '2'},
-  {label: 'X-Ray', value: '3'},
 ];
-
-const cameraImage = [
-  {label: '안구', value: '1'},
-  {label: '피부', value: '2'},
-];
-const microscopeImage = [{label: '피부', value: '1'}];
-const xRayimage = [
-  {label: '근골격계', value: '1'},
-  {label: '복부', value: '2'},
-  {label: '흉부', value: '3'},
-];
-
-/* 
-  카메라 이미지: 안구 질환 데이터, 피부 질환 1
-  현미경: 피부 질환
-  X-Ray: 근골격계 데이터, 복부 데이터, 흉부 데이터
-  */
 
 function FormatList({format, setFormat}) {
   const [isFocus, setIsFocus] = useState(false);
@@ -77,6 +59,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
     width: 280,
+    marginBottom: 70,
   },
   icon: {
     marginRight: 5,
@@ -115,5 +98,6 @@ const styles = StyleSheet.create({
   },
   textItem: {
     marginLeft: 15,
+    fontSize: 15,
   },
 });
