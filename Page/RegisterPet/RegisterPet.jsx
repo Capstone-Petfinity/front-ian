@@ -20,6 +20,20 @@ function RegisterPet({navigation}) {
   const [kind, setKind] = useState(null);
 
   async function onPressRegisterButton() {
+    if (!name || !year || !month || !date || !gender || !kind) {
+      Alert.alert(
+        '등록 실패',
+        '모든 항목을 입력해주세요.',
+        [{text: '확인', onPress: () => {}, style: 'cancel'}],
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+
+      return;
+    }
+
     Alert.alert(
       '등록',
       '반려동물을 등록하시겠습니까?',
@@ -100,7 +114,9 @@ function RegisterPet({navigation}) {
   }
 
   useEffect(() => {
-    setBirth(year + '-' + month + '-' + date);
+    const formattedMonth = month && month.length === 1 ? '0' + month : month;
+    const formattedDate = date && date.length === 1 ? '0' + date : date;
+    setBirth(year + '-' + formattedMonth + '-' + formattedDate);
   }, [year, month, date]);
 
   return (
