@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   picture2: {
-    width: 300,
-    height: 350,
+    width: '70%',
+    height: '75%',
     marginBottom: 30,
   },
   buttonDiv: {

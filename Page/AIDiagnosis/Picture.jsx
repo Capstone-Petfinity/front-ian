@@ -1,10 +1,7 @@
-import {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Camera} from 'react-native-vision-camera';
 
 function Picture({navigation}) {
-  const [state, setState] = useState({open: false});
-
   const checkPermission = async () => {
     const cameraPermission = await Camera.getCameraPermissionStatus();
     switch (cameraPermission) {
