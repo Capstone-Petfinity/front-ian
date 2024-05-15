@@ -7,6 +7,7 @@ import Button from '../Component/Button/MainPageButton';
 import UserInfo from './Component/UserInfo';
 import PetInfo from './Component/PetInfo';
 import Header1 from '../Component/Header/Header1';
+import NavigationBar from '../Component/Header/NavigationBar';
 
 function OwnerMain({navigation}) {
   useEffect(() => {
@@ -32,9 +33,14 @@ function OwnerMain({navigation}) {
             subText="원하는 날짜에 원하는 동물병원을 바로 예약해보세요!"
             onPress={() => navigation.navigate('Reservation1')}
           />
+          <Button
+            text="진단 결과 조회"
+            subText="AI 진단 결과를 조회하세요!"
+            onPress={() => navigation.navigate('ResultList')}
+          />
           <UserInfo />
           <PetInfo navigation={navigation} />
-          {/* <ReservationInfo /> */}
+
           <View style={styles.bottomMargin} />
         </View>
       </ScrollView>

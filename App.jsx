@@ -34,6 +34,7 @@ import RegisterPet2 from './Page/Reservation/page/RegisterPet';
 import ReservationDescription from './Page/Reservation/page/ReservationDescription';
 import GalleryRender from './Page/AIDiagnosis/GalleryRender';
 import PictureReneder2 from './Page/AIDiagnosis/PictureRender2';
+import ResultList from './Page/Result/page/ResultList';
 
 function App() {
   const Stack = createStackNavigator();
@@ -57,7 +58,9 @@ function App() {
         />
         <Stack.Screen name="OwnerAccount" component={OwnerAccount} />
         <Stack.Screen name="VetAccount" component={VetAccount} />
+
         <Stack.Screen name="RegisterPet" component={RegisterPet} />
+        <Stack.Screen name="RegisterPet2" component={RegisterPet2} />
 
         <Stack.Screen name="OwnerAIDiagnosis" component={OnwerAIDiagnosis} />
         <Stack.Screen name="VetAIDiagnosis" component={VetAIDiagnosis} />
@@ -77,7 +80,7 @@ function App() {
           component={ReservationDescription}
         />
 
-        <Stack.Screen name="RegisterPet2" component={RegisterPet2} />
+        <Stack.Screen name="ResultList" component={ResultList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
