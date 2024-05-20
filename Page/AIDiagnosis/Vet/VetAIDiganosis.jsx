@@ -24,6 +24,7 @@ function VetAIDiagnosis({navigation, route}) {
     formData.append('position', position);
     formData.append('img', uri);
     formData.append('user_type', 'vet');
+    formData.append('type', type);
     console.log(formData);
   }
 

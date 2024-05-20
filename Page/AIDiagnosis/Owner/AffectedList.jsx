@@ -7,7 +7,7 @@ const data = [
   {label: '피부', value: 'skin'},
 ];
 
-function AffectedList({area, setArea}) {
+function AffectedList({area, setArea, setDetailArea}) {
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState();
   const renderItem = item => {
@@ -39,6 +39,7 @@ function AffectedList({area, setArea}) {
         setArea(item.value);
         setValue(item.value);
         setIsFocus(false);
+        setDetailArea(null);
       }}
       renderItem={renderItem}
     />

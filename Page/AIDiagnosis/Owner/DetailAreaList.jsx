@@ -9,8 +9,8 @@ const data1 = [
   {label: '머리', value: 'H'},
 ];
 
-const data2 = [{label: '해당하는 상세 부위가 없습니다.', value: '-1'}];
-const data3 = [{label: '질환 부위를 먼저 선택해주세요.', value: '-1'}];
+const data2 = [{label: '해당하는 상세 부위가 없습니다.', value: null}];
+const data3 = [{label: '질환 부위를 먼저 선택해주세요.', value: null}];
 
 function DetailAreaList({area, detailArea, setDetailArea}) {
   const [isFocus, setIsFocus] = useState(false);

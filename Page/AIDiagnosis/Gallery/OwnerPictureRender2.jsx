@@ -18,7 +18,7 @@ function TextButton({text, onPress}) {
 }
 
 function OwnerPictureRender2({navigation, route}) {
-  const photo = route.params;
+  const {photo} = route.params;
   console.log(photo);
   return (
     <>

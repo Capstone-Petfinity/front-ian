@@ -18,15 +18,16 @@ function OwnerAIDiagnosis({navigation, route}) {
   const uri = route.params;
 
   function onClickDiagnosisButton() {
-    console.log(
-      'area: ' + area,
-      ', detailArea: ' +
-        detailArea +
-        ', position: ' +
-        position +
-        ', type: ' +
-        type,
-    );
+    let formData = new FormData();
+
+    formData.append('area', area);
+    formData.append('detailArea', detailArea);
+    formData.append('position', position);
+    formData.append('img', uri.uri);
+    formData.append('user_type', 'parent');
+    formData.append('type', type);
+
+    console.log(formData);
   }
 
   return (
@@ -43,7 +44,11 @@ function OwnerAIDiagnosis({navigation, route}) {
           )}
 
           <Picture navigation={navigation} />
-          <AffectedList area={area} setArea={setArea} />
+          <AffectedList
+            area={area}
+            setArea={setArea}
+            setDetailArea={setDetailArea}
+          />
           <DetailAreaList
             area={area === '' ? null : area === 'skin' ? true : false}
             detailArea={detailArea}
@@ -90,7 +95,7 @@ const styles = StyleSheet.create({
   },
   picture2: {
     width: '70%',
-    height: '75%',
+    height: '60%',
     marginBottom: 30,
   },
   buttonDiv: {
