@@ -1,5 +1,7 @@
 import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
   FlatList,
   Image,
@@ -8,25 +10,48 @@ import {
   View,
 } from 'react-native';
 
-import BackButton from '../Component/Button/BackButton';
+import BackButton from '../../Component/Button/BackButton';
 
-function GalleryRender({navigation}) {
+function GalleryRender({navigation, route}) {
   const [photoList, setPhotoList] = useState(null);
+  const [isParent, setIsParent] = useState(null);
+  const {area} = route.params;
 
-  const getPhotos = async () => {
+  function loadUserInfo() {
+    AsyncStorage.getItem('userState', (err, result) => {
+      const resultData = JSON.parse(result);
+      setIsParent(resultData.isParent);
+    });
+  }
+
+  async function getPhotos() {
     try {
       const {edges} = await CameraRoll.getPhotos({
         first: 50,
       });
-      console.log('📸', edges);
       setPhotoList(edges);
     } catch (error) {
       console.log('getPhoto', error);
     }
-  };
+  }
+
+  function onPressImagaeButton({item}) {
+    if (isParent) {
+      navigation.navigate('OwnerPictureRender2', {
+        photo: item.node.image.uri,
+        area: area,
+      });
+    } else {
+      navigation.navigate('VetPictureRender2', {
+        photo: item.node.image.uri,
+        area: area,
+      });
+    }
+  }
 
   useEffect(() => {
     getPhotos();
+    loadUserInfo();
   }, []);
 
   function PictureRender() {
@@ -37,11 +62,7 @@ function GalleryRender({navigation}) {
         renderItem={({item}) => (
           <TouchableOpacity
             style={styles.touchable}
-            onPress={() =>
-              navigation.navigate('PictureRender2', {
-                photo: item.node.image.uri,
-              })
-            }>
+            onPress={() => onPressImagaeButton({item: item})}>
             <Image
               style={{
                 height: 140,

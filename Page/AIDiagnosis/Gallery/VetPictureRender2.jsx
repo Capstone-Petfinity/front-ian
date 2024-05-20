@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import {
   Dimensions,
   Image,
@@ -17,25 +18,27 @@ function TextButton({text, onPress}) {
   );
 }
 
-function PictureReneder2({navigation, route}) {
-  const photo = route.params;
-  console.log(photo);
+function VetPictureReneder2({navigation, route}) {
+  const {photo, area} = route.params;
+
+  console.log('photo: ' + photo);
   return (
     <>
-      <Image style={styles.photo} source={{uri: photo.photo}} />
+      <Image style={styles.photo} source={{uri: photo}} />
       <View style={styles.overlayView}>
         <View style={styles.topView} />
         <View style={styles.buttonView}>
           <View style={styles.innerView}>
             <TextButton
               text="취소"
-              onPress={() => navigation.navigate('GalleryRender')}
+              onPress={() => navigation.navigate('GalleryRender', {area: area})}
             />
             <TextButton
               text="사용"
               onPress={() =>
-                navigation.navigate('OwnerAIDiagnosis', {
-                  uri: photo.photo,
+                navigation.navigate('VetAIDiagnosis', {
+                  uri: photo,
+                  area: area,
                 })
               }
             />
@@ -46,7 +49,7 @@ function PictureReneder2({navigation, route}) {
   );
 }
 
-export default PictureReneder2;
+export default VetPictureReneder2;
 
 const styles = StyleSheet.create({
   overlayView: {

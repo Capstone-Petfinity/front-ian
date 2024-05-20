@@ -1,4 +1,6 @@
-import {useRef} from 'react';
+import {useEffect, useRef} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
   Dimensions,
   StyleSheet,
@@ -21,14 +23,31 @@ function CameraButton({onPress}) {
 function CameraRender({navigation}) {
   const device = useCameraDevice('back');
   const camera = useRef(null);
+  const [isParent, setIsParent] = useState(null);
+
+  function loadUserInfo() {
+    AsyncStorage.getItem('userState', (err, result) => {
+      const resultData = JSON.parse(result);
+      setIsParent(resultData.isParent);
+    });
+  }
 
   const takePhoto = async () => {
     const photo = await camera.current.takePhoto({
       flash: 'off',
     });
     console.log('Photo:', photo);
-    navigation.navigate('PictureRender', {photo: photo});
+
+    if (isParent) {
+      navigation.navigate('OwnerPictureRender', {photo: photo});
+    } else {
+      navigation.navigate('VetPictureRender', {photo: photo});
+    }
   };
+
+  useEffect(() => {
+    loadUserInfo();
+  }, []);
 
   if (!device) {
     return (

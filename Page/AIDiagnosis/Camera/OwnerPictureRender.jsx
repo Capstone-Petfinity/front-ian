@@ -17,7 +17,7 @@ function TextButton({text, onPress}) {
   );
 }
 
-function PictureReneder({navigation, route}) {
+function OwnerPictureRender({navigation, route}) {
   const photo = route.params;
   const picture = photo.photo;
 
@@ -47,7 +47,7 @@ function PictureReneder({navigation, route}) {
   );
 }
 
-export default PictureReneder;
+export default OwnerPictureRender;
 
 const styles = StyleSheet.create({
   overlayView: {

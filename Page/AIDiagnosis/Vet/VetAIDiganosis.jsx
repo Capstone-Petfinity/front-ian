@@ -1,5 +1,5 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {useState} from 'react';
+import {Button, Image, StyleSheet, Text, View} from 'react-native';
+import {useEffect, useState} from 'react';
 
 import Picture from '../Picture';
 import MainButton from '../../Component/Button/MainButton';
@@ -7,6 +7,7 @@ import Header1 from '../../Component/Header/Header1';
 import CameraTypeList from './CameraTypeList';
 import DetailAreaList from './DetailAreaList';
 import PositionList from './PositionList';
+import {ScrollView} from 'react-native-gesture-handler';
 
 function VetAIDiagnosis({navigation, route}) {
   const [detailArea, setDetailArea] = useState(null);
@@ -16,52 +17,57 @@ function VetAIDiagnosis({navigation, route}) {
   const {uri, area} = route.params;
 
   function onClickDiagnosisButton() {
-    console.log(
-      'area: ' +
-        area +
-        ', detailArea: ' +
-        detailArea +
-        ', position: ' +
-        position +
-        ', type: ' +
-        type,
-    );
+    let formData = new FormData();
+
+    formData.append('area', area);
+    formData.append('detailArea', detailArea);
+    formData.append('position', position);
+    formData.append('img', uri);
+    formData.append('user_type', 'vet');
+    console.log(formData);
   }
+
+  useEffect(() => {
+    console.log(uri);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Header1 navigation={navigation} />
-      <View style={styles.smallContainer}>
-        {uri ? (
-          <Image source={uri} style={styles.picture2} />
-        ) : (
-          <View style={styles.picture}>
-            <Text>사진을 선택해주세요</Text>
-          </View>
-        )}
-        <Picture navigation={navigation} />
+      <ScrollView>
+        <View style={styles.smallContainer}>
+          {uri ? (
+            <Image source={{uri: uri}} style={styles.picture2} />
+          ) : (
+            <View style={styles.picture}>
+              <Text>사진을 선택해주세요</Text>
+            </View>
+          )}
+          <Picture navigation={navigation} area={area} />
 
-        <View style={styles.dropdownContainer}>
-          {area === 'eye' ? (
-            <CameraTypeList camera={type} setCamera={setType} />
-          ) : null}
-          {area === 'skin' ? (
-            <DetailAreaList
-              detailArea={detailArea}
-              setDetailArea={setDetailArea}
+          <View style={styles.dropdownContainer}>
+            {area === 'eye' ? (
+              <CameraTypeList camera={type} setCamera={setType} />
+            ) : null}
+            {area === 'skin' ? (
+              <DetailAreaList
+                detailArea={detailArea}
+                setDetailArea={setDetailArea}
+              />
+            ) : null}
+            {area === 'stomach' || area === 'skeletal' || area === 'chest' ? (
+              <PositionList position={position} setPosition={setPosition} />
+            ) : null}
+          </View>
+          <View style={styles.buttonDiv}>
+            <MainButton
+              title="AI 진단하기"
+              // onPress={() => navigation.navigate('VetResult')}
+              onPress={() => onClickDiagnosisButton()}
             />
-          ) : null}
-          {area === 'stomach' || area === 'skeletal' || area === 'chest' ? (
-            <PositionList position={position} setPosition={setPosition} />
-          ) : null}
+          </View>
         </View>
-        <View style={styles.buttonDiv}>
-          <MainButton
-            title="AI 진단하기"
-            // onPress={() => navigation.navigate('VetResult')}
-            onPress={() => onClickDiagnosisButton()}
-          />
-        </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }

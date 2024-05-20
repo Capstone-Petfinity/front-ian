@@ -8,7 +8,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
 import LoginScreen from './Page/Login/Login';
 import SignUp from './Page/SignUp/SignUp';
@@ -18,8 +18,15 @@ import VetMain from './Page/Main/VetMain';
 
 import OnwerAIDiagnosis from './Page/AIDiagnosis/Owner/OwnerAIDiagnosis';
 import VetAIDiagnosis from './Page/AIDiagnosis/Vet/VetAIDiganosis';
-import CameraRender from './Page/AIDiagnosis/CameraRender';
-import PictureReneder from './Page/AIDiagnosis/PictureRender';
+
+import CameraRender from './Page/AIDiagnosis/Camera/CameraRender';
+import GalleryRender from './Page/AIDiagnosis/Gallery/GalleryRender';
+
+import OwnerPictureRender from './Page/AIDiagnosis/Camera/OwnerPictureRender';
+import OwnerPictureRender2 from './Page/AIDiagnosis/Gallery/OwnerPictureRender2';
+import VetPictureRender from './Page/AIDiagnosis/Camera/VetPictureRender';
+import VetPictureRender2 from './Page/AIDiagnosis/Gallery/VetPictureRender2';
+
 import OwnerResult from './Page/AIDiagnosis/Owner/OwnerResult';
 import VetResult from './Page/AIDiagnosis/Vet/VetResult';
 
@@ -27,13 +34,12 @@ import OwnerAccount from './Page/Account/Owner/OwnerAccount';
 import VetAccount from './Page/Account/Vet/VetAccount';
 
 import RegisterPet from './Page/RegisterPet/RegisterPet';
+import RegisterPet2 from './Page/Reservation/page/RegisterPet';
+
 import Reservation1 from './Page/Reservation/page/Reservation1';
 import Reservation2 from './Page/Reservation/page/Reservation2';
 import Reservation3 from './Page/Reservation/page/Reservation3';
-import RegisterPet2 from './Page/Reservation/page/RegisterPet';
 import ReservationDescription from './Page/Reservation/page/ReservationDescription';
-import GalleryRender from './Page/AIDiagnosis/GalleryRender';
-import PictureReneder2 from './Page/AIDiagnosis/PictureRender2';
 import ResultList from './Page/Result/page/ResultList';
 
 function App() {
@@ -67,8 +73,16 @@ function App() {
         <Stack.Screen name="CameraRender" component={CameraRender} />
         <Stack.Screen name="GalleryRender" component={GalleryRender} />
 
-        <Stack.Screen name="PictureRender" component={PictureReneder} />
-        <Stack.Screen name="PictureRender2" component={PictureReneder2} />
+        <Stack.Screen
+          name="OwnerPictureRender"
+          component={OwnerPictureRender}
+        />
+        <Stack.Screen
+          name="OwnerPictureRender2"
+          component={OwnerPictureRender2}
+        />
+        <Stack.Screen name="VetPictureRender" component={VetPictureRender} />
+        <Stack.Screen name="VetPictureRender2" component={VetPictureRender2} />
 
         <Stack.Screen name="OwnerResult" component={OwnerResult} />
         <Stack.Screen name="VetResult" component={VetResult} />

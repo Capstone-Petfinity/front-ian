@@ -1,18 +1,18 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Camera} from 'react-native-vision-camera';
 
-function Picture({navigation}) {
+function Picture({navigation, area}) {
   const checkPermission = async () => {
     const cameraPermission = await Camera.getCameraPermissionStatus();
     switch (cameraPermission) {
       case 'granted':
-        navigation.navigate('CameraRender');
+        navigation.navigate('CameraRender', {area: area});
         return;
 
       case 'not-determined':
         const newCameraPermission = await Camera.requestCameraPermission();
         if (newCameraPermission === 'granted')
-          navigation.navigate('CameraRender');
+          navigation.navigate('CameraRender', {area: area});
         else if (newCameraPermission === 'denied') await Linking.openSettings();
 
         return;
@@ -33,7 +33,7 @@ function Picture({navigation}) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.rightContainer}
-          onPress={() => navigation.navigate('GalleryRender')}>
+          onPress={() => navigation.navigate('GalleryRender', {area: area})}>
           <Text style={styles.text}>갤러리</Text>
         </TouchableOpacity>
       </View>
