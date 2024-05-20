@@ -3,10 +3,10 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {StyleSheet, View, Text} from 'react-native';
 
 const data = [
-  {label: '다리', value: '1'},
-  {label: '몸통', value: '2'},
-  {label: '연접부', value: '1'},
-  {label: '머리', value: '2'},
+  {label: '다리', value: 'L'},
+  {label: '몸통', value: 'B'},
+  {label: '연접부', value: 'A'},
+  {label: '머리', value: 'H'},
 ];
 
 function DetailAreaList({detailArea, setDetailArea}) {
@@ -39,7 +39,7 @@ function DetailAreaList({detailArea, setDetailArea}) {
       onFocus={() => setIsFocus(true)}
       onBlur={() => setIsFocus(true)}
       onChange={item => {
-        setDetailArea(item.label);
+        setDetailArea(item.value);
         setValue(item.value);
         setIsFocus(false);
       }}

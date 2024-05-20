@@ -3,8 +3,8 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {StyleSheet, View, Text} from 'react-native';
 
 const data = [
-  {label: '안구', value: '1'},
-  {label: '피부', value: '2'},
+  {label: '안구', value: 'eye'},
+  {label: '피부', value: 'skin'},
 ];
 
 function AffectedList({area, setArea}) {
@@ -36,7 +36,7 @@ function AffectedList({area, setArea}) {
       onFocus={() => setIsFocus(true)}
       onBlur={() => setIsFocus(true)}
       onChange={item => {
-        setArea(item.label);
+        setArea(item.value);
         setValue(item.value);
         setIsFocus(false);
       }}

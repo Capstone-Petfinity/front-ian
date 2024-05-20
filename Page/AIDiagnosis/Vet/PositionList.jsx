@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Dropdown} from 'react-native-element-dropdown';
 import {StyleSheet, View, Text} from 'react-native';
 
 const data = [
-  {label: 'VD', value: '1'},
-  {label: 'Lateral', value: '2'},
+  {label: 'VD', value: 'VD'},
+  {label: 'Lateral', value: 'Lateral'},
 ];
 
 function PositionList({position, setPosition}) {
@@ -37,7 +37,7 @@ function PositionList({position, setPosition}) {
       onFocus={() => setIsFocus(true)}
       onBlur={() => setIsFocus(true)}
       onChange={item => {
-        setPosition(item.label);
+        setPosition(item.value);
         setValue(item.value);
         setIsFocus(false);
       }}

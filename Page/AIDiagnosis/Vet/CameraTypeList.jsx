@@ -3,8 +3,8 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {StyleSheet, View, Text} from 'react-native';
 
 const data = [
-  {label: 'CM(일반 카메라)', value: '1'},
-  {label: 'US(초음파)', value: '2'},
+  {label: 'CM(일반 카메라)', value: 'CM'},
+  {label: 'US(초음파)', value: 'US'},
 ];
 
 function CameraTypeList({camera, setCamera}) {
@@ -37,7 +37,7 @@ function CameraTypeList({camera, setCamera}) {
       onFocus={() => setIsFocus(true)}
       onBlur={() => setIsFocus(true)}
       onChange={item => {
-        setCamera(item.label);
+        setCamera(item.value);
         setValue(item.value);
         setIsFocus(false);
       }}

@@ -3,10 +3,10 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {StyleSheet, View, Text} from 'react-native';
 
 const data1 = [
-  {label: '다리', value: '1'},
-  {label: '몸통', value: '2'},
-  {label: '연접부', value: '1'},
-  {label: '머리', value: '2'},
+  {label: '다리', value: 'L'},
+  {label: '몸통', value: 'B'},
+  {label: '연접부', value: 'A'},
+  {label: '머리', value: 'H'},
 ];
 
 const data2 = [{label: '해당하는 상세 부위가 없습니다.', value: '-1'}];
@@ -15,6 +15,7 @@ const data3 = [{label: '질환 부위를 먼저 선택해주세요.', value: '-1
 function DetailAreaList({area, detailArea, setDetailArea}) {
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState();
+
   const renderItem = item => {
     if (detailArea || isFocus) {
       return (
@@ -33,7 +34,7 @@ function DetailAreaList({area, detailArea, setDetailArea}) {
       inputSearchStyle={styles.inputSearchStyle}
       iconStyle={styles.iconStyle}
       placeholder="상세 부위를 선택하세요"
-      data={area == null ? data3 : area == false ? data1 : data2}
+      data={area == null ? data3 : area == true ? data1 : data2}
       maxHeight={100}
       labelField="label"
       valueField="value"
@@ -41,7 +42,7 @@ function DetailAreaList({area, detailArea, setDetailArea}) {
       onFocus={() => setIsFocus(true)}
       onBlur={() => setIsFocus(true)}
       onChange={item => {
-        setDetailArea(item.label);
+        setDetailArea(item.value);
         setValue(item.value);
         setIsFocus(false);
       }}

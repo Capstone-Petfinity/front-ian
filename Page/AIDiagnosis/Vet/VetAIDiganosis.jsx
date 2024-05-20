@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 import Picture from '../Picture';
 import MainButton from '../../Component/Button/MainButton';
@@ -15,6 +15,18 @@ function VetAIDiagnosis({navigation, route}) {
 
   const {uri, area} = route.params;
 
+  function onClickDiagnosisButton() {
+    console.log(
+      'area: ' +
+        area +
+        ', detailArea: ' +
+        detailArea +
+        ', position: ' +
+        position +
+        ', type: ' +
+        type,
+    );
+  }
   return (
     <View style={styles.container}>
       <Header1 navigation={navigation} />
@@ -29,23 +41,24 @@ function VetAIDiagnosis({navigation, route}) {
         <Picture navigation={navigation} />
 
         <View style={styles.dropdownContainer}>
-          {area === '안구' ? (
+          {area === 'eye' ? (
             <CameraTypeList camera={type} setCamera={setType} />
           ) : null}
-          {area === '피부' ? (
+          {area === 'skin' ? (
             <DetailAreaList
               detailArea={detailArea}
               setDetailArea={setDetailArea}
             />
           ) : null}
-          {area === '복부' || area === '근골격계' || area === '흉부' ? (
+          {area === 'stomach' || area === 'skeletal' || area === 'chest' ? (
             <PositionList position={position} setPosition={setPosition} />
           ) : null}
         </View>
         <View style={styles.buttonDiv}>
           <MainButton
             title="AI 진단하기"
-            onPress={() => navigation.navigate('VetResult')}
+            // onPress={() => navigation.navigate('VetResult')}
+            onPress={() => onClickDiagnosisButton()}
           />
         </View>
       </View>

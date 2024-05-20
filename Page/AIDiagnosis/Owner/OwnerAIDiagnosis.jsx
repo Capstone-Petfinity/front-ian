@@ -12,8 +12,22 @@ import DetailAreaList from './DetailAreaList';
 function OwnerAIDiagnosis({navigation, route}) {
   const [area, setArea] = useState('');
   const [detailArea, setDetailArea] = useState('');
+  const [position, setPosition] = useState(null);
+  const [type, setType] = useState(null);
 
   const uri = route.params;
+
+  function onClickDiagnosisButton() {
+    console.log(
+      'area: ' + area,
+      ', detailArea: ' +
+        detailArea +
+        ', position: ' +
+        position +
+        ', type: ' +
+        type,
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -31,14 +45,15 @@ function OwnerAIDiagnosis({navigation, route}) {
           <Picture navigation={navigation} />
           <AffectedList area={area} setArea={setArea} />
           <DetailAreaList
-            area={area == '' ? null : area === '안구' ? true : false}
+            area={area === '' ? null : area === 'skin' ? true : false}
             detailArea={detailArea}
             setDetailArea={setDetailArea}
           />
           <View style={styles.buttonDiv}>
             <MainButton
               title="AI 진단하기"
-              onPress={() => navigation.navigate('OwnerResult')}
+              // onPress={() => navigation.navigate('OwnerResult')}
+              onPress={() => onClickDiagnosisButton()}
             />
           </View>
         </View>
