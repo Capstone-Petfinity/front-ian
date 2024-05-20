@@ -1,14 +1,19 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import Picture from '../Picture';
-import FormatList from './FormatList';
 import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
+import CameraTypeList from './CameraTypeList';
+import DetailAreaList from './DetailAreaList';
+import PositionList from './PositionList';
 
 function VetAIDiagnosis({navigation, route}) {
-  const [formatImage, setFormatImage] = useState(null);
-  const {uri, format} = route.params;
+  const [detailArea, setDetailArea] = useState(null);
+  const [position, setPosition] = useState(null);
+  const [type, setType] = useState(null);
+
+  const {uri, area} = route.params;
 
   return (
     <View style={styles.container}>
@@ -22,12 +27,21 @@ function VetAIDiagnosis({navigation, route}) {
           </View>
         )}
         <Picture navigation={navigation} />
-        {format ? (
-          <FormatList format={formatImage} setFormatImage={setFormatImage} />
-        ) : (
-          <View style={styles.blank} />
-        )}
 
+        <View style={styles.dropdownContainer}>
+          {area === '안구' ? (
+            <CameraTypeList camera={type} setCamera={setType} />
+          ) : null}
+          {area === '피부' ? (
+            <DetailAreaList
+              detailArea={detailArea}
+              setDetailArea={setDetailArea}
+            />
+          ) : null}
+          {area === '복부' || area === '근골격계' || area === '흉부' ? (
+            <PositionList position={position} setPosition={setPosition} />
+          ) : null}
+        </View>
         <View style={styles.buttonDiv}>
           <MainButton
             title="AI 진단하기"
@@ -75,5 +89,8 @@ const styles = StyleSheet.create({
   },
   blank: {
     height: 110,
+  },
+  dropdownContainer: {
+    marginBottom: 70,
   },
 });

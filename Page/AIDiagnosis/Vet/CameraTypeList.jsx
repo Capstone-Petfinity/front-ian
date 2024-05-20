@@ -1,17 +1,18 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dropdown} from 'react-native-element-dropdown';
 import {StyleSheet, View, Text} from 'react-native';
 
 const data = [
-  {label: '안구', value: '1'},
-  {label: '피부', value: '2'},
+  {label: 'CM(일반 카메라)', value: '1'},
+  {label: 'US(초음파)', value: '2'},
 ];
 
-function AffectedList({area, setArea}) {
+function CameraTypeList({camera, setCamera}) {
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState();
+
   const renderItem = item => {
-    if (area || isFocus) {
+    if (camera || isFocus) {
       return (
         <View style={styles.item}>
           <Text style={styles.textItem}>{item.label}</Text>
@@ -27,7 +28,7 @@ function AffectedList({area, setArea}) {
       selectedTextStyle={styles.selectedTextStyle}
       inputSearchStyle={styles.inputSearchStyle}
       iconStyle={styles.iconStyle}
-      placeholder="질환 부위를 선택하세요"
+      placeholder="사진 유형을 선택하세요"
       data={data}
       maxHeight={300}
       labelField="label"
@@ -36,7 +37,7 @@ function AffectedList({area, setArea}) {
       onFocus={() => setIsFocus(true)}
       onBlur={() => setIsFocus(true)}
       onChange={item => {
-        setArea(item.label);
+        setCamera(item.label);
         setValue(item.value);
         setIsFocus(false);
       }}
@@ -45,7 +46,7 @@ function AffectedList({area, setArea}) {
   );
 }
 
-export default AffectedList;
+export default CameraTypeList;
 
 const styles = StyleSheet.create({
   container: {
@@ -54,12 +55,10 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     height: 50,
-    borderColor: 'whites',
     borderWidth: 0.2,
     borderRadius: 8,
     paddingHorizontal: 8,
     width: 280,
-    marginBottom: 20,
   },
   icon: {
     marginRight: 5,
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   item: {
-    height: 50,
+    height: 40,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'left',
@@ -98,6 +97,5 @@ const styles = StyleSheet.create({
   },
   textItem: {
     marginLeft: 15,
-    fontSize: 15,
   },
 });

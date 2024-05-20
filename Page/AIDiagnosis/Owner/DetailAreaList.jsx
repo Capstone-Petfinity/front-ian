@@ -2,16 +2,21 @@ import React, {useState} from 'react';
 import {Dropdown} from 'react-native-element-dropdown';
 import {StyleSheet, View, Text} from 'react-native';
 
-const data = [
-  {label: '안구', value: '1'},
-  {label: '피부', value: '2'},
+const data1 = [
+  {label: '다리', value: '1'},
+  {label: '몸통', value: '2'},
+  {label: '연접부', value: '1'},
+  {label: '머리', value: '2'},
 ];
 
-function AffectedList({area, setArea}) {
+const data2 = [{label: '해당하는 상세 부위가 없습니다.', value: '-1'}];
+const data3 = [{label: '질환 부위를 먼저 선택해주세요.', value: '-1'}];
+
+function DetailAreaList({area, detailArea, setDetailArea}) {
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState();
   const renderItem = item => {
-    if (area || isFocus) {
+    if (detailArea || isFocus) {
       return (
         <View style={styles.item}>
           <Text style={styles.textItem}>{item.label}</Text>
@@ -27,16 +32,16 @@ function AffectedList({area, setArea}) {
       selectedTextStyle={styles.selectedTextStyle}
       inputSearchStyle={styles.inputSearchStyle}
       iconStyle={styles.iconStyle}
-      placeholder="질환 부위를 선택하세요"
-      data={data}
-      maxHeight={300}
+      placeholder="상세 부위를 선택하세요"
+      data={area == null ? data3 : area == false ? data1 : data2}
+      maxHeight={100}
       labelField="label"
       valueField="value"
       value={value}
       onFocus={() => setIsFocus(true)}
       onBlur={() => setIsFocus(true)}
       onChange={item => {
-        setArea(item.label);
+        setDetailArea(item.label);
         setValue(item.value);
         setIsFocus(false);
       }}
@@ -45,7 +50,7 @@ function AffectedList({area, setArea}) {
   );
 }
 
-export default AffectedList;
+export default DetailAreaList;
 
 const styles = StyleSheet.create({
   container: {
@@ -59,7 +64,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
     width: 280,
-    marginBottom: 20,
+    marginBottom: 30,
   },
   icon: {
     marginRight: 5,

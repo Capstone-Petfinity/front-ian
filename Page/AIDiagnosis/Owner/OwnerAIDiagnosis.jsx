@@ -7,9 +7,12 @@ import AffectedList from './AffectedList';
 import Picture from '../Picture';
 import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
+import DetailAreaList from './DetailAreaList';
 
 function OwnerAIDiagnosis({navigation, route}) {
   const [area, setArea] = useState('');
+  const [detailArea, setDetailArea] = useState('');
+
   const uri = route.params;
 
   return (
@@ -27,6 +30,11 @@ function OwnerAIDiagnosis({navigation, route}) {
 
           <Picture navigation={navigation} />
           <AffectedList area={area} setArea={setArea} />
+          <DetailAreaList
+            area={area == '' ? null : area === '안구' ? true : false}
+            detailArea={detailArea}
+            setDetailArea={setDetailArea}
+          />
           <View style={styles.buttonDiv}>
             <MainButton
               title="AI 진단하기"
