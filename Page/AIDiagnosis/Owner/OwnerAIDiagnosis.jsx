@@ -20,8 +20,8 @@ function OwnerAIDiagnosis({navigation, route}) {
   function onClickDiagnosisButton() {
     let formData = new FormData();
 
-    formData.append('area', area);
-    formData.append('detailArea', detailArea);
+    formData.append('disease_area', area);
+    formData.append('detail_area', detailArea);
     formData.append('position', position);
     formData.append('img', uri.uri);
     formData.append('user_type', 'parent');
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   picture2: {
     width: '70%',
-    height: '60%',
+    height: '65%',
     marginBottom: 30,
   },
   buttonDiv: {

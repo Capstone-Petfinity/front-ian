@@ -8,6 +8,7 @@ import CameraTypeList from './CameraTypeList';
 import DetailAreaList from './DetailAreaList';
 import PositionList from './PositionList';
 import {ScrollView} from 'react-native-gesture-handler';
+import AIDiagnosisFunction from '../function/AIDiagnosisFunction';
 
 function VetAIDiagnosis({navigation, route}) {
   const [detailArea, setDetailArea] = useState(null);
@@ -16,16 +17,22 @@ function VetAIDiagnosis({navigation, route}) {
 
   const {uri, area} = route.params;
 
-  function onClickDiagnosisButton() {
+  async function onClickDiagnosisButton() {
     let formData = new FormData();
 
-    formData.append('area', area);
-    formData.append('detailArea', detailArea);
-    formData.append('position', position);
-    formData.append('img', uri);
     formData.append('user_type', 'vet');
+    formData.append('disease_area', area);
     formData.append('type', type);
-    console.log(formData);
+    formData.append('disease', 'eb07');
+    formData.append('img', uri);
+
+    // formData.append('detail_area', detailArea);
+    // formData.append('position', position);
+
+    // console.log(formData);
+
+    const result = await AIDiagnosisFunction();
+    // console.log(result);
   }
 
   useEffect(() => {
@@ -101,7 +108,7 @@ const styles = StyleSheet.create({
   },
   picture2: {
     width: '70%',
-    height: '75%',
+    height: '65%',
     marginBottom: 30,
   },
   buttonDiv: {
