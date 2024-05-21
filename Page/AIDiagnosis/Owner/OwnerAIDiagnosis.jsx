@@ -14,6 +14,7 @@ function OwnerAIDiagnosis({navigation, route}) {
   const [detailArea, setDetailArea] = useState('');
   const [position, setPosition] = useState(null);
   const [type, setType] = useState(null);
+  const [disease, setDisease] = useState(null);
 
   const uri = route.params;
 
@@ -26,6 +27,7 @@ function OwnerAIDiagnosis({navigation, route}) {
     formData.append('img', uri.uri);
     formData.append('user_type', 'parent');
     formData.append('type', type);
+    formData.append('disease', disease);
 
     console.log(formData);
   }

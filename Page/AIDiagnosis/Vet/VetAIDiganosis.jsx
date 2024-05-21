@@ -9,11 +9,13 @@ import DetailAreaList from './DetailAreaList';
 import PositionList from './PositionList';
 import {ScrollView} from 'react-native-gesture-handler';
 import AIDiagnosisFunction from '../function/AIDiagnosisFunction';
+import DiseaseList from './DiseaseList';
 
 function VetAIDiagnosis({navigation, route}) {
   const [detailArea, setDetailArea] = useState(null);
   const [position, setPosition] = useState(null);
   const [type, setType] = useState(null);
+  const [disease, setDisease] = useState(null);
 
   const {uri, area} = route.params;
 
@@ -26,12 +28,13 @@ function VetAIDiagnosis({navigation, route}) {
     formData.append('disease', 'eb07');
     formData.append('img', uri);
 
-    // formData.append('detail_area', detailArea);
-    // formData.append('position', position);
+    formData.append('detail_area', detailArea);
+    formData.append('position', position);
+    formData.append('disease', disease);
 
-    // console.log(formData);
+    console.log(formData);
 
-    const result = await AIDiagnosisFunction();
+    // const result = await AIDiagnosisFunction();
     // console.log(result);
   }
 
@@ -66,6 +69,13 @@ function VetAIDiagnosis({navigation, route}) {
             {area === 'stomach' || area === 'skeletal' || area === 'chest' ? (
               <PositionList position={position} setPosition={setPosition} />
             ) : null}
+          </View>
+          <View style={styles.dropdownContainer}>
+            <DiseaseList
+              area={area}
+              disease={disease}
+              setDisease={setDisease}
+            />
           </View>
           <View style={styles.buttonDiv}>
             <MainButton
@@ -118,6 +128,6 @@ const styles = StyleSheet.create({
     height: 110,
   },
   dropdownContainer: {
-    marginBottom: 70,
+    marginBottom: 20,
   },
 });
