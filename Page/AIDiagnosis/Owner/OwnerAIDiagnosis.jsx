@@ -10,6 +10,8 @@ import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
 import DetailAreaList from './DetailAreaList';
 
+import AIDiagnosisFunction from '../function/AIDiagnosisFunction';
+
 function OwnerAIDiagnosis({navigation, route}) {
   const [uuid, setUuid] = useState(null);
   const [area, setArea] = useState('');
@@ -33,7 +35,10 @@ function OwnerAIDiagnosis({navigation, route}) {
     formData.append('disease', disease);
 
     console.log(formData);
-    // onPress={() => navigation.navigate('OwnerResult')}
+
+    // const result = await AIDiagnosisFunction();
+    // console.log(result);
+    // navigation.navigate('OwnerResult')
   }
 
   function loadUserInfo() {
