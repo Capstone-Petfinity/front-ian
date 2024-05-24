@@ -1,5 +1,7 @@
-import {Button, Image, StyleSheet, Text, View} from 'react-native';
 import {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {Image, StyleSheet, Text, View} from 'react-native';
 
 import Picture from '../Picture';
 import MainButton from '../../Component/Button/MainButton';
@@ -8,10 +10,12 @@ import CameraTypeList from './CameraTypeList';
 import DetailAreaList from './DetailAreaList';
 import PositionList from './PositionList';
 import {ScrollView} from 'react-native-gesture-handler';
-import AIDiagnosisFunction from '../function/AIDiagnosisFunction';
 import DiseaseList from './DiseaseList';
 
+import AIDiagnosisFunction from '../function/AIDiagnosisFunction';
+
 function VetAIDiagnosis({navigation, route}) {
+  const [uuid, setUuid] = useState(null);
   const [detailArea, setDetailArea] = useState(null);
   const [position, setPosition] = useState(null);
   const [type, setType] = useState(null);
@@ -22,6 +26,7 @@ function VetAIDiagnosis({navigation, route}) {
   async function onClickDiagnosisButton() {
     let formData = new FormData();
 
+    formData.append('user_uuid', uuid);
     formData.append('user_type', 'vet');
     formData.append('disease_area', area);
     formData.append('type', type);
@@ -38,8 +43,15 @@ function VetAIDiagnosis({navigation, route}) {
     // console.log(result);
   }
 
+  function loadUserInfo() {
+    AsyncStorage.getItem('userState', (err, result) => {
+      const resultData = JSON.parse(result);
+      setUuid(resultData.uuid);
+    });
+  }
+
   useEffect(() => {
-    console.log(uri);
+    loadUserInfo();
   }, []);
 
   return (

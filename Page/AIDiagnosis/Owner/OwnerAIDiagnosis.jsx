@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -10,6 +11,7 @@ import Header1 from '../../Component/Header/Header1';
 import DetailAreaList from './DetailAreaList';
 
 function OwnerAIDiagnosis({navigation, route}) {
+  const [uuid, setUuid] = useState(null);
   const [area, setArea] = useState('');
   const [detailArea, setDetailArea] = useState('');
   const position = null;
@@ -21,6 +23,7 @@ function OwnerAIDiagnosis({navigation, route}) {
   function onClickDiagnosisButton() {
     let formData = new FormData();
 
+    formData.append('user_uuid', uuid);
     formData.append('disease_area', area);
     formData.append('detail_area', detailArea);
     formData.append('position', position);
@@ -31,6 +34,17 @@ function OwnerAIDiagnosis({navigation, route}) {
 
     console.log(formData);
   }
+
+  function loadUserInfo() {
+    AsyncStorage.getItem('userState', (err, result) => {
+      const resultData = JSON.parse(result);
+      setUuid(resultData.uuid);
+    });
+  }
+
+  useEffect(() => {
+    loadUserInfo();
+  }, []);
 
   return (
     <View style={styles.container}>
