@@ -41,6 +41,7 @@ function VetAIDiagnosis({navigation, route}) {
 
     // const result = await AIDiagnosisFunction();
     // console.log(result);
+    // navigation.navigate('VetResult')
   }
 
   function loadUserInfo() {
@@ -92,7 +93,6 @@ function VetAIDiagnosis({navigation, route}) {
           <View style={styles.buttonDiv}>
             <MainButton
               title="AI 진단하기"
-              // onPress={() => navigation.navigate('VetResult')}
               onPress={() => onClickDiagnosisButton()}
             />
           </View>

@@ -33,6 +33,7 @@ function OwnerAIDiagnosis({navigation, route}) {
     formData.append('disease', disease);
 
     console.log(formData);
+    // onPress={() => navigation.navigate('OwnerResult')}
   }
 
   function loadUserInfo() {
@@ -73,7 +74,6 @@ function OwnerAIDiagnosis({navigation, route}) {
           <View style={styles.buttonDiv}>
             <MainButton
               title="AI 진단하기"
-              // onPress={() => navigation.navigate('OwnerResult')}
               onPress={() => onClickDiagnosisButton()}
             />
           </View>
