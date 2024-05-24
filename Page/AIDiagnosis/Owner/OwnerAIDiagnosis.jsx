@@ -12,9 +12,9 @@ import DetailAreaList from './DetailAreaList';
 function OwnerAIDiagnosis({navigation, route}) {
   const [area, setArea] = useState('');
   const [detailArea, setDetailArea] = useState('');
-  const [position, setPosition] = useState(null);
-  const [type, setType] = useState(null);
-  const [disease, setDisease] = useState(null);
+  const position = null;
+  const type = null;
+  const disease = null;
 
   const uri = route.params;
 
