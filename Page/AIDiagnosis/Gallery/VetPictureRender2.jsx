@@ -24,7 +24,7 @@ function VetPictureReneder2({navigation, route}) {
   console.log('photo: ' + photo);
   return (
     <>
-      <Image style={styles.photo} source={{uri: photo}} />
+      <Image style={styles.photo} source={{uri: photo.uri}} />
       <View style={styles.overlayView}>
         <View style={styles.topView} />
         <View style={styles.buttonView}>

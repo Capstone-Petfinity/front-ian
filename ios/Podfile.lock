@@ -73,7 +73,7 @@ PODS:
   - hermes-engine/Pre-built (0.73.6)
   - libevent (2.1.12)
   - OpenSSL-Universal (1.1.1100)
-  - Permission-Camera (3.8.0):
+  - Permission-Camera (3.10.1):
     - RNPermissions
   - RCT-Folly (2022.05.16.00):
     - boost
@@ -946,7 +946,7 @@ PODS:
   - React-Mapbuffer (0.73.6):
     - glog
     - React-debug
-  - react-native-cameraroll (7.6.1):
+  - react-native-cameraroll (7.8.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -954,9 +954,9 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - react-native-maps (1.15.1):
+  - react-native-maps (1.15.2):
     - React-Core
-  - react-native-safe-area-context (4.9.0):
+  - react-native-safe-area-context (4.10.1):
     - React-Core
   - React-nativeconfig (0.73.6)
   - React-NativeModulesApple (0.73.6):
@@ -1131,7 +1131,7 @@ PODS:
     - React
   - RNFS (2.20.0):
     - React-Core
-  - RNGestureHandler (2.15.0):
+  - RNGestureHandler (2.16.2):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1144,17 +1144,18 @@ PODS:
     - React-Core
     - React-RCTImage
     - TOCropViewController (~> 2.7.4)
-  - RNPermissions (3.8.0):
+  - RNPermissions (3.10.1):
     - React-Core
-  - RNReanimated (3.8.0):
+  - RNReanimated (3.11.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
     - ReactCommon/turbomodule/core
-  - RNScreens (3.29.0):
+  - RNScreens (3.31.1):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
+    - React-RCTImage
   - SocketRocket (0.6.1)
   - TOCropViewController (2.7.4)
   - VisionCamera (3.9.2):
@@ -1415,7 +1416,7 @@ SPEC CHECKSUMS:
   hermes-engine: 9cecf9953a681df7556b8cc9c74905de8f3293c0
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
-  Permission-Camera: e6d142d7d8b714afe0a83e5e6ae17eb949f1e3e9
+  Permission-Camera: 9b70902f34a83c10e198d2d01f0e453e58842776
   RCT-Folly: 7169b2b1c44399c76a47b5deaaba715eeeb476c0
   RCTRequired: ca1d7414aba0b27efcfa2ccd37637edb1ab77d96
   RCTTypeSafety: 678e344fb976ff98343ca61dc62e151f3a042292
@@ -1437,10 +1438,10 @@ SPEC CHECKSUMS:
   React-jsinspector: 85583ef014ce53d731a98c66a0e24496f7a83066
   React-logger: 3eb80a977f0d9669468ef641a5e1fabbc50a09ec
   React-Mapbuffer: 84ea43c6c6232049135b1550b8c60b2faac19fab
-  react-native-cameraroll: cb0d0a2b76a9d56461ea0ab5782f69e694544840
+  react-native-cameraroll: abd04892a6cf688ae1dd1b49377c835d1c1146b3
   react-native-image-picker: d3db110a3ded6e48c93aef7e8e51afdde8b16ed0
-  react-native-maps: 4c07b21deac3ac3579558956b63e288efb8725bb
-  react-native-safe-area-context: b97eb6f9e3b7f437806c2ce5983f479f8eb5de4b
+  react-native-maps: 3df08c84c698a6f6a98c290a23c138d4706a42da
+  react-native-safe-area-context: dcab599c527c2d7de2d76507a523d20a0b83823d
   React-nativeconfig: b4d4e9901d4cabb57be63053fd2aa6086eb3c85f
   React-NativeModulesApple: cd26e56d56350e123da0c1e3e4c76cb58a05e1ee
   React-perflogger: 5f49905de275bac07ac7ea7f575a70611fa988f2
@@ -1464,11 +1465,11 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
-  RNGestureHandler: 67fb54b3e6ca338a8044e85cd6f340265aa41091
+  RNGestureHandler: 96439cf6543defdde87459e48cd1a3f0e45a008e
   RNImageCropPicker: 601604515fd6fbba318147b0a56aed0be9379415
-  RNPermissions: 215c54462104b3925b412b0fb3c9c497b21c358b
-  RNReanimated: 00ee495a70897aa9d541e76debec14253133b812
-  RNScreens: 17e2f657f1b09a71ec3c821368a04acbb7ebcb46
+  RNPermissions: 4e3714e18afe7141d000beae3755e5b5fb2f5e05
+  RNReanimated: 6cfa556540186ce7ae7a0b048f369236b1d86ebb
+  RNScreens: 134a7511b12b8eb440b87aac21e36a71295d6024
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   TOCropViewController: 80b8985ad794298fb69d3341de183f33d1853654
   VisionCamera: 36c460338692788a0d377dce7d32f8ba049fb4f2

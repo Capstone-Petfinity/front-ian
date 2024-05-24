@@ -29,6 +29,7 @@ function GalleryRender({navigation, route}) {
       const {edges} = await CameraRoll.getPhotos({
         first: 50,
       });
+
       setPhotoList(edges);
     } catch (error) {
       console.log('getPhoto', error);
@@ -38,12 +39,12 @@ function GalleryRender({navigation, route}) {
   function onPressImagaeButton({item}) {
     if (isParent) {
       navigation.navigate('OwnerPictureRender2', {
-        photo: item.node.image.uri,
+        photo: item.node.image,
         area: area,
       });
     } else {
       navigation.navigate('VetPictureRender2', {
-        photo: item.node.image.uri,
+        photo: item.node.image,
         area: area,
       });
     }
@@ -53,6 +54,14 @@ function GalleryRender({navigation, route}) {
     getPhotos();
     loadUserInfo();
   }, []);
+
+  useEffect(() => {
+    if (photoList) {
+      photoList.map(photo => {
+        // console.log(photo.node.image);
+      });
+    }
+  }, [photoList]);
 
   function PictureRender() {
     return (

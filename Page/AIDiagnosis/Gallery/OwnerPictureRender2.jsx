@@ -18,18 +18,18 @@ function TextButton({text, onPress}) {
 }
 
 function OwnerPictureRender2({navigation, route}) {
-  const {photo} = route.params;
+  const {photo, area} = route.params;
   console.log(photo);
   return (
     <>
-      <Image style={styles.photo} source={{uri: photo}} />
+      <Image style={styles.photo} source={{uri: photo.uri}} />
       <View style={styles.overlayView}>
         <View style={styles.topView} />
         <View style={styles.buttonView}>
           <View style={styles.innerView}>
             <TextButton
               text="취소"
-              onPress={() => navigation.navigate('GalleryRender')}
+              onPress={() => navigation.navigate('GalleryRender', {area: area})}
             />
             <TextButton
               text="사용"
