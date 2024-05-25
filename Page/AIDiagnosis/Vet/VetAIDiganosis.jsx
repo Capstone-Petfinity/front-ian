@@ -13,6 +13,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import DiseaseList from './DiseaseList';
 
 import AIDiagnosisFunction from '../function/AIDiagnosisFunction';
+import ImageTestFunction from '../function/ImageTestFunction';
 
 function VetAIDiagnosis({navigation, route}) {
   const [uuid, setUuid] = useState(null);
@@ -26,22 +27,14 @@ function VetAIDiagnosis({navigation, route}) {
   async function onClickDiagnosisButton() {
     let formData = new FormData();
 
-    formData.append('user_uuid', uuid);
-    formData.append('user_type', 'vet');
-    formData.append('disease_area', area);
-    formData.append('type', type);
-    formData.append('disease', 'eb07');
-    formData.append('img', uri);
+    formData.append('file', {
+      name: uri.uri.filename,
+      type: uri.uri.extension,
+      uri: uri.uri.uri,
+    });
+    console.log(formData.getAll('file'));
 
-    formData.append('detail_area', detailArea);
-    formData.append('position', position);
-    formData.append('disease', disease);
-
-    console.log(formData);
-
-    // const result = await AIDiagnosisFunction();
-    // console.log(result);
-    // navigation.navigate('VetResult')
+    const result = await ImageTestFunction({formData: formData});
   }
 
   function loadUserInfo() {

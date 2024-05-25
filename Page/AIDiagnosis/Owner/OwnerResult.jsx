@@ -4,19 +4,13 @@ import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
 
 function OwnerResult({navigation, route}) {
-  let {result} = route.params;
-  // console.log('🌸', result);
   return (
     <View style={styles.container}>
-      {/* <Header1 navigation={navigation} />
+      <Header1 navigation={navigation} />
       <View style={styles.smallContainer}>
-        <View style={styles.picture}></View> */}
-      <Image
-        style={{width: 100, height: 100}}
-        source={{uri: `data:image/png;base64,${result}`}}
-      />
-      {/* <Text>{result}</Text> */}
-      {/* <Text style={styles.resultText}>ooo이 97% 의심됩니다.</Text>
+        <View style={styles.picture}></View>
+        <Text>{result}</Text>
+        <Text style={styles.resultText}>ooo이 97% 의심됩니다.</Text>
         <View style={styles.additionalTextView}>
           <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
           <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
@@ -28,7 +22,7 @@ function OwnerResult({navigation, route}) {
             onPress={() => navigation.navigate('Reservation1')}
           />
         </View>
-      </View> */}
+      </View>
     </View>
   );
 }

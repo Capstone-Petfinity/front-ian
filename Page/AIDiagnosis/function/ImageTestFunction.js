@@ -1,5 +1,4 @@
 export default async function ImageTestFunction({formData}) {
-  console.log(formData);
   const result = await fetch(
     'https://blog-back.donghyuns.com/upload/image/post',
     {

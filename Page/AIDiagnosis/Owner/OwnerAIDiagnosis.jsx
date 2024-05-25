@@ -12,7 +12,6 @@ import DetailAreaList from './DetailAreaList';
 
 import AIDiagnosisFunction from '../function/AIDiagnosisFunction';
 import ImageTestFunction from '../function/ImageTestFunction';
-import ImageTestFunction2 from '../function/ImageTestFunction2';
 
 function OwnerAIDiagnosis({navigation, route}) {
   const [uuid, setUuid] = useState(null);
@@ -25,17 +24,16 @@ function OwnerAIDiagnosis({navigation, route}) {
   const uri = route.params;
 
   async function onClickDiagnosisButton() {
-    let formData2 = new FormData();
+    let formData = new FormData();
 
-    formData2.append('file', {
+    formData.append('file', {
       name: uri.uri.filename,
       type: uri.uri.extension,
       uri: uri.uri.uri,
     });
-    console.log(formData2.getAll('file'));
+    console.log(formData.getAll('file'));
 
-    const result = await ImageTestFunction({formData: formData2});
-    // const url = await ImageTestFunction2({postSeq: result.insertId});
+    const result = await ImageTestFunction({formData: formData});
     // navigation.navigate('OwnerResult', {result: result});
   }
 
@@ -62,7 +60,6 @@ function OwnerAIDiagnosis({navigation, route}) {
               <Text>사진을 선택해주세요</Text>
             </View>
           )}
-
           <Picture navigation={navigation} />
           <AffectedList
             area={area}
