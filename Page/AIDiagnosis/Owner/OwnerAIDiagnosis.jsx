@@ -25,27 +25,6 @@ function OwnerAIDiagnosis({navigation, route}) {
   const uri = route.params;
 
   async function onClickDiagnosisButton() {
-    // let formData = new FormData();
-
-    // formData.append('user_uuid', uuid);
-    // formData.append('disease_area', area);
-    // formData.append('detail_area', detailArea);
-    // formData.append('position', position);
-    // formData.append('img', {
-    //   name: 'picture',
-    //   type: 'image/jpg',
-    //   uri: uri.uri,
-    // });
-    // formData.append('user_type', 'parent');
-    // formData.append('type', type);
-    // formData.append('disease', disease);
-
-    // console.log(formData);
-
-    // const result = await AIDiagnosisFunction();
-    // console.log(result);
-    // navigation.navigate('OwnerResult');
-
     let formData2 = new FormData();
 
     formData2.append('file', {
@@ -53,6 +32,7 @@ function OwnerAIDiagnosis({navigation, route}) {
       type: uri.uri.extension,
       uri: uri.uri.uri,
     });
+    console.log(formData2.getAll('file'));
 
     const result = await ImageTestFunction({formData: formData2});
     // const url = await ImageTestFunction2({postSeq: result.insertId});
