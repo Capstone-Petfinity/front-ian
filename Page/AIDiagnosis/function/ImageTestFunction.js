@@ -21,5 +21,5 @@ export default async function ImageTestFunction({formData}) {
   const res2 = await result2.json();
   console.log(res2);
 
-  return res2.result[0];
+  return res2.result;
 }

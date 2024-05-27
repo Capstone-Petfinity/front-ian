@@ -27,14 +27,14 @@ function OwnerAIDiagnosis({navigation, route}) {
     let formData = new FormData();
 
     formData.append('file', {
-      name: uri.uri.filename,
-      type: uri.uri.extension,
-      uri: uri.uri.uri,
+      name: uri.filename,
+      type: uri.extension,
+      uri: uri.uri,
     });
     console.log(formData.getAll('file'));
 
     const result = await ImageTestFunction({formData: formData});
-    // navigation.navigate('OwnerResult', {result: result});
+    navigation.navigate('OwnerResult', {result: result});
   }
 
   function loadUserInfo() {
@@ -54,7 +54,7 @@ function OwnerAIDiagnosis({navigation, route}) {
       <ScrollView style={styles.scrollViewContent}>
         <View style={styles.smallContainer}>
           {uri ? (
-            <Image source={uri.uri} style={styles.picture2} />
+            <Image source={{uri: uri.uri}} style={styles.picture2} />
           ) : (
             <View style={styles.picture}>
               <Text>사진을 선택해주세요</Text>
@@ -66,11 +66,11 @@ function OwnerAIDiagnosis({navigation, route}) {
             setArea={setArea}
             setDetailArea={setDetailArea}
           />
-          <DetailAreaList
+          {/* <DetailAreaList
             area={area === '' ? null : area === 'skin' ? true : false}
             detailArea={detailArea}
             setDetailArea={setDetailArea}
-          />
+          /> */}
           <View style={styles.buttonDiv}>
             <MainButton
               title="AI 진단하기"

@@ -17,10 +17,10 @@ import ImageTestFunction from '../function/ImageTestFunction';
 
 function VetAIDiagnosis({navigation, route}) {
   const [uuid, setUuid] = useState(null);
-  const [detailArea, setDetailArea] = useState(null);
   const [position, setPosition] = useState(null);
   const [type, setType] = useState(null);
   const [disease, setDisease] = useState(null);
+  const [img_url, setImg_url] = useState(null);
 
   const {uri, area} = route.params;
 
@@ -28,13 +28,22 @@ function VetAIDiagnosis({navigation, route}) {
     let formData = new FormData();
 
     formData.append('file', {
-      name: uri.uri.filename,
-      type: uri.uri.extension,
-      uri: uri.uri.uri,
+      name: uri.filename,
+      type: uri.extension,
+      uri: uri.uri,
     });
-    console.log(formData.getAll('file'));
 
     const result = await ImageTestFunction({formData: formData});
+    setImg_url(result[0]);
+
+    const result2 = await AIDiagnosisFunction({
+      uuid,
+      disease_area,
+      type,
+      position,
+      disease,
+      img_url,
+    });
   }
 
   function loadUserInfo() {
@@ -54,7 +63,7 @@ function VetAIDiagnosis({navigation, route}) {
       <ScrollView>
         <View style={styles.smallContainer}>
           {uri ? (
-            <Image source={{uri: uri}} style={styles.picture2} />
+            <Image source={{uri: uri.uri}} style={styles.picture2} />
           ) : (
             <View style={styles.picture}>
               <Text>사진을 선택해주세요</Text>
@@ -66,12 +75,12 @@ function VetAIDiagnosis({navigation, route}) {
             {area === 'eye' ? (
               <CameraTypeList camera={type} setCamera={setType} />
             ) : null}
-            {area === 'skin' ? (
+            {/* {area === 'skin' ? (
               <DetailAreaList
                 detailArea={detailArea}
                 setDetailArea={setDetailArea}
               />
-            ) : null}
+            ) : null} */}
             {area === 'stomach' || area === 'skeletal' || area === 'chest' ? (
               <PositionList position={position} setPosition={setPosition} />
             ) : null}

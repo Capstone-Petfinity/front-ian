@@ -1,10 +1,24 @@
-export default async function AIDiagnosisFunction({formData}) {
-  const result = await fetch('http://capstone-petfinity.com/formdata_test', {
+export default async function AIDiagnosisFunction({
+  uuid,
+  disease_area,
+  type,
+  position,
+  disease,
+  img_url,
+}) {
+  const result = await fetch('http://capstone-petfinity.com/user/send/ai', {
     method: 'POST',
     headers: {
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     },
-    body: formData,
+    body: JSON.stringify({
+      user_uuid: uuid,
+      disease_area: disease_area,
+      type: type,
+      position: position,
+      disease: disease,
+      img_url: img_url,
+    }),
   });
 
   const res = await result.json();

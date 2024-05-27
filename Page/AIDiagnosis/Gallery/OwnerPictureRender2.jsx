@@ -19,7 +19,7 @@ function TextButton({text, onPress}) {
 
 function OwnerPictureRender2({navigation, route}) {
   const {photo, area} = route.params;
-  console.log(photo);
+  console.log('photo: ' + photo);
   return (
     <>
       <Image style={styles.photo} source={{uri: photo.uri}} />

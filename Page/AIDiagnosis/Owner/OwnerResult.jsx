@@ -4,27 +4,31 @@ import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
 
 function OwnerResult({navigation, route}) {
-  return (
-    <View style={styles.container}>
-      <Header1 navigation={navigation} />
-      <View style={styles.smallContainer}>
-        <View style={styles.picture}></View>
-        <Text>{result}</Text>
-        <Text style={styles.resultText}>ooo이 97% 의심됩니다.</Text>
-        <View style={styles.additionalTextView}>
-          <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
-          <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
-          <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
-        </View>
-        <View style={styles.buttonDiv}>
-          <MainButton
-            title="병원 예약"
-            onPress={() => navigation.navigate('Reservation1')}
-          />
+  let {result} = route.params;
+
+  if (result) {
+    return (
+      <View style={styles.container}>
+        <Header1 navigation={navigation} />
+        <View style={styles.smallContainer}>
+          <View style={styles.picture}></View>
+          <Image source={{uri: result}} style={{height: 100, width: 100}} />
+          <Text style={styles.resultText}>ooo이 97% 의심됩니다.</Text>
+          <View style={styles.additionalTextView}>
+            <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
+            <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
+            <Text style={styles.additionalText}>병에 대한 정보 설명</Text>
+          </View>
+          <View style={styles.buttonDiv}>
+            <MainButton
+              title="병원 예약"
+              onPress={() => navigation.navigate('Reservation1')}
+            />
+          </View>
         </View>
       </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
