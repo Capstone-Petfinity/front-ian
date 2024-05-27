@@ -1,13 +1,12 @@
 import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Alert, Image, StyleSheet, Text, View} from 'react-native';
 
 import Picture from '../Picture';
 import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
 import CameraTypeList from './CameraTypeList';
-import DetailAreaList from './DetailAreaList';
 import PositionList from './PositionList';
 import {ScrollView} from 'react-native-gesture-handler';
 import DiseaseList from './DiseaseList';
@@ -25,6 +24,21 @@ function VetAIDiagnosis({navigation, route}) {
   const {uri, area} = route.params;
 
   async function onClickDiagnosisButton() {
+    if (uri == null) {
+      Alert.alert(
+        'AI 진단 실패',
+        '사진을 선택해주세요.',
+        [{text: '확인', onPress: () => {}, style: 'cancel'}],
+
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+
+      return;
+    }
+
     let formData = new FormData();
 
     formData.append('file', {
@@ -36,14 +50,28 @@ function VetAIDiagnosis({navigation, route}) {
     const result = await ImageTestFunction({formData: formData});
     setImg_url(result[0]);
 
-    const result2 = await AIDiagnosisFunction({
-      uuid,
-      disease_area,
-      type,
-      position,
-      disease,
-      img_url,
-    });
+    if (img_url) {
+      console.log(
+        'uuid: ' + uuid + ', disease_area: ' + area,
+        ', type: ' +
+          type +
+          ', position: ' +
+          position +
+          ', disease: ' +
+          disease +
+          ', img_url: ' +
+          img_url,
+      );
+    }
+
+    // const result2 = await AIDiagnosisFunction({
+    //   uuid: uuid,
+    //   disease_area: area,
+    //   type: type,
+    //   position: position,
+    //   disease: disease,
+    //   img_url: img_url,
+    // });
   }
 
   function loadUserInfo() {

@@ -36,12 +36,12 @@ function OwnerAIDiagnosis({navigation, route}) {
     setImg_url(result[0]);
 
     const result2 = await AIDiagnosisFunction({
-      uuid,
-      disease_area,
-      type,
-      position,
-      disease,
-      img_url,
+      uuid: uuid,
+      disease_area: area,
+      type: type,
+      position: position,
+      disease: disease,
+      img_url: img_url,
     });
   }
 
