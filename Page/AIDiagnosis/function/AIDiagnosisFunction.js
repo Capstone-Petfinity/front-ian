@@ -22,7 +22,7 @@ export default async function AIDiagnosisFunction({
   });
 
   const res = await result.json();
-  console.log(res);
+  console.log('AIDiagnosisFunction:', res);
 
   return res;
 }

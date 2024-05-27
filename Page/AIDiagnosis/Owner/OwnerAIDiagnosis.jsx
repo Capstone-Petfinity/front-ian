@@ -16,12 +16,12 @@ import ImageTestFunction from '../function/ImageTestFunction';
 function OwnerAIDiagnosis({navigation, route}) {
   const [uuid, setUuid] = useState(null);
   const [area, setArea] = useState('');
-  const [detailArea, setDetailArea] = useState('');
   const position = null;
   const type = null;
   const disease = null;
+  const [img_url, setImg_url] = useState(null);
 
-  const uri = route.params;
+  const {uri} = route.params;
 
   async function onClickDiagnosisButton() {
     let formData = new FormData();
@@ -31,10 +31,18 @@ function OwnerAIDiagnosis({navigation, route}) {
       type: uri.extension,
       uri: uri.uri,
     });
-    console.log(formData.getAll('file'));
 
     const result = await ImageTestFunction({formData: formData});
-    navigation.navigate('OwnerResult', {result: result});
+    setImg_url(result[0]);
+
+    const result2 = await AIDiagnosisFunction({
+      uuid,
+      disease_area,
+      type,
+      position,
+      disease,
+      img_url,
+    });
   }
 
   function loadUserInfo() {
