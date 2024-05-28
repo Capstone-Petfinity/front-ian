@@ -12,8 +12,8 @@ function VetResult({navigation, route}) {
 
   async function getImgUrlFunction() {
     if (result.insert_id) {
-      const result = await ImageTestFunction2({insert_id: result.insert_id});
-      setImg_url(result[0]);
+      const res = await ImageTestFunction2({insert_id: result.insert_id});
+      setImg_url(res[0]);
     }
 
     return;
@@ -23,20 +23,22 @@ function VetResult({navigation, route}) {
     getImgUrlFunction();
   }, []);
 
-  if (result) {
+  if (img_url) {
     return (
       <View style={styles.container}>
         <Header1 navigation={navigation} />
         <View style={styles.smallContainer}>
           {img_url && (
-            <Image source={{uri: img_url}} style={{height: 100, width: 100}} />
+            <Image source={{uri: img_url}} style={{height: 300, width: 300}} />
           )}
           <Text style={styles.resultText}>
-            {result.disease_name}이 {result.percent}% 의심됩니다.
+            {result.disease_name}이{'(가)'} {result.percent}% 의심됩니다.
           </Text>
-          <View style={styles.additionalTextView}>
-            <Text style={styles.additionalText}>{result.content}</Text>
-          </View>
+          {result.content != null && (
+            <View style={styles.additionalTextView}>
+              <Text style={styles.additionalText}>{result.content}</Text>
+            </View>
+          )}
 
           <View style={styles.buttonDiv}>
             <MainButton
@@ -62,8 +64,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   picture: {
-    width: 300,
-    height: 300,
+    width: '70%',
+    height: 600,
     borderWidth: 1,
     backgroundColor: 'gray',
     borderColor: 'gray',

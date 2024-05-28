@@ -80,9 +80,9 @@ function VetAIDiagnosis({navigation, route}) {
       img_url: img_url,
     });
 
-    // if (result2.statusCode === '200') {
-    navigation.navigate('VetResult', {result: result2});
-    // }
+    if (result2.statusCode === '200') {
+      navigation.navigate('VetResult', {result: result2});
+    }
   }
 
   function loadUserInfo() {

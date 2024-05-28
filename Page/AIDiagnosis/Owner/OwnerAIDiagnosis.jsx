@@ -16,7 +16,7 @@ function OwnerAIDiagnosis({navigation, route}) {
   const [uuid, setUuid] = useState(null);
   const [area, setArea] = useState('');
   const position = null;
-  const type = null;
+  const [type, setType] = useState(null);
   const disease = null;
   const [img_url, setImg_url] = useState(null);
 
@@ -66,19 +66,35 @@ function OwnerAIDiagnosis({navigation, route}) {
           img_url,
       );
     }
+    if (area === 'eye') {
+      const result2 = await AIDiagnosisFunction({
+        uuid: uuid,
+        disease_area: area,
+        type: 'CM',
+        position: position,
+        disease: disease,
+        img_url: img_url,
+      });
 
-    const result2 = await AIDiagnosisFunction({
-      uuid: uuid,
-      disease_area: area,
-      type: type,
-      position: position,
-      disease: disease,
-      img_url: img_url,
-    });
+      if (result2.statusCode === '200') {
+        navigation.navigate('OwnerResult', {result: result2});
+      }
+    } else if (area === 'skin') {
+      const result2 = await AIDiagnosisFunction({
+        uuid: uuid,
+        disease_area: area,
+        type: type,
+        position: position,
+        disease: disease,
+        img_url: img_url,
+      });
 
-    if (result2.statusCode === '200') {
-      navigation.navigate('OwnerResult', {result: result2});
+      if (result2.statusCode === '200') {
+        navigation.navigate('OwnerResult', {result: result2});
+      }
     }
+
+    return;
   }
 
   function loadUserInfo() {
