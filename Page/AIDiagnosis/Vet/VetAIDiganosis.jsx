@@ -117,12 +117,6 @@ function VetAIDiagnosis({navigation, route}) {
             {area === 'eye' ? (
               <CameraTypeList camera={type} setCamera={setType} />
             ) : null}
-            {/* {area === 'skin' ? (
-              <DetailAreaList
-                detailArea={detailArea}
-                setDetailArea={setDetailArea}
-              />
-            ) : null} */}
             {area === 'stomach' || area === 'skeletal' || area === 'chest' ? (
               <PositionList position={position} setPosition={setPosition} />
             ) : null}

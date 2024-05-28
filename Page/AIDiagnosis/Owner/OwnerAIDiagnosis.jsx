@@ -8,7 +8,6 @@ import AffectedList from './AffectedList';
 import Picture from '../Picture';
 import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
-import DetailAreaList from './DetailAreaList';
 
 import AIDiagnosisFunction from '../function/AIDiagnosisFunction';
 import ImageTestFunction from '../function/ImageTestFunction';
@@ -115,13 +114,8 @@ function OwnerAIDiagnosis({navigation, route}) {
           <AffectedList
             area={area}
             setArea={setArea}
-            setDetailArea={setDetailArea}
+            // setDetailArea={setDetailArea}
           />
-          {/* <DetailAreaList
-            area={area === '' ? null : area === 'skin' ? true : false}
-            detailArea={detailArea}
-            setDetailArea={setDetailArea}
-          /> */}
           <View style={styles.buttonDiv}>
             <MainButton
               title="AI 진단하기"

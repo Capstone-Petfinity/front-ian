@@ -26,7 +26,7 @@ function OwnerMain({navigation}) {
           <Button
             text="AI 진단"
             subText="사진으로 간편하게 AI 진단을 받아보세요!"
-            onPress={() => navigation.navigate('OwnerAIDiagnosis')}
+            onPress={() => navigation.navigate('OwnerAIDiagnosis', {uri: null})}
           />
           <Button
             text="병원 예약"
