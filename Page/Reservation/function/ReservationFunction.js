@@ -4,6 +4,7 @@ export default async function ReservationFunction({
   hospitalUuid,
   reservationDate,
 }) {
+  console.log(userUuid, petUuid, hospitalUuid, reservationDate);
   const result = await fetch(
     'https://capstone-petfinity.com/user/reservation',
     {

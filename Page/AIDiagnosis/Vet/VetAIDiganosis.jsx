@@ -56,8 +56,11 @@ function VetAIDiagnosis({navigation, route}) {
 
     if (img_url) {
       console.log(
-        'uuid: ' + uuid + ', disease_area: ' + area,
-        ', type: ' +
+        'uuid: ' +
+          uuid +
+          ', disease_area: ' +
+          area +
+          ', type: ' +
           type +
           ', position: ' +
           position +
@@ -77,9 +80,9 @@ function VetAIDiagnosis({navigation, route}) {
       img_url: img_url,
     });
 
-    if (result2.statusCode === '200') {
-      navigation.navigate('VetResult', {result: result2});
-    }
+    // if (result2.statusCode === '200') {
+    navigation.navigate('VetResult', {result: result2});
+    // }
   }
 
   function loadUserInfo() {
