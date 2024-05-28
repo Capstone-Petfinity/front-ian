@@ -76,6 +76,10 @@ function VetAIDiagnosis({navigation, route}) {
       disease: disease,
       img_url: img_url,
     });
+
+    if (result2.statusCode === '200') {
+      navigation.navigate('VetResult', {result: result2});
+    }
   }
 
   function loadUserInfo() {

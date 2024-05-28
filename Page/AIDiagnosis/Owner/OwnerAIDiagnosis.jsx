@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Alert, Image, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import AffectedList from './AffectedList';
@@ -23,7 +23,7 @@ function OwnerAIDiagnosis({navigation, route}) {
 
   const {uri} = route.params;
 
-  async function onClickDiagnosisButton() {
+  async function getImgUrlFunction() {
     let formData = new FormData();
 
     formData.append('file', {
@@ -35,6 +35,39 @@ function OwnerAIDiagnosis({navigation, route}) {
     const result = await ImageTestFunction({formData: formData});
     setImg_url(result[0]);
 
+    return;
+  }
+
+  async function onClickDiagnosisButton() {
+    if (uri == null) {
+      Alert.alert(
+        'AI 진단 실패',
+        '사진을 선택해주세요.',
+        [{text: '확인', onPress: () => {}, style: 'cancel'}],
+
+        {
+          cancelable: true,
+          onDismiss: () => {},
+        },
+      );
+
+      return;
+    }
+
+    if (img_url) {
+      console.log(
+        'uuid: ' + uuid + ', disease_area: ' + area,
+        ', type: ' +
+          type +
+          ', position: ' +
+          position +
+          ', disease: ' +
+          disease +
+          ', img_url: ' +
+          img_url,
+      );
+    }
+
     const result2 = await AIDiagnosisFunction({
       uuid: uuid,
       disease_area: area,
@@ -43,6 +76,10 @@ function OwnerAIDiagnosis({navigation, route}) {
       disease: disease,
       img_url: img_url,
     });
+
+    if (result2.statusCode === '200') {
+      navigation.navigate('OwnerResult', {result: result2});
+    }
   }
 
   function loadUserInfo() {
@@ -55,6 +92,12 @@ function OwnerAIDiagnosis({navigation, route}) {
   useEffect(() => {
     loadUserInfo();
   }, []);
+
+  useEffect(() => {
+    if (uri) {
+      getImgUrlFunction();
+    }
+  }, [uri]);
 
   return (
     <View style={styles.container}>
