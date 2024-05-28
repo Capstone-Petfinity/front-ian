@@ -1,18 +1,63 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Header2 from '../../Component/Header/Header2';
+import DiagnosisListFunction from '../function/DiagnosisListFunction';
+
+function LoadDiagnosis({navigation, diagnosisList}) {
+  return diagnosisList.map(diagnosis => {
+    return (
+      <TouchableOpacity
+        key={diagnosis.uuid}
+        onPress={() =>
+          navigation.navigate('ResultInfo', {
+            diagnosis_uuid: diagnosis.uuid,
+          })
+        }>
+        <Text>{diagnosis.date}</Text>
+        <Text>{diagnosis.disease_name}</Text>
+      </TouchableOpacity>
+    );
+  });
+}
 
 function ResultList({navigation}) {
-  return (
-    <View style={styles.container}>
-      <Header2 navigation={navigation} />
-      <ScrollView style={styles.scrollViewContent}>
-        <View style={styles.smallContainer}>
-          <Text>result list page</Text>
-        </View>
-      </ScrollView>
-    </View>
-  );
+  const [diagnosisList, setDiagnosisList] = useState(null);
+
+  function LoadDiagnosisList() {
+    AsyncStorage.getItem('userState', async (err, result) => {
+      const resultData = JSON.parse(result);
+
+      if (resultData.uuid) {
+        const result = await DiagnosisListFunction({uuid: resultData.uuid});
+        if (result.statusCode === '200') {
+          setDiagnosisList(result.diagnoses);
+        }
+      }
+    });
+  }
+
+  useEffect(() => {
+    LoadDiagnosisList();
+  }, []);
+
+  if (diagnosisList) {
+    return (
+      <View style={styles.container}>
+        <Header2 navigation={navigation} />
+        <ScrollView style={styles.scrollViewContent}>
+          <View style={styles.smallContainer}>
+            <LoadDiagnosis
+              navigation={navigation}
+              diagnosisList={diagnosisList}
+            />
+          </View>
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 export default ResultList;

@@ -50,6 +50,8 @@ function OwnerResult({navigation, route}) {
   }
 }
 
+export default OwnerResult;
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
@@ -83,5 +85,3 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
 });
-
-export default OwnerResult;

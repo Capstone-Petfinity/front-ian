@@ -41,6 +41,7 @@ import Reservation2 from './Page/Reservation/page/Reservation2';
 import Reservation3 from './Page/Reservation/page/Reservation3';
 import ReservationDescription from './Page/Reservation/page/ReservationDescription';
 import ResultList from './Page/Result/page/ResultList';
+import ResultInfo from './Page/Result/page/ResultInfo';
 
 function App() {
   const Stack = createStackNavigator();
@@ -95,6 +96,7 @@ function App() {
         />
 
         <Stack.Screen name="ResultList" component={ResultList} />
+        <Stack.Screen name="ResultInfo" component={ResultInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
