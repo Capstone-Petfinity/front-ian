@@ -6,10 +6,11 @@ export default async function AIDiagnosisFunction({
   disease,
   img_url,
 }) {
-  const result = await fetch('http://capstone-petfinity.com/user/send/ai', {
+  const result = await fetch('https://capstone-petfinity.com/user/diagnosis', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      auth: 'bVAtkPtiVGpWuO3dWEnvr51cEb6r7oF8',
     },
     body: JSON.stringify({
       user_uuid: uuid,

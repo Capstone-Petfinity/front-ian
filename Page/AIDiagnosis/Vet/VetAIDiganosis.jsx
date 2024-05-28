@@ -23,6 +23,21 @@ function VetAIDiagnosis({navigation, route}) {
 
   const {uri, area} = route.params;
 
+  async function getImgUrlFunction() {
+    let formData = new FormData();
+
+    formData.append('file', {
+      name: uri.filename,
+      type: uri.extension,
+      uri: uri.uri,
+    });
+
+    const result = await ImageTestFunction({formData: formData});
+    setImg_url(result[0]);
+
+    return;
+  }
+
   async function onClickDiagnosisButton() {
     if (uri == null) {
       Alert.alert(
@@ -39,17 +54,6 @@ function VetAIDiagnosis({navigation, route}) {
       return;
     }
 
-    let formData = new FormData();
-
-    formData.append('file', {
-      name: uri.filename,
-      type: uri.extension,
-      uri: uri.uri,
-    });
-
-    const result = await ImageTestFunction({formData: formData});
-    setImg_url(result[0]);
-
     if (img_url) {
       console.log(
         'uuid: ' + uuid + ', disease_area: ' + area,
@@ -64,14 +68,14 @@ function VetAIDiagnosis({navigation, route}) {
       );
     }
 
-    // const result2 = await AIDiagnosisFunction({
-    //   uuid: uuid,
-    //   disease_area: area,
-    //   type: type,
-    //   position: position,
-    //   disease: disease,
-    //   img_url: img_url,
-    // });
+    const result2 = await AIDiagnosisFunction({
+      uuid: uuid,
+      disease_area: area,
+      type: type,
+      position: position,
+      disease: disease,
+      img_url: img_url,
+    });
   }
 
   function loadUserInfo() {
@@ -84,6 +88,12 @@ function VetAIDiagnosis({navigation, route}) {
   useEffect(() => {
     loadUserInfo();
   }, []);
+
+  useEffect(() => {
+    if (uri) {
+      getImgUrlFunction();
+    }
+  }, [uri]);
 
   return (
     <View style={styles.container}>
