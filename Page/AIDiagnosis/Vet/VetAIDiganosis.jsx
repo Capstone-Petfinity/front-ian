@@ -2,13 +2,13 @@ import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {Alert, Image, StyleSheet, Text, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import Picture from '../Picture';
 import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
 import CameraTypeList from './CameraTypeList';
 import PositionList from './PositionList';
-import {ScrollView} from 'react-native-gesture-handler';
 import DiseaseList from './DiseaseList';
 
 import AIDiagnosisFunction from '../function/AIDiagnosisFunction';

@@ -1,10 +1,27 @@
+import {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 
 import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
 
+import ImageTestFunction2 from '../function/ImageTestFunction2';
+
 function OwnerResult({navigation, route}) {
   let {result} = route.params;
+  const [img_url, setImg_url] = useState(null);
+
+  async function getImgUrlFunction() {
+    if (result.insert_id) {
+      const result = await ImageTestFunction2({insert_id: result.insert_id});
+      setImg_url(result[0]);
+    }
+
+    return;
+  }
+
+  useEffect(() => {
+    getImgUrlFunction();
+  }, []);
 
   if (result) {
     return (
@@ -12,7 +29,9 @@ function OwnerResult({navigation, route}) {
         <Header1 navigation={navigation} />
         <View style={styles.smallContainer}>
           <View style={styles.picture}></View>
-          <Image source={{uri: result}} style={{height: 100, width: 100}} />
+          {img_url && (
+            <Image source={{uri: result}} style={{height: 100, width: 100}} />
+          )}
           <Text style={styles.resultText}>ooo이 97% 의심됩니다.</Text>
           <View style={styles.additionalTextView}>
             <Text style={styles.additionalText}>병에 대한 정보 설명</Text>

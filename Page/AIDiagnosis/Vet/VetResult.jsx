@@ -1,9 +1,10 @@
+import {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 
 import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
+
 import ImageTestFunction2 from '../function/ImageTestFunction2';
-import {useEffect, useState} from 'react';
 
 function VetResult({navigation, route}) {
   let {result} = route.params;
@@ -22,27 +23,31 @@ function VetResult({navigation, route}) {
     getImgUrlFunction();
   }, []);
 
-  return (
-    <View style={styles.container}>
-      <Header1 navigation={navigation} />
-      <View style={styles.smallContainer}>
-        {img_url && <Image source={{uri: img_url}} />}
-        <Text style={styles.resultText}>
-          {result.disease_name}이 {result.percent}% 의심됩니다.
-        </Text>
-        <View style={styles.additionalTextView}>
-          <Text style={styles.additionalText}>{result.content}</Text>
-        </View>
+  if (result) {
+    return (
+      <View style={styles.container}>
+        <Header1 navigation={navigation} />
+        <View style={styles.smallContainer}>
+          {img_url && (
+            <Image source={{uri: img_url}} style={{height: 100, width: 100}} />
+          )}
+          <Text style={styles.resultText}>
+            {result.disease_name}이 {result.percent}% 의심됩니다.
+          </Text>
+          <View style={styles.additionalTextView}>
+            <Text style={styles.additionalText}>{result.content}</Text>
+          </View>
 
-        <View style={styles.buttonDiv}>
-          <MainButton
-            title="홈으로"
-            onPress={() => navigation.navigate('VetMain')}
-          />
+          <View style={styles.buttonDiv}>
+            <MainButton
+              title="홈으로"
+              onPress={() => navigation.navigate('VetMain')}
+            />
+          </View>
         </View>
       </View>
-    </View>
-  );
+    );
+  }
 }
 
 export default VetResult;
