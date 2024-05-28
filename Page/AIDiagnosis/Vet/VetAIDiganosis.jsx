@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   },
   picture2: {
     width: '70%',
-    height: '65%',
+    height: 330,
     marginBottom: 30,
   },
   buttonDiv: {

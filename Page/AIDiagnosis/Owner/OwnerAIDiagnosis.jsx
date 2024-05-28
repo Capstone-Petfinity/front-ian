@@ -111,11 +111,9 @@ function OwnerAIDiagnosis({navigation, route}) {
             </View>
           )}
           <Picture navigation={navigation} />
-          <AffectedList
-            area={area}
-            setArea={setArea}
-            // setDetailArea={setDetailArea}
-          />
+          <View style={styles.dropdownContainer}>
+            <AffectedList area={area} setArea={setArea} />
+          </View>
           <View style={styles.buttonDiv}>
             <MainButton
               title="AI 진단하기"
@@ -156,10 +154,13 @@ const styles = StyleSheet.create({
   },
   picture2: {
     width: '70%',
-    height: '65%',
+    height: 330,
     marginBottom: 30,
   },
   buttonDiv: {
     marginTop: 0,
+  },
+  dropdownContainer: {
+    marginBottom: 20,
   },
 });
