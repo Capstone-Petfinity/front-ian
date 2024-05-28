@@ -20,6 +20,7 @@ function VetAIDiagnosis({navigation, route}) {
   const [type, setType] = useState(null);
   const [disease, setDisease] = useState(null);
   const [img_url, setImg_url] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const {uri, area} = route.params;
 
@@ -54,23 +55,7 @@ function VetAIDiagnosis({navigation, route}) {
       return;
     }
 
-    if (img_url) {
-      console.log(
-        'uuid: ' +
-          uuid +
-          ', disease_area: ' +
-          area +
-          ', type: ' +
-          type +
-          ', position: ' +
-          position +
-          ', disease: ' +
-          disease +
-          ', img_url: ' +
-          img_url,
-      );
-    }
-
+    setIsLoaded(true);
     const result2 = await AIDiagnosisFunction({
       uuid: uuid,
       disease_area: area,
@@ -82,6 +67,7 @@ function VetAIDiagnosis({navigation, route}) {
 
     if (result2.statusCode === '200') {
       navigation.navigate('VetResult', {result: result2});
+      setIsLoaded(false);
     }
   }
 
@@ -102,45 +88,57 @@ function VetAIDiagnosis({navigation, route}) {
     }
   }, [uri]);
 
-  return (
-    <View style={styles.container}>
-      <Header1 navigation={navigation} />
-      <ScrollView>
-        <View style={styles.smallContainer}>
-          {uri ? (
-            <Image source={{uri: uri.uri}} style={styles.picture2} />
-          ) : (
-            <View style={styles.picture}>
-              <Text>사진을 선택해주세요</Text>
-            </View>
-          )}
-          <Picture navigation={navigation} area={area} />
+  if (!isLoaded) {
+    return (
+      <View style={styles.container}>
+        <Header1 navigation={navigation} />
+        <ScrollView>
+          <View style={styles.smallContainer}>
+            {uri ? (
+              <Image source={{uri: uri.uri}} style={styles.picture2} />
+            ) : (
+              <View style={styles.picture}>
+                <Text>사진을 선택해주세요</Text>
+              </View>
+            )}
+            <Picture navigation={navigation} area={area} />
 
-          <View style={styles.dropdownContainer}>
-            {area === 'eye' ? (
-              <CameraTypeList camera={type} setCamera={setType} />
-            ) : null}
-            {area === 'stomach' || area === 'skeletal' || area === 'chest' ? (
-              <PositionList position={position} setPosition={setPosition} />
-            ) : null}
+            <View style={styles.dropdownContainer}>
+              {area === 'eye' ? (
+                <CameraTypeList camera={type} setCamera={setType} />
+              ) : null}
+              {area === 'stomach' || area === 'skeletal' || area === 'chest' ? (
+                <PositionList position={position} setPosition={setPosition} />
+              ) : null}
+            </View>
+            <View style={styles.dropdownContainer}>
+              <DiseaseList
+                area={area}
+                disease={disease}
+                setDisease={setDisease}
+              />
+            </View>
+            <View style={styles.buttonDiv}>
+              <MainButton
+                title="AI 진단하기"
+                onPress={() => onClickDiagnosisButton()}
+              />
+            </View>
           </View>
-          <View style={styles.dropdownContainer}>
-            <DiseaseList
-              area={area}
-              disease={disease}
-              setDisease={setDisease}
-            />
+        </ScrollView>
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <ScrollView style={styles.scrollViewContent}>
+          <View style={styles.smallContainer2}>
+            <Text style={styles.loadingText}>Loading...</Text>
           </View>
-          <View style={styles.buttonDiv}>
-            <MainButton
-              title="AI 진단하기"
-              onPress={() => onClickDiagnosisButton()}
-            />
-          </View>
-        </View>
-      </ScrollView>
-    </View>
-  );
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 export default VetAIDiagnosis;
@@ -156,6 +154,10 @@ const styles = StyleSheet.create({
   },
   smallContainer: {
     marginTop: 30,
+    alignItems: 'center',
+  },
+  smallContainer2: {
+    marginTop: 400,
     alignItems: 'center',
   },
   picture: {
@@ -182,5 +184,10 @@ const styles = StyleSheet.create({
   },
   dropdownContainer: {
     marginBottom: 20,
+  },
+  loadingText: {
+    fontSize: 25,
+    fontWeight: '900',
+    color: '#00835C',
   },
 });

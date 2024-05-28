@@ -87,6 +87,10 @@ function App() {
 
         <Stack.Screen name="OwnerResult" component={OwnerResult} />
         <Stack.Screen name="VetResult" component={VetResult} />
+
+        <Stack.Screen name="ResultList" component={ResultList} />
+        <Stack.Screen name="ResultInfo" component={ResultInfo} />
+
         <Stack.Screen name="Reservation1" component={Reservation1} />
         <Stack.Screen name="Reservation2" component={Reservation2} />
         <Stack.Screen name="Reservation3" component={Reservation3} />
@@ -94,9 +98,6 @@ function App() {
           name="ReservationDescription"
           component={ReservationDescription}
         />
-
-        <Stack.Screen name="ResultList" component={ResultList} />
-        <Stack.Screen name="ResultInfo" component={ResultInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

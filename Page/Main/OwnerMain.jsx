@@ -7,7 +7,6 @@ import Button from '../Component/Button/MainPageButton';
 import UserInfo from './Component/UserInfo';
 import PetInfo from './Component/PetInfo';
 import Header1 from '../Component/Header/Header1';
-import NavigationBar from '../Component/Header/NavigationBar';
 
 function OwnerMain({navigation}) {
   useEffect(() => {

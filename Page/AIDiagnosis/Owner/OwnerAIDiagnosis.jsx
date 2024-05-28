@@ -15,8 +15,10 @@ import ImageTestFunction from '../function/ImageTestFunction';
 function OwnerAIDiagnosis({navigation, route}) {
   const [uuid, setUuid] = useState(null);
   const [area, setArea] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const position = null;
-  const [type, setType] = useState(null);
+  const type = null;
   const disease = null;
   const [img_url, setImg_url] = useState(null);
 
@@ -53,19 +55,7 @@ function OwnerAIDiagnosis({navigation, route}) {
       return;
     }
 
-    if (img_url) {
-      console.log(
-        'uuid: ' + uuid + ', disease_area: ' + area,
-        ', type: ' +
-          type +
-          ', position: ' +
-          position +
-          ', disease: ' +
-          disease +
-          ', img_url: ' +
-          img_url,
-      );
-    }
+    setIsLoaded(true);
     if (area === 'eye') {
       const result2 = await AIDiagnosisFunction({
         uuid: uuid,
@@ -78,6 +68,7 @@ function OwnerAIDiagnosis({navigation, route}) {
 
       if (result2.statusCode === '200') {
         navigation.navigate('OwnerResult', {result: result2});
+        setIsLoaded(false);
       }
     } else if (area === 'skin') {
       const result2 = await AIDiagnosisFunction({
@@ -91,6 +82,7 @@ function OwnerAIDiagnosis({navigation, route}) {
 
       if (result2.statusCode === '200') {
         navigation.navigate('OwnerResult', {result: result2});
+        setIsLoaded(false);
       }
     }
 
@@ -114,32 +106,44 @@ function OwnerAIDiagnosis({navigation, route}) {
     }
   }, [uri]);
 
-  return (
-    <View style={styles.container}>
-      <Header1 navigation={navigation} />
-      <ScrollView style={styles.scrollViewContent}>
-        <View style={styles.smallContainer}>
-          {uri ? (
-            <Image source={{uri: uri.uri}} style={styles.picture2} />
-          ) : (
-            <View style={styles.picture}>
-              <Text>사진을 선택해주세요</Text>
+  if (!isLoaded) {
+    return (
+      <View style={styles.container}>
+        <Header1 navigation={navigation} />
+        <ScrollView style={styles.scrollViewContent}>
+          <View style={styles.smallContainer}>
+            {uri ? (
+              <Image source={{uri: uri.uri}} style={styles.picture2} />
+            ) : (
+              <View style={styles.picture}>
+                <Text>사진을 선택해주세요</Text>
+              </View>
+            )}
+            <Picture navigation={navigation} />
+            <View style={styles.dropdownContainer}>
+              <AffectedList area={area} setArea={setArea} />
             </View>
-          )}
-          <Picture navigation={navigation} />
-          <View style={styles.dropdownContainer}>
-            <AffectedList area={area} setArea={setArea} />
+            <View style={styles.buttonDiv}>
+              <MainButton
+                title="AI 진단하기"
+                onPress={() => onClickDiagnosisButton()}
+              />
+            </View>
           </View>
-          <View style={styles.buttonDiv}>
-            <MainButton
-              title="AI 진단하기"
-              onPress={() => onClickDiagnosisButton()}
-            />
+        </ScrollView>
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <ScrollView style={styles.scrollViewContent}>
+          <View style={styles.smallContainer2}>
+            <Text style={styles.loadingText}>Loading...</Text>
           </View>
-        </View>
-      </ScrollView>
-    </View>
-  );
+        </ScrollView>
+      </View>
+    );
+  }
 }
 
 export default OwnerAIDiagnosis;
@@ -155,6 +159,10 @@ const styles = StyleSheet.create({
   },
   smallContainer: {
     marginTop: 30,
+    alignItems: 'center',
+  },
+  smallContainer2: {
+    marginTop: 400,
     alignItems: 'center',
   },
   picture: {
@@ -178,5 +186,10 @@ const styles = StyleSheet.create({
   },
   dropdownContainer: {
     marginBottom: 20,
+  },
+  loadingText: {
+    fontSize: 25,
+    fontWeight: '900',
+    color: '#00835C',
   },
 });
