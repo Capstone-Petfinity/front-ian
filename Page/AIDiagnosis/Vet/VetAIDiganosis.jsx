@@ -13,6 +13,7 @@ import DiseaseList from './DiseaseList';
 
 import AIDiagnosisFunction from '../function/AIDiagnosisFunction';
 import ImageTestFunction from '../function/ImageTestFunction';
+import PositionList2 from './PositionList2';
 
 function VetAIDiagnosis({navigation, route}) {
   const [uuid, setUuid] = useState(null);
@@ -26,12 +27,19 @@ function VetAIDiagnosis({navigation, route}) {
 
   async function getImgUrlFunction() {
     let formData = new FormData();
-
-    formData.append('file', {
-      name: uri.filename,
-      type: uri.extension,
-      uri: uri.uri,
-    });
+    if (uri.filename) {
+      formData.append('file', {
+        name: uri.filename,
+        type: uri.extension,
+        uri: uri.uri,
+      });
+    } else {
+      formData.append('file', {
+        name: uri.path,
+        type: 'jpeg',
+        uri: 'file://' + uri.path,
+      });
+    }
 
     const result = await ImageTestFunction({formData: formData});
     setImg_url(result[0]);
@@ -80,6 +88,7 @@ function VetAIDiagnosis({navigation, route}) {
 
   useEffect(() => {
     loadUserInfo();
+    // console.log(area);
   }, []);
 
   useEffect(() => {
@@ -94,12 +103,19 @@ function VetAIDiagnosis({navigation, route}) {
         <Header1 navigation={navigation} />
         <ScrollView>
           <View style={styles.smallContainer}>
-            {uri ? (
-              <Image source={{uri: uri.uri}} style={styles.picture2} />
-            ) : (
+            {!uri && (
               <View style={styles.picture}>
                 <Text>사진을 선택해주세요</Text>
               </View>
+            )}
+            {uri && !uri.uri && (
+              <Image
+                source={{uri: 'file://' + uri.path}}
+                style={styles.picture2}
+              />
+            )}
+            {uri && uri.uri && (
+              <Image source={{uri: uri.uri}} style={styles.picture2} />
             )}
             <Picture navigation={navigation} area={area} />
 
@@ -107,8 +123,11 @@ function VetAIDiagnosis({navigation, route}) {
               {area === 'eye' ? (
                 <CameraTypeList camera={type} setCamera={setType} />
               ) : null}
-              {area === 'stomach' || area === 'skeletal' || area === 'chest' ? (
+              {area === 'stomach' || area === 'chest' ? (
                 <PositionList position={position} setPosition={setPosition} />
+              ) : null}
+              {area === 'skeletal' ? (
+                <PositionList2 position={position} setPosition={setPosition} />
               ) : null}
             </View>
             <View style={styles.dropdownContainer}>

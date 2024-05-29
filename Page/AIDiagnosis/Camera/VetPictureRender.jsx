@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import {
   Dimensions,
   Image,
@@ -19,11 +20,14 @@ function TextButton({text, onPress}) {
 
 function VetPictureReneder({navigation, route}) {
   const {photo, area} = route.params;
-  const picture = photo.photo;
+  // const picture = photo.photo;
 
+  useEffect(() => {
+    console.log(area);
+  });
   return (
     <>
-      <Image style={styles.photo} source={{uri: 'file://' + picture.path}} />
+      <Image style={styles.photo} source={{uri: 'file://' + photo.path}} />
       <View style={styles.overlayView}>
         <View style={styles.topView} />
         <View style={styles.buttonView}>
@@ -36,7 +40,7 @@ function VetPictureReneder({navigation, route}) {
               text="사용"
               onPress={() =>
                 navigation.navigate('VetAIDiagnosis', {
-                  uri: 'file://' + picture.path,
+                  uri: photo,
                   area: area,
                 })
               }

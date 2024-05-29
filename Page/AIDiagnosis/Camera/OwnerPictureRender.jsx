@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import {
   Dimensions,
   Image,
@@ -18,12 +19,15 @@ function TextButton({text, onPress}) {
 }
 
 function OwnerPictureRender({navigation, route}) {
-  const photo = route.params;
-  const picture = photo.photo;
+  const {photo} = route.params;
+  // const picture = photo.photo;
 
+  useEffect(() => {
+    console.log(photo);
+  }, []);
   return (
     <>
-      <Image style={styles.photo} source={{uri: 'file://' + picture.path}} />
+      <Image style={styles.photo} source={{uri: 'file://' + photo.path}} />
       <View style={styles.overlayView}>
         <View style={styles.topView} />
         <View style={styles.buttonView}>
@@ -36,7 +40,7 @@ function OwnerPictureRender({navigation, route}) {
               text="사용"
               onPress={() =>
                 navigation.navigate('OwnerAIDiagnosis', {
-                  uri: 'file://' + picture.path,
+                  uri: photo,
                 })
               }
             />

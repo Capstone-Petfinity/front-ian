@@ -1,4 +1,4 @@
-import {useEffect, useRef} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
@@ -20,10 +20,11 @@ function CameraButton({onPress}) {
   );
 }
 
-function CameraRender({navigation}) {
+function CameraRender({navigation, route}) {
   const device = useCameraDevice('back');
   const camera = useRef(null);
   const [isParent, setIsParent] = useState(null);
+  let {area} = route.params;
 
   function loadUserInfo() {
     AsyncStorage.getItem('userState', (err, result) => {
@@ -41,7 +42,7 @@ function CameraRender({navigation}) {
     if (isParent) {
       navigation.navigate('OwnerPictureRender', {photo: photo});
     } else {
-      navigation.navigate('VetPictureRender', {photo: photo});
+      navigation.navigate('VetPictureRender', {photo: photo, area: area});
     }
   };
 

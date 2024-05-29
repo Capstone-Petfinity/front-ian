@@ -27,12 +27,20 @@ function OwnerAIDiagnosis({navigation, route}) {
   async function getImgUrlFunction() {
     let formData = new FormData();
 
-    formData.append('file', {
-      name: uri.filename,
-      type: uri.extension,
-      uri: uri.uri,
-    });
-
+    if (uri.filename) {
+      formData.append('file', {
+        name: uri.filename,
+        type: uri.extension,
+        uri: uri.uri,
+      });
+    } else {
+      formData.append('file', {
+        name: uri.path,
+        type: 'jpeg',
+        uri: 'file://' + uri.path,
+      });
+    }
+    console.log(formData);
     const result = await ImageTestFunction({formData: formData});
     setImg_url(result[0]);
 
@@ -112,12 +120,19 @@ function OwnerAIDiagnosis({navigation, route}) {
         <Header1 navigation={navigation} />
         <ScrollView style={styles.scrollViewContent}>
           <View style={styles.smallContainer}>
-            {uri ? (
-              <Image source={{uri: uri.uri}} style={styles.picture2} />
-            ) : (
+            {!uri && (
               <View style={styles.picture}>
                 <Text>사진을 선택해주세요</Text>
               </View>
+            )}
+            {uri && !uri.uri && (
+              <Image
+                source={{uri: 'file://' + uri.path}}
+                style={styles.picture2}
+              />
+            )}
+            {uri && uri.uri && (
+              <Image source={{uri: uri.uri}} style={styles.picture2} />
             )}
             <Picture navigation={navigation} />
             <View style={styles.dropdownContainer}>
