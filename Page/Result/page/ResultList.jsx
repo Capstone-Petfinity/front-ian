@@ -6,6 +6,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Header2 from '../../Component/Header/Header2';
 import DiagnosisListFunction from '../function/DiagnosisListFunction';
 import ImageTestFunction2 from '../../AIDiagnosis/function/ImageTestFunction2';
+import BackButton from '../../Component/Button/BackButton';
 
 async function getImgUrlFunction({insert_id}) {
   const res = await ImageTestFunction2({insert_id});
@@ -42,13 +43,24 @@ function LoadDiagnosis({navigation, diagnosisList}) {
               })
             }>
             {uri ? (
-              <Image source={{uri: uri}} style={{height: 100, width: 100}} />
+              <Image source={{uri: uri}} style={styles.img} />
             ) : (
-              <Text>Loading image...</Text>
+              <Text style={styles.loadingText}>Loading image...</Text>
             )}
-            <Text>{diagnosis.date}</Text>
-            <Text>{diagnosis.disease_name}</Text>
-            <Text>{diagnosis.percent}</Text>
+            <View style={styles.textView}>
+              <View style={styles.smallTextView}>
+                <Text style={styles.title}>질병명</Text>
+                <Text>{diagnosis.disease_name}</Text>
+              </View>
+              <View style={styles.smallTextView}>
+                <Text style={styles.title}>질병 확률</Text>
+                <Text>{diagnosis.percent}%</Text>
+              </View>
+              <View style={styles.smallTextView}>
+                <Text style={styles.title}>진단 일자</Text>
+                <Text>{diagnosis.date}</Text>
+              </View>
+            </View>
           </TouchableOpacity>
         );
       })}
@@ -79,7 +91,7 @@ function ResultList({navigation}) {
   if (diagnosisList) {
     return (
       <View style={styles.container}>
-        <Header2 navigation={navigation} />
+        <BackButton navigation={navigation} title="진단 결과 조회" />
         <ScrollView style={styles.scrollViewContent}>
           <View style={styles.smallContainer}>
             <LoadDiagnosis
@@ -127,8 +139,43 @@ const styles = StyleSheet.create({
   buttonDiv: {
     marginTop: 0,
   },
+  img: {
+    height: 90,
+    width: 90,
+    marginRight: 20,
+    marginLeft: 20,
+    marginTop: 20,
+    marginBottom: 20,
+  },
   conponentView: {
     display: 'flex',
     flexDirection: 'row',
+    borderWidth: 0.2,
+    borderRadius: 8,
+
+    marginBottom: 20,
+  },
+  textView: {
+    width: 200,
+    marginTop: 30,
+  },
+  smallTextView: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  title: {
+    width: 60,
+    fontSize: 14,
+    fontWeight: '500',
+    marginRight: 10,
+  },
+  loadingText: {
+    fontSize: 10,
+    width: 90,
+    height: 80,
+    marginRight: 20,
+    marginLeft: 20,
+    marginTop: 50,
   },
 });
