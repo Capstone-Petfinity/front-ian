@@ -1,26 +1,59 @@
 import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Header2 from '../../Component/Header/Header2';
 import DiagnosisListFunction from '../function/DiagnosisListFunction';
+import ImageTestFunction2 from '../../AIDiagnosis/function/ImageTestFunction2';
+
+async function getImgUrlFunction({insert_id}) {
+  const res = await ImageTestFunction2({insert_id});
+
+  return res[0];
+}
 
 function LoadDiagnosis({navigation, diagnosisList}) {
-  return diagnosisList.map(diagnosis => {
-    return (
-      <TouchableOpacity
-        key={diagnosis.uuid}
-        onPress={() =>
-          navigation.navigate('ResultInfo', {
-            diagnosis_uuid: diagnosis.uuid,
-          })
-        }>
-        <Text>{diagnosis.date}</Text>
-        <Text>{diagnosis.disease_name}</Text>
-      </TouchableOpacity>
-    );
-  });
+  const [imgUrls, setImgUrls] = useState({});
+
+  useEffect(() => {
+    async function loadImages() {
+      const urls = {};
+      for (const diagnosis of diagnosisList) {
+        const uri = await getImgUrlFunction({insert_id: diagnosis.insert_id});
+        urls[diagnosis.uuid] = uri;
+      }
+      setImgUrls(urls);
+    }
+    loadImages();
+  }, [diagnosisList]);
+
+  return (
+    <View>
+      {diagnosisList.map(diagnosis => {
+        const uri = imgUrls[diagnosis.uuid];
+        return (
+          <TouchableOpacity
+            style={styles.conponentView}
+            key={diagnosis.uuid}
+            onPress={() =>
+              navigation.navigate('ResultInfo', {
+                diagnosis_uuid: diagnosis.uuid,
+              })
+            }>
+            {uri ? (
+              <Image source={{uri: uri}} style={{height: 100, width: 100}} />
+            ) : (
+              <Text>Loading image...</Text>
+            )}
+            <Text>{diagnosis.date}</Text>
+            <Text>{diagnosis.disease_name}</Text>
+            <Text>{diagnosis.percent}</Text>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
 }
 
 function ResultList({navigation}) {
@@ -93,5 +126,9 @@ const styles = StyleSheet.create({
   },
   buttonDiv: {
     marginTop: 0,
+  },
+  conponentView: {
+    display: 'flex',
+    flexDirection: 'row',
   },
 });
