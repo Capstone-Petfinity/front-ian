@@ -21,7 +21,6 @@ function OwnerResult({navigation, route}) {
 
   useEffect(() => {
     getImgUrlFunction();
-    console.log(img_url);
   }, []);
 
   if (img_url) {
@@ -29,12 +28,28 @@ function OwnerResult({navigation, route}) {
       <View style={styles.container}>
         <Header1 navigation={navigation} />
         <View style={styles.smallContainer}>
-          {img_url && (
-            <Image source={{uri: img_url}} style={{height: 300, width: 300}} />
+          {img_url && <Image source={{uri: img_url}} style={styles.img} />}
+          {result.disease_name !== '정상' && (
+            <Text style={styles.resultText}>
+              <Text style={styles.disease_highlight}>
+                {result.disease_name}{' '}
+              </Text>
+              이{'(가)'}
+              {'\n'}
+              <Text style={styles.percent_highlight}>
+                {result.percent}%
+              </Text>{' '}
+              의심됩니다.
+            </Text>
           )}
-          <Text style={styles.resultText}>
-            {result.disease_name}이{'(가)'} {result.percent}% 의심됩니다.
-          </Text>
+          {result.disease_name === '정상' && (
+            <Text style={styles.resultText}>
+              <Text style={styles.resultText}>
+                <Text style={styles.percent_highlight}>{result.percent}%</Text>
+                의 확률로{'\n'}의심되는 질병이 없습니다.
+              </Text>
+            </Text>
+          )}
           <View style={styles.additionalTextView}>
             <Text style={styles.additionalText}>{result.content}</Text>
           </View>
@@ -69,19 +84,36 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     marginBottom: 35,
   },
+  img: {
+    height: 300,
+    width: 300,
+    marginBottom: 30,
+  },
   resultText: {
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: '500',
     marginBottom: 50,
+    textAlign: 'center',
+    lineHeight: 30,
   },
   additionalTextView: {
     marginBottom: 45,
+    width: 300,
   },
   additionalText: {
-    fontSize: 17,
+    fontSize: 15,
+    lineHeight: 20,
+    textAlign: 'center',
   },
   buttonDiv: {
-    // marginBottom: 20,
-    marginTop: 50,
+    marginBottom: 20,
+  },
+  disease_highlight: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: 'red',
+  },
+  percent_highlight: {
+    fontSize: 20,
   },
 });
