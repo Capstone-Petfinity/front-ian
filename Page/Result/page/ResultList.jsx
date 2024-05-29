@@ -3,36 +3,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import Header2 from '../../Component/Header/Header2';
+
 import DiagnosisListFunction from '../function/DiagnosisListFunction';
-import ImageTestFunction2 from '../../AIDiagnosis/function/ImageTestFunction2';
 import BackButton from '../../Component/Button/BackButton';
 
-async function getImgUrlFunction({insert_id}) {
-  const res = await ImageTestFunction2({insert_id});
-
-  return res[0];
-}
-
 function LoadDiagnosis({navigation, diagnosisList}) {
-  const [imgUrls, setImgUrls] = useState({});
-
-  useEffect(() => {
-    async function loadImages() {
-      const urls = {};
-      for (const diagnosis of diagnosisList) {
-        const uri = await getImgUrlFunction({insert_id: diagnosis.insert_id});
-        urls[diagnosis.uuid] = uri;
-      }
-      setImgUrls(urls);
-    }
-    loadImages();
-  }, [diagnosisList]);
-
   return (
     <View>
       {diagnosisList.map(diagnosis => {
-        const uri = imgUrls[diagnosis.uuid];
         return (
           <TouchableOpacity
             style={styles.conponentView}
@@ -42,11 +20,8 @@ function LoadDiagnosis({navigation, diagnosisList}) {
                 diagnosis_uuid: diagnosis.uuid,
               })
             }>
-            {uri ? (
-              <Image source={{uri: uri}} style={styles.img} />
-            ) : (
-              <Text style={styles.loadingText}>Loading image...</Text>
-            )}
+            <Image source={{uri: diagnosis.img_url}} style={styles.img} />
+
             <View style={styles.textView}>
               <View style={styles.smallTextView}>
                 <Text style={styles.title}>질병명</Text>

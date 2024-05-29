@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     lineHeight: 30,
   },
   additionalTextView: {
-    marginBottom: 45,
+    // marginBottom: 45,
     width: 300,
   },
   additionalText: {
