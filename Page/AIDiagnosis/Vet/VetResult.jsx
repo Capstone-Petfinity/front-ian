@@ -96,12 +96,13 @@ const styles = StyleSheet.create({
   resultText: {
     fontSize: 17,
     fontWeight: '500',
-    marginBottom: 50,
+    marginBottom: 20,
     textAlign: 'center',
     lineHeight: 30,
   },
   additionalTextView: {
-    marginBottom: 45,
+    // marginBottom: 45,
+    width: 240,
   },
   additionalText: {
     fontSize: 17,
