@@ -36,7 +36,7 @@ export default async function ownerSignUpFunction({
     encodedKey,
     options,
   ).toString(); // Convert CipherParams object to a base64 string
-  console.log(encryptedData);
+
   const result = await fetch(
     'https://capstone-petfinity.com/user/signup/parent',
     {

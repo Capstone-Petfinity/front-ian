@@ -1,3 +1,5 @@
+import CryptoJS from 'react-native-crypto-js';
+
 export default async function vetSignUpFunctoin({
   userId,
   password,
