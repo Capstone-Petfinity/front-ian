@@ -5,6 +5,7 @@ import MainButton from '../../Component/Button/MainButton';
 import Header1 from '../../Component/Header/Header1';
 
 import ImageTestFunction2 from '../function/ImageTestFunction2';
+import {ScrollView} from 'react-native-gesture-handler';
 
 function OwnerResult({navigation, route}) {
   let {result} = route.params;
@@ -27,38 +28,42 @@ function OwnerResult({navigation, route}) {
     return (
       <View style={styles.container}>
         <Header1 navigation={navigation} />
-        <View style={styles.smallContainer}>
-          {img_url && <Image source={{uri: img_url}} style={styles.img} />}
-          {result.disease_name !== '정상' && (
-            <Text style={styles.resultText}>
-              <Text style={styles.disease_highlight}>
-                {result.disease_name}{' '}
-              </Text>
-              이{'(가)'}
-              {'\n'}
-              <Text style={styles.percent_highlight}>
-                {result.percent}%
-              </Text>{' '}
-              의심됩니다.
-            </Text>
-          )}
-          {result.disease_name === '정상' && (
-            <Text style={styles.resultText}>
+        <ScrollView style={styles.scrollViewContent}>
+          <View style={styles.smallContainer}>
+            {img_url && <Image source={{uri: img_url}} style={styles.img} />}
+            {result.disease_name !== '정상' && (
               <Text style={styles.resultText}>
-                <Text style={styles.percent_highlight}>{result.percent}%</Text>
-                의 확률로{'\n'}의심되는 질병이 없습니다.
+                <Text style={styles.disease_highlight}>
+                  {result.disease_name}{' '}
+                </Text>
+                이{'(가)'}
+                {'\n'}
+                <Text style={styles.percent_highlight}>
+                  {result.percent}%
+                </Text>{' '}
+                의심됩니다.
               </Text>
-            </Text>
-          )}
-          <View style={styles.additionalTextView}>
-            <Text style={styles.additionalText}>{result.content}</Text>
+            )}
+            {result.disease_name === '정상' && (
+              <Text style={styles.resultText}>
+                <Text style={styles.resultText}>
+                  <Text style={styles.percent_highlight}>
+                    {result.percent}%
+                  </Text>
+                  의 확률로{'\n'}의심되는 질병이 없습니다.
+                </Text>
+              </Text>
+            )}
+            <View style={styles.additionalTextView}>
+              <Text style={styles.additionalText}>{result.content}</Text>
+            </View>
           </View>
-          <View style={styles.buttonDiv}>
-            <MainButton
-              title="병원 예약"
-              onPress={() => navigation.navigate('Reservation1')}
-            />
-          </View>
+        </ScrollView>
+        <View style={styles.buttonDiv}>
+          <MainButton
+            title="병원 예약"
+            onPress={() => navigation.navigate('Reservation1')}
+          />
         </View>
       </View>
     );
@@ -72,9 +77,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
   },
-  smallContainer: {
+  scrollViewContent: {
+    flexGrow: 1,
+    backgroundColor: 'white',
     marginTop: 30,
+  },
+  smallContainer: {
+    flex: 1,
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   picture: {
     width: 300,
@@ -106,7 +117,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonDiv: {
-    marginBottom: 20,
+    marginBottom: 50,
+    marginTop: 30,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   disease_highlight: {
     fontSize: 20,

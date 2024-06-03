@@ -6,6 +6,7 @@ import Header1 from '../../Component/Header/Header1';
 import MainButton from '../../Component/Button/MainButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ImageTestFunction2 from '../../AIDiagnosis/function/ImageTestFunction2';
+import {ScrollView} from 'react-native-gesture-handler';
 
 function ResultInfo({navigation, route}) {
   let {diagnosis_uuid} = route.params;
@@ -53,53 +54,55 @@ function ResultInfo({navigation, route}) {
     return (
       <View style={styles.container}>
         <Header1 navigation={navigation} />
-        <View style={styles.smallContainer}>
-          {img_url && <Image source={{uri: img_url}} style={styles.img} />}
-          {diagnosis.disease_name !== '정상' && (
-            <Text style={styles.resultText}>
-              <Text style={styles.disease_highlight}>
-                {diagnosis.disease_name}{' '}
-              </Text>
-              이{'(가)'}
-              {'\n'}
-              <Text style={styles.percent_highlight}>
-                {diagnosis.percent}%
-              </Text>{' '}
-              의심됩니다.
-            </Text>
-          )}
-          {diagnosis.disease_name === '정상' && (
-            <Text style={styles.resultText}>
+        <ScrollView style={styles.scrollViewContent}>
+          <View style={styles.smallContainer}>
+            {img_url && <Image source={{uri: img_url}} style={styles.img} />}
+            {diagnosis.disease_name !== '정상' && (
               <Text style={styles.resultText}>
+                <Text style={styles.disease_highlight}>
+                  {diagnosis.disease_name}{' '}
+                </Text>
+                이{'(가)'}
+                {'\n'}
                 <Text style={styles.percent_highlight}>
                   {diagnosis.percent}%
-                </Text>
-                의 확률로{'\n'}의심되는 질병이 없습니다.
+                </Text>{' '}
+                의심됩니다.
               </Text>
-            </Text>
-          )}
-          {diagnosis.diagnosis !== '정상' && isParent && (
-            <View style={styles.additionalTextView}>
-              <Text style={styles.additionalText}>{diagnosis.content}</Text>
-            </View>
-          )}
-          {isParent && (
-            <View style={styles.buttonDiv}>
-              <MainButton
-                title="병원 예약"
-                onPress={() => navigation.navigate('Reservation1')}
-              />
-            </View>
-          )}
-          {!isParent && (
-            <View style={styles.buttonDiv}>
-              <MainButton
-                title="홈으로"
-                onPress={() => navigation.navigate('VetMain')}
-              />
-            </View>
-          )}
-        </View>
+            )}
+            {diagnosis.disease_name === '정상' && (
+              <Text style={styles.resultText}>
+                <Text style={styles.resultText}>
+                  <Text style={styles.percent_highlight}>
+                    {diagnosis.percent}%
+                  </Text>
+                  의 확률로{'\n'}의심되는 질병이 없습니다.
+                </Text>
+              </Text>
+            )}
+            {diagnosis.diagnosis !== '정상' && isParent && (
+              <View style={styles.additionalTextView}>
+                <Text style={styles.additionalText}>{diagnosis.content}</Text>
+              </View>
+            )}
+          </View>
+        </ScrollView>
+        {isParent && (
+          <View style={styles.buttonDiv}>
+            <MainButton
+              title="병원 예약"
+              onPress={() => navigation.navigate('Reservation1')}
+            />
+          </View>
+        )}
+        {!isParent && (
+          <View style={styles.buttonDiv}>
+            <MainButton
+              title="홈으로"
+              onPress={() => navigation.navigate('VetMain')}
+            />
+          </View>
+        )}
       </View>
     );
   }
@@ -112,9 +115,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
   },
-  smallContainer: {
+  scrollViewContent: {
+    flexGrow: 1,
+    backgroundColor: 'white',
     marginTop: 30,
+  },
+  smallContainer: {
+    flex: 1,
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   picture: {
     width: 300,
@@ -146,7 +155,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonDiv: {
-    marginTop: 50,
+    marginBottom: 50,
+    marginTop: 30,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   disease_highlight: {
     fontSize: 20,
