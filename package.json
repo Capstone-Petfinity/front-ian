@@ -45,6 +45,7 @@
     "react-native-screens": "^3.29.0",
     "react-native-shadow-2": "^7.0.8",
     "react-native-simple-modal": "^9.0.1",
+    "react-native-splash-screen": "^3.3.0",
     "react-native-unimodules": "^0.14.10",
     "react-native-vision-camera": "^3.9.2",
     "react-navigation": "^5.0.0",

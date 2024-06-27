@@ -25,15 +25,15 @@ function LoadDiagnosis({navigation, diagnosisList}) {
             <View style={styles.textView}>
               <View style={styles.smallTextView}>
                 <Text style={styles.title}>질병명</Text>
-                <Text>{diagnosis.disease_name}</Text>
+                <Text style={styles.text}>{diagnosis.disease_name}</Text>
               </View>
               <View style={styles.smallTextView}>
                 <Text style={styles.title}>질병 확률</Text>
-                <Text>{diagnosis.percent}%</Text>
+                <Text style={styles.text}>{diagnosis.percent}%</Text>
               </View>
               <View style={styles.smallTextView}>
                 <Text style={styles.title}>진단 일자</Text>
-                <Text>{diagnosis.date}</Text>
+                <Text style={styles.text}>{diagnosis.date}</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginRight: 10,
   },
+  text: {fontSize: 12},
   loadingText: {
     fontSize: 10,
     width: 90,

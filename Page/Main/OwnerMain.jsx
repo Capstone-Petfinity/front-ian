@@ -38,7 +38,7 @@ function OwnerMain({navigation}) {
             onPress={() => navigation.navigate('ResultList')}
           />
           <UserInfo />
-          <PetInfo navigation={navigation} />
+          {/* <PetInfo navigation={navigation} /> */}
 
           <View style={styles.bottomMargin} />
         </View>

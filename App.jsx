@@ -10,7 +10,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import React from 'react';
 
-import LoginScreen from './Page/Login/Login';
+// import LoginScreen from './Page/Login/LoginScreen';
 import SignUp from './Page/SignUp/SignUp';
 
 import OnwerMain from './Page/Main/OwnerMain';
@@ -42,6 +42,8 @@ import Reservation3 from './Page/Reservation/page/Reservation3';
 import ReservationDescription from './Page/Reservation/page/ReservationDescription';
 import ResultList from './Page/Result/page/ResultList';
 import ResultInfo from './Page/Result/page/ResultInfo';
+import Main from './Page/Main';
+import Login from './Page/Login/Login';
 
 function App() {
   const Stack = createStackNavigator();
@@ -51,8 +53,9 @@ function App() {
       <Stack.Navigator
         initialRouteName="Login"
         screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Main" component={Main} />
         <Stack.Screen
           name="OwnerMain"
           component={OnwerMain}

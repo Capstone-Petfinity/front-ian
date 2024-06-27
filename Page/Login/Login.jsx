@@ -8,12 +8,15 @@ import {
   TouchableOpacity,
   Alert,
   KeyboardAvoidingView,
+  Image,
 } from 'react-native';
 import {StyleSheet} from 'react-native';
 
 import LoginFunction from './function/LoginFunction';
 import MainButton from '../Component/Button/MainButton';
 import Input from '../Component/Input/Input';
+
+import logo from '../../asset/capstone_logo.png';
 
 async function onPressLoginButton({
   navigation,
@@ -109,7 +112,7 @@ function SignUpButton({title, onPress}) {
   );
 }
 
-function LoginScreen({navigation}) {
+function Login({navigation}) {
   const [userId, setUserId] = useState(null);
   const [password, setPassword] = useState(null);
 
@@ -129,7 +132,8 @@ function LoginScreen({navigation}) {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView style={styles.keyboardView} behavior={'padding'}>
-        <Text style={styles.title}>PetPinity</Text>
+        <Image source={logo} style={styles.logo} />
+        <Text style={styles.title}>Petfinity</Text>
         <Text style={styles.subTitle}>반려동물을 위한 끝없는 연결</Text>
         <Input
           placeholder="아이디를 입력하세요"
@@ -167,7 +171,7 @@ function LoginScreen({navigation}) {
   );
 }
 
-export default LoginScreen;
+export default Login;
 
 const styles = StyleSheet.create({
   container: {
@@ -181,6 +185,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  logo: {
+    height: 100,
+    width: 100,
+    marginBottom: 30,
+    marginTop: -60,
+  },
   title: {
     fontSize: 40,
     fontWeight: '900',
@@ -191,7 +201,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     color: '#00835C',
-    marginBottom: 30,
+    marginBottom: 40,
   },
   buttonDiv: {
     marginTop: 30,

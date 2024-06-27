@@ -15,7 +15,9 @@ function OwnerAccount({navigation}) {
         <View style={styles.smallContainer}>
           <UserInfo />
           <PetInfo navigation={navigation} />
-          <ReservationInfo navigation={navigation} />
+          <View style={{marginTop: 10}}>
+            <ReservationInfo navigation={navigation} />
+          </View>
         </View>
         <View style={styles.logoutButtonContainer}>
           <LogoutButton title="로그아웃" navigation={navigation} />
