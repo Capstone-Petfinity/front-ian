@@ -1,16 +1,12 @@
 export default async function ImageTestFunction({formData}) {
-  const result = await fetch(
-    'https://blog-back.donghyuns.com/upload/image/post',
-    {
-      method: 'POST',
-      body: formData,
-    },
-  );
+  const result = await fetch(`${process.env.IMAGE_API_URL}/upload/image/post`, {
+    method: 'POST',
+    body: formData,
+  });
 
   const res = await result.json();
-  console.log('ImageTestFunction1:', res);
 
-  const result2 = await fetch('https://blog-back.donghyuns.com/post/url', {
+  const result2 = await fetch(`${process.env.IMAGE_API_URL}/post/url`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -19,7 +15,6 @@ export default async function ImageTestFunction({formData}) {
   });
 
   const res2 = await result2.json();
-  console.log('ImgTestFunction2:', res2);
 
   return res2.result;
 }

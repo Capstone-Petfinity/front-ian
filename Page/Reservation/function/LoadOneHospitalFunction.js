@@ -1,9 +1,9 @@
 export default async function LoadOneHospitalFunction({hospitalUuid}) {
-  const result = await fetch('https://capstone-petfinity.com/info/hospital', {
+  const result = await fetch(`${process.env.API_URL}/info/hospital`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      auth: 'bVAtkPtiVGpWuO3dWEnvr51cEb6r7oF8',
+      auth: process.env.AUTH_KEY,
     },
     body: JSON.stringify({
       uuid: hospitalUuid,

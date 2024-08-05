@@ -1,11 +1,11 @@
 export default async function DuplicateCheckVetFunction({userId}) {
   const result = await fetch(
-    'https://capstone-petfinity.com/user/signup/vet/idduplicate',
+    `${process.env.API_URL}/user/signup/vet/idduplicate`,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        auth: 'bVAtkPtiVGpWuO3dWEnvr51cEb6r7oF8',
+        auth: process.env.AUTH_KEY,
       },
       body: JSON.stringify({
         id: userId,

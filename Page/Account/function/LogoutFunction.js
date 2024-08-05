@@ -1,9 +1,9 @@
 export default async function LogoutFunction({uuid, isParent}) {
-  const result = await fetch('https://capstone-petfinity.com/user/logout', {
+  const result = await fetch(`${process.env.API_URL}/user/logout`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      auth: 'bVAtkPtiVGpWuO3dWEnvr51cEb6r7oF8',
+      auth: process.env.AUTH_KEY,
     },
     body: JSON.stringify({
       uuid: uuid,
@@ -12,7 +12,6 @@ export default async function LogoutFunction({uuid, isParent}) {
   });
 
   const res = await result.json();
-  console.log(res);
 
   return res;
 }

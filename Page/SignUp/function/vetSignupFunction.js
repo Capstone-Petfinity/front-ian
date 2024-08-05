@@ -13,8 +13,8 @@ export default async function vetSignUpFunctoin({
     phone_number: phone,
   });
 
-  const secretKey = 'abcdefghabcdefghabcdefghabcdefgh'; // 32 bytes key
-  const initVector = '0123456789abcdef'; // 16 bytes IV
+  const secretKey = process.env.SECRET_KEY; // 32 bytes key
+  const initVector = process.env.INIT_VECTOR; // 16 bytes IV
 
   // Convert the plain text, key, and IV to WordArrays
   const encodedText = CryptoJS.enc.Utf8.parse(bodyData);
@@ -35,17 +35,16 @@ export default async function vetSignUpFunctoin({
     options,
   ).toString(); // Convert CipherParams object to a base64 string
 
-  const result = await fetch('https://capstone-petfinity.com/user/signup/vet', {
+  const result = await fetch(`${process.env.API_URL}/user/signup/vet`, {
     method: 'POST',
     headers: {
       'Content-Type': 'text/plain',
-      auth: 'bVAtkPtiVGpWuO3dWEnvr51cEb6r7oF8',
+      auth: process.env.AUTH_KEY,
     },
     body: encryptedData,
   });
 
   const res = await result.json();
-  console.log(res);
 
   return res;
 }
