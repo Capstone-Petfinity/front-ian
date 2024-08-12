@@ -5,7 +5,7 @@ export default async function LoginFunction({userId, password}) {
     id: userId,
     pw: password,
   });
-  console.log(bodyData);
+
   const secretKey = process.env.SECRET_KEY; // 32 bytes key
   const initVector = process.env.INIT_VECTOR; // 16 bytes IV
 
